@@ -1,7 +1,7 @@
 <?php
 
-define('LIBRARY_PATH', realpath(dirname(__FILE__) . '/../../../Library'));
-define('CONFIGURATION_PATH', realpath(dirname(__FILE__) . '/../Config'));
+define('LIBRARY_PATH', realpath(__DIR__ . '/../../../Library'));
+define('CONFIGURATION_PATH', realpath(__DIR__ . '/../Config'));
 
 require_once LIBRARY_PATH . '/ShnfuCarver/Core/Application.php';
 

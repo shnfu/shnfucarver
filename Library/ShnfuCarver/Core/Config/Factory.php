@@ -37,9 +37,9 @@ class Factory
         $configType = strtolower($configType);
         $configType = ucfirst($configType);
 
-        if (class_exists($className))
+        if (class_exists($configType))
         {
-            return new $className($configPath);
+            return new $configType($configPath);
         }
     }
 }

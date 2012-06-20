@@ -21,7 +21,7 @@ namespace ShnfuCarver\Core\Config;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Php
+class Php extends Base
 {
     /**
      * Construct 
@@ -34,7 +34,7 @@ class Php
         $data = include $filePath;
         if (!is_array($data))
         {
-            throw new ..\Exception('The configuration file should return an array!');
+            throw new ShnfuCarver\Core\Exception\Base('The configuration file should return an array!');
         }
 
         parent::__construct($data);
