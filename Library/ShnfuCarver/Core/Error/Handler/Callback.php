@@ -1,22 +1,22 @@
 <?php
 
 /**
- * Callback list simple class file
+ * Callback list internal class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error
+ * @subpackage Core\Error\Handler
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Error;
+namespace ShnfuCarver\Core\Error\Handler;
 
 /**
- * Callback list simple class
+ * Callback list internal class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error
+ * @subpackage Core\Error\Handler
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License

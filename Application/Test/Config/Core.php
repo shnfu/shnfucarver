@@ -2,7 +2,7 @@
 
 $tempConfig = array();
 
-tempConfig['test'] = 'OK';
+$tempConfig['test'] = 'OK';
 
 return $tempConfig;
 

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base class file for exception
+ * Loader class file for exception
  *
  * @package    ShnfuCarver
  * @subpackage Core\Loader
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Core\Loader;
 
 /**
- * Base class for exception
+ * Loader class for exception
  *
  * @package    ShnfuCarver
  * @subpackage Core\Loader
@@ -21,8 +21,13 @@ namespace ShnfuCarver\Core\Loader;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Base
+class Loader
 {
+    /**
+     * The singleton traits
+     */
+    use \ShnfuCarver\Common\Singleton\Singleton;
+
 }
 
 ?>

@@ -39,7 +39,7 @@ class Base
     public function __construct(array $config)
     {
         $this->import($config);
-        $this->_data = config;
+        $this->_data = $config;
     }
 
     /**
@@ -66,7 +66,37 @@ class Base
         {
             return $this->_data[$name];
         }
+
+        $trace = debug_backtrace();
+        trigger_error(
+                'Undefined property for ' . __CLASS__ .
+                ' via __get(): ' . $name .
+                ' in ' . $trace[0]['file'] .
+                ' on line ' . $trace[0]['line'],
+                E_USER_NOTICE);
         return null;
+    }
+
+    /**
+     * Magic method __isset 
+     *
+     * @param  string $name 
+     * @return bool
+     */
+    public function __isset($name)
+    {
+        return isset($this->_data[$name]);
+    }
+
+    /**
+     * Magic method __unset 
+     *
+     * @param  string $name 
+     * @return void
+     */
+    public function __unset($name)
+    {
+        unset($this->_data[$name]);
     }
 
     /**
@@ -84,6 +114,16 @@ class Base
         {
             $this->_data[$key] = $value;
         }
+    }
+
+    /**
+     * Retrieve config
+     *
+     * @return array
+     */
+    public function retrieve()
+    {
+        return $this->_data;
     }
 }
 

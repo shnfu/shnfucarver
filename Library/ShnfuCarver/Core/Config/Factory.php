@@ -36,11 +36,14 @@ class Factory
         // Upper case for the first letter, lower for the left
         $configType = strtolower($configType);
         $configType = ucfirst($configType);
+        $configType = __NAMESPACE__ . '\\' . $configType;
 
-        if (class_exists($configType))
+        if (!class_exists($configType))
         {
-            return new $configType($configPath);
+            throw new \ShnfuCarver\Core\Exception\Base("Class $configType does not exist!");
         }
+
+        return new $configType($configPath);
     }
 }
 

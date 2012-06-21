@@ -4,19 +4,19 @@
  * Error handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error
+ * @subpackage Core\Error\Handler
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Error;
+namespace ShnfuCarver\Core\Error\Handler;
 
 /**
  * Error handler class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error
+ * @subpackage Core\Error\Handler
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -24,42 +24,16 @@ namespace ShnfuCarver\Core\Error;
 class Handler
 {
     /**
-     * Singleton instance
-     *
-     * @var \ShnfuCarver\Core\Error\Handler
+     * The singleton traits
      */
-    private static $_instance;
+    use \ShnfuCarver\Common\Singleton\Singleton;
 
     /**
      * Error handler list 
      *
-     * @var \ShnfuCarver\Core\Error\Callback
+     * @var \ShnfuCarver\Core\Error\Handler\Callback
      */
     private $_errorHandlerList;
-
-    /**
-     * Get the singleton instance 
-     *
-     * @return \ShnfuCarver\Core\Error\Handler
-     */
-    public static function getInstance()
-    {
-        if (!isset(self::$_instance))
-        {
-            self::$_instance = new self();
-        }
-        return self::$_instance;
-    }
-
-    /**
-     * Reset the singleton instance 
-     *
-     * @return void
-     */
-    public static function resetInstance()
-    {
-        unset(self::$_instance);
-    }
 
     /**
      * The main error handler 
@@ -75,7 +49,7 @@ class Handler
      */
     public function handler($errNo, $errStr, $errFile, $errLine, $errContext)
     {
-        if (!$this->_errorHandlerList instanceof \ShnfuCarver\Core\Error\Callback)
+        if (!$this->_errorHandlerList instanceof \ShnfuCarver\Core\Error\Handler\Callback)
         {
             return false;
         }
@@ -98,7 +72,7 @@ class Handler
      * Append a new error handler 
      *
      * @param  string|array $callbackList 
-     * @return \ShnfuCarver\Core\Error\Handler
+     * @return \ShnfuCarver\Core\Error\Handler\Handler
      */
     public function setCallbackList($callbackList)
     {
