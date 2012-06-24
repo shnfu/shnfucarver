@@ -65,6 +65,8 @@ class Application
     {
         date_default_timezone_set('Asia/Shanghai');
 
+        $this->_loadAutoloader();
+
         $this->_loadConfig($configPath);
 
         $this->_loadErrorHandler();
@@ -72,6 +74,24 @@ class Application
         $this->_loadExceptionHandler();
 
         echo $this->_config['test'];
+    }
+
+    /**
+     * Load autoloader 
+     *
+     * @return void
+     */
+    private function _loadAutoloader()
+    {
+        require_once LIBRARY_PATH . '/ShnfuCarver/Core/Autoloader/Internal.php';
+        $autoloader = \ShnfuCarver\Core\Autoloader\Internal::getInstance();
+        $autoloader->add('\haha\xixi\hehe\xuxu', '/home/phtiger/public_html/ShnfuCarver/Library/ShnfuCarver/Core/Autoloader/test/Config/Base.php');
+        $autoloader->add('\haha\xixi\hehe\\', '/home/phtiger/public_html/ShnfuCarver/Library/ShnfuCarver/Core/Autoloader/test/Config/');
+        $autoloader->add('\\', '/home/phtiger/public_html/ShnfuCarver/Library');
+        $autoloader->autoload('haha\xixi\hehe\xuxu');
+        $autoloader->autoload('\haha\xixi\hehe');
+        $autoloader->autoload('\haha\xixi\hehe\Face');
+        $autoloader->autoload('ShnfuCarver\Core\Error\Handler\Handler');
     }
 
     /**

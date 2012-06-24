@@ -66,7 +66,7 @@ class Batch
      */
     public function append($callback)
     {
-        array_push($this->_callbackList, $callback);
+        $this->_callbackList[] = $callback;
 
         return $this;
     }

@@ -34,7 +34,7 @@ class Php extends Base
         $data = include $filePath;
         if (!is_array($data))
         {
-            throw new ShnfuCarver\Core\Exception\Base('The configuration file should return an array!');
+            throw new ShnfuCarver\Core\Exception\Base('The PHP configuration file should return an array!');
         }
 
         parent::__construct($data);

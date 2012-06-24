@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Loader class file for exception
+ * Autoloader class file
  *
  * @package    ShnfuCarver
  * @subpackage Core\Loader
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Core\Loader;
 
 /**
- * Loader class for exception
+ * Autoloader class
  *
  * @package    ShnfuCarver
  * @subpackage Core\Loader
@@ -21,13 +21,16 @@ namespace ShnfuCarver\Core\Loader;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Loader
+class Autoloader
 {
     /**
      * The singleton traits
      */
     use \ShnfuCarver\Common\Singleton\Singleton;
 
+    private $_loadMap = array();
+
+    public function 
 }
 
 ?>
