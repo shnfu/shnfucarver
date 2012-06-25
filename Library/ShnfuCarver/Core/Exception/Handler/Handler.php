@@ -67,12 +67,11 @@ class Handler
      * Append a new exception handler 
      *
      * @param  string|array $callbackList 
-     * @return \ShnfuCarver\Core\Exception\Handler\Handler
+     * @return void
      */
     public function setCallbackList($callbackList)
     {
         $this->_exceptionHandlerList = $callbackList;
-        return $this;
     }
 }
 

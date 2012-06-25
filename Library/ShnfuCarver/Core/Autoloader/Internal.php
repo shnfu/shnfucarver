@@ -30,6 +30,8 @@ class Internal
 
     const LOAD_EXTENSION = '.php';
 
+    const LEVEL_LIMIT = 32;
+
     private $_loadMap = array();
 
     /**
@@ -42,7 +44,12 @@ class Internal
      */
     private static function _formatClassName($name)
     {
-        return '\\' . ltrim(rtrim($name, '\\') . '\\', '\\');
+        $trimName = ltrim(rtrim($name, '\\'), '\\');
+        if (!empty($trimName))
+        {
+            $trimName = '\\' . $trimName;
+        }
+        return $trimName;
     }
 
     /**
@@ -60,6 +67,26 @@ class Internal
         $name = rtrim($name, DIRECTORY_SEPARATOR);
         $name = rtrim($name, self::LOAD_EXTENSION);
         return $name;
+    }
+
+    /**
+     * Shift the name
+     *
+     * @param  string $name 
+     * @return bool  return false if no more shift needed
+     */
+    private static function _shiftName(&$prefix, &$suffix, $className)
+    {
+        $lastNsPos = strrpos($prefix, '\\');
+        if (false === $lastNsPos)
+        {
+            return false;
+        }
+
+        $suffix = substr($className, $lastNsPos);
+        $prefix = substr($prefix, 0, $lastNsPos);
+
+        return true;
     }
 
     /**
@@ -97,6 +124,7 @@ class Internal
         }
         else
         {
+            // create a new one
             $this->_loadMap[$name] = $paths;
         }
 
@@ -126,14 +154,14 @@ class Internal
      */
     public function autoload($className)
     {
-        // make sure the prefix start with a backslash
         $className = self::_formatClassName($className);
         $prefix = $className;
         $suffix = '';
+
         $loadFileOk = false;
-        do
+        for ($i = 0; $i < self::LEVEL_LIMIT; $i++)
         {
-            echo "prefix: $prefix  suffix: $suffix" . PHP_EOL;
+echo "prefix: $prefix  suffix: $suffix" . PHP_EOL;
             if (isset($this->_loadMap[$prefix]))
             {
                 $paths = $this->_loadMap[$prefix];
@@ -152,15 +180,11 @@ class Internal
                 }
             }
 
-            $lastNsPos = strrpos($prefix, '\\');
-            if (false === $lastNsPos)
+            if (!self::_shiftName($prefix, $suffix, $className))
             {
                 break;
             }
-            $suffix = substr($className, $lastNsPos);
-            $suffix = str_replace('\\', DIRECTORY_SEPARATOR, $suffix);
-            $prefix = self::_formatClassName(substr($prefix, 0, $lastNsPos));
-        } while (!empty($prefix));
+        }
 
         return $loadFileOk;
     }
@@ -174,7 +198,9 @@ class Internal
      */
     private static function _loadFile($prefix, $suffix)
     {
+        $suffix = str_replace('\\', DIRECTORY_SEPARATOR, $suffix);
         $filePath = $prefix . $suffix . self::LOAD_EXTENSION;
+
         if (is_file($filePath))
         {
             echo "load file: $filePath" . PHP_EOL;

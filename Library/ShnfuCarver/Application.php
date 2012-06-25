@@ -11,18 +11,7 @@
 
 namespace ShnfuCarver;
 
-require_once LIBRARY_PATH . '/ShnfuCarver/Common/Callback/Batch.php';
 require_once LIBRARY_PATH . '/ShnfuCarver/Common/Singleton/Singleton.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Config/Base.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Config/Php.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Config/Factory.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Base.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Handler/Handler.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Handler/Internal.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Handler/Callback.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Error/Handler/Handler.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Error/Handler/Internal.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Error/Handler/Callback.php';
 
 /**
  * Application class
@@ -83,15 +72,20 @@ class Application
      */
     private function _loadAutoloader()
     {
+        require_once LIBRARY_PATH . '/ShnfuCarver/Common/Callback/Batch.php';
+        require_once LIBRARY_PATH . '/ShnfuCarver/Core/Autoloader/Autoloader.php';
+        require_once LIBRARY_PATH . '/ShnfuCarver/Core/Autoloader/Callback.php';
         require_once LIBRARY_PATH . '/ShnfuCarver/Core/Autoloader/Internal.php';
-        $autoloader = \ShnfuCarver\Core\Autoloader\Internal::getInstance();
-        $autoloader->add('\haha\xixi\hehe\xuxu', '/home/phtiger/public_html/ShnfuCarver/Library/ShnfuCarver/Core/Autoloader/test/Config/Base.php');
-        $autoloader->add('\haha\xixi\hehe\\', '/home/phtiger/public_html/ShnfuCarver/Library/ShnfuCarver/Core/Autoloader/test/Config/');
-        $autoloader->add('\\', '/home/phtiger/public_html/ShnfuCarver/Library');
-        $autoloader->autoload('haha\xixi\hehe\xuxu');
-        $autoloader->autoload('\haha\xixi\hehe');
-        $autoloader->autoload('\haha\xixi\hehe\Face');
-        $autoloader->autoload('ShnfuCarver\Core\Error\Handler\Handler');
+
+        $internalAutoloader = \ShnfuCarver\Core\Autoloader\Internal::getInstance();
+        $internalAutoloader->add('\\', LIBRARY_PATH);
+
+        $callbackList = new \ShnfuCarver\Core\Autoloader\Callback;
+        $callbackList->append($internalAutoloader, 'autoload');
+
+        $autoloader = \ShnfuCarver\Core\Autoloader\Autoloader::getInstance();
+        $autoloader->setCallbackList($callbackList);
+        $autoloader->setAutoloader($callbackList);
     }
 
     /**
