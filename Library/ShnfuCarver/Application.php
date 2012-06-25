@@ -78,7 +78,7 @@ class Application
         require_once LIBRARY_PATH . '/ShnfuCarver/Core/Autoloader/Internal.php';
 
         $internalAutoloader = \ShnfuCarver\Core\Autoloader\Internal::getInstance();
-        $internalAutoloader->add('\\', LIBRARY_PATH);
+        $internalAutoloader->add('', LIBRARY_PATH);
 
         $callbackList = new \ShnfuCarver\Core\Autoloader\Callback;
         $callbackList->append($internalAutoloader, 'autoload');
