@@ -11,6 +11,9 @@
 
 namespace ShnfuCarver;
 
+defined('LIBRARY_PATH')
+    || define('LIBRARY_PATH', realpath(__DIR__ . '/..'));
+
 require_once LIBRARY_PATH . '/ShnfuCarver/Common/Singleton/Singleton.php';
 
 /**
