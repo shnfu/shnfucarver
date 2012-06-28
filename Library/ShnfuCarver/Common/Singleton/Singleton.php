@@ -12,18 +12,6 @@
 
 namespace ShnfuCarver\Common\Singleton;
 
-require_once LIBRARY_PATH . '/ShnfuCarver/Common/Callback/Batch.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Config/Base.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Config/Php.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Config/Factory.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Base.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Handler/Handler.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Handler/Internal.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Exception/Handler/Callback.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Error/Handler/Handler.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Error/Handler/Internal.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Error/Handler/Callback.php';
-
 /**
  * Singleton traits
  *

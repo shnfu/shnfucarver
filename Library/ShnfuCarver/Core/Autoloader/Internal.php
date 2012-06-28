@@ -161,7 +161,6 @@ class Internal
         $loadFileOk = false;
         for ($i = 0; $i < self::LEVEL_LIMIT; $i++)
         {
-echo "prefix: $prefix  suffix: $suffix" . PHP_EOL;
             if (isset($this->_loadMap[$prefix]))
             {
                 $paths = $this->_loadMap[$prefix];
@@ -203,7 +202,6 @@ echo "prefix: $prefix  suffix: $suffix" . PHP_EOL;
 
         if (is_file($filePath))
         {
-            echo "load file: $filePath" . PHP_EOL;
             include_once $filePath;
             return true;
         }

@@ -45,7 +45,7 @@ class Application
      *
      * @var array
      */
-    private $_config;
+    private $_config = array();
 
     /**
      * Main process of the application 
@@ -84,11 +84,11 @@ class Application
         $internalAutoloader->add('', LIBRARY_PATH);
 
         $callbackList = new \ShnfuCarver\Core\Autoloader\Callback;
-        $callbackList->append($internalAutoloader, 'autoload');
+        $callbackList->append(array($internalAutoloader, 'autoload'));
 
         $autoloader = \ShnfuCarver\Core\Autoloader\Autoloader::getInstance();
         $autoloader->setCallbackList($callbackList);
-        $autoloader->setAutoloader($callbackList);
+        $autoloader->setAutoloader();
     }
 
     /**
