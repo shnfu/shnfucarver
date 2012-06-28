@@ -34,8 +34,7 @@ class Factory
         $configType = pathinfo($configPath, PATHINFO_EXTENSION);
 
         // Upper case for the first letter, lower for the left
-        $configType = strtolower($configType);
-        $configType = ucfirst($configType);
+        $configType = ucfirst(strtolower($configType));
         $configType = __NAMESPACE__ . '\\' . $configType;
 
         if (!class_exists($configType))
