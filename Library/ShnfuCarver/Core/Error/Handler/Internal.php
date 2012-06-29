@@ -64,7 +64,7 @@ class Internal
      * @param  array  $errContext 
      * @return bool
      */
-    public static function handler($errNo, $errStr, $errFile, $errLine, $errContext)
+    public static function handle($errNo, $errStr, $errFile, $errLine, $errContext)
     {
         $dt = date("Y-m-d H:i:s (T)");
 

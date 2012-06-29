@@ -111,12 +111,12 @@ class Application
     private function _loadErrorHandler()
     {
         $callbackList = new \ShnfuCarver\Core\Error\Handler\Callback;
-        $callbackList->append(array('\ShnfuCarver\Core\Error\Handler\Internal', 'handler'));
+        $callbackList->append(array('\ShnfuCarver\Core\Error\Handler\Internal', 'handle'));
 
         $errorHandler = \ShnfuCarver\Core\Error\Handler\Handler::getInstance();
         $errorHandler->setCallbackList($callbackList);
 
-        $errorHandler->setErrorHandler();
+        $errorHandler->register();
     }
 
     /**
@@ -127,12 +127,12 @@ class Application
     private function _loadExceptionHandler()
     {
         $callbackList = new \ShnfuCarver\Core\Exception\Handler\Callback;
-        $callbackList->append(array('\ShnfuCarver\Core\Exception\Handler\Internal', 'handler'));
+        $callbackList->append(array('\ShnfuCarver\Core\Exception\Handler\Internal', 'handle'));
 
         $exceptionHandler = \ShnfuCarver\Core\Exception\Handler\Handler::getInstance();
         $exceptionHandler->setCallbackList($callbackList);
 
-        $exceptionHandler->setExceptionHandler();
+        $exceptionHandler->register();
     }
 }
 

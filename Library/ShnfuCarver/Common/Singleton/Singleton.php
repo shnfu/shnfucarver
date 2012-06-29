@@ -39,11 +39,11 @@ trait Singleton
      */
     public static function getInstance()
     {
-        if (!isset(self::$_instance))
+        if (!isset(static::$_instance))
         {
-            self::$_instance = new self();
+            static::$_instance = new static();
         }
-        return self::$_instance;
+        return static::$_instance;
     }
 
     /**
@@ -53,7 +53,7 @@ trait Singleton
      */
     public static function resetInstance()
     {
-        unset(self::$_instance);
+        unset(static::$_instance);
     }
 
     /**

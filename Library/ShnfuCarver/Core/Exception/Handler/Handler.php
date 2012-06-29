@@ -43,7 +43,7 @@ class Handler
      * @param  \ShnfuCarver\Core\Exception\Base $exception 
      * @return bool
      */
-    public function handler($exception)
+    public function handle($exception)
     {
         if (!$this->_exceptionHandlerList instanceof \ShnfuCarver\Core\Exception\Handler\Callback)
         {
@@ -58,9 +58,9 @@ class Handler
      *
      * @return mixed
      */
-    public function setExceptionHandler()
+    public function register()
     {
-        return set_exception_handler(array($this, 'handler'));
+        return set_exception_handler(array($this, 'handle'));
     }
 
     /**

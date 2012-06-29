@@ -29,7 +29,7 @@ class Internal
      * @param  \ShnfuCarver\Core\Exception\Base $exception 
      * @return bool
      */
-    public static function handler($exception)
+    public static function handle($exception)
     {
         echo '<br />Uncaught exception: ' . $exception->getMessage() . '<br />' . PHP_EOL;
         return true;

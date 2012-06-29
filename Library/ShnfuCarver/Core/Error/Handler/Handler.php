@@ -47,7 +47,7 @@ class Handler
      * @param  array  $errContext 
      * @return bool
      */
-    public function handler($errNo, $errStr, $errFile, $errLine, $errContext)
+    public function handle($errNo, $errStr, $errFile, $errLine, $errContext)
     {
         if (!$this->_errorHandlerList instanceof \ShnfuCarver\Core\Error\Handler\Callback)
         {
@@ -63,9 +63,9 @@ class Handler
      *
      * @return mixed
      */
-    public function setErrorHandler()
+    public function register()
     {
-        return set_error_handler(array($this, 'handler'));
+        return set_error_handler(array($this, 'handle'));
     }
 
     /**

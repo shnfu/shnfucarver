@@ -110,10 +110,7 @@ class Base
      */
     public function import(array $config)
     {
-        foreach($config as $key => $value)
-        {
-            $this->_data[$key] = $value;
-        }
+        $this->_data = array_merge(($this->_data, $config);
     }
 
     /**
