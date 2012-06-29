@@ -29,11 +29,6 @@ require_once LIBRARY_PATH . '/ShnfuCarver/Common/Singleton/Singleton.php';
 class Application
 {
     /**
-     * The singleton traits
-     */
-    use \ShnfuCarver\Common\Singleton\Singleton;
-
-    /**
      * Configuration of application 
      *
      * @var \ShnfuCarver\Core\Config\Base
