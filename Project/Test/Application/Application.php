@@ -8,7 +8,7 @@ define('CONFIGURATION_PATH', realpath(APPLICATION_PATH . '/Config'));
 
 require_once SHNFUCARVER_PATH . '/ShnfuCarver/Application.php';
 
-class TestApplication extends \ShnfuCarver\Application
+class Application extends \ShnfuCarver\Application
 {
 }
 
