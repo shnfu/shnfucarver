@@ -29,11 +29,11 @@ class Autoloader
     use \ShnfuCarver\Common\Singleton\Singleton;
 
     /**
-     * Autoloader list 
+     * Loader list, array of \ShnfuCarver\Core\Loader\LoaderInterface
      *
-     * @var \ShnfuCarver\Core\Autoloader\Callback
+     * @var array
      */
-    private $_autoloaderList;
+    private $_loaderList = array();
 
     /**
      * The main autoload
@@ -43,31 +43,52 @@ class Autoloader
      */
     public function autoload($name)
     {
-        if ($this->_autoloaderList instanceof \ShnfuCarver\Core\Autoloader\Callback)
+        foreach ($this->_loaderList as $loader)
         {
-            $this->_autoloaderList->callList(array($name), true);
+            if ($loader->load($name))
+            {
+                // only match the first successful load
+                break;
+            }
         }
     }
 
     /**
-     * Set the autoloader
+     * Register the autoloader
      *
      * @return bool
      */
-    public function setAutoloader()
+    public function register()
     {
         return spl_autoload_register(array($this, 'autoload'));
     }
 
     /**
-     * Append a new autoloader
+     * Set the loader for autoload
      *
-     * @param  string|array $callbackList 
+     * @param  array|\ShnfuCarver\Core\Loader\LoaderInterface $loader 
      * @return void
      */
-    public function setCallbackList($callbackList)
+    public function setLoader($loader)
     {
-        $this->_autoloaderList = $callbackList;
+        if (is_array($loader))
+        {
+            $tempList = $loader;
+        }
+        else
+        {
+            $tempList = array($loader);
+        }
+
+        foreach ($tempList as $tempLoader)
+        {
+            if (!$tempLoader instanceof \ShnfuCarver\Core\Loader\LoaderInterface)
+            {
+                throw new \InvalidArgumentException('The loader must be a \ShnfuCarver\Core\Loader\LoaderInterface instance!');
+            }
+        }
+
+        $this->_loaderList = $tempList;
     }
 }
 

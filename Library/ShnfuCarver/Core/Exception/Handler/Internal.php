@@ -26,10 +26,10 @@ class Internal
     /**
      * The handler to be set
      *
-     * @param  \ShnfuCarver\Core\Exception\Base $exception 
+     * @param  \Exception $exception 
      * @return bool
      */
-    public static function handle($exception)
+    public static function handle(\Exception $exception)
     {
         echo '<br />Uncaught exception: ' . $exception->getMessage() . '<br />' . PHP_EOL;
         return true;

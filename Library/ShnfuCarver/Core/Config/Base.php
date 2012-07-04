@@ -62,18 +62,13 @@ class Base
      */
     public function __get($name)
     {
+        // the value could be null, so not use isset()
         if (array_key_exists($name, $this->_data))
         {
             return $this->_data[$name];
         }
 
-        $trace = debug_backtrace();
-        trigger_error(
-                'Undefined property for ' . __CLASS__ .
-                ' via __get(): ' . $name .
-                ' in ' . $trace[0]['file'] .
-                ' on line ' . $trace[0]['line'],
-                E_USER_NOTICE);
+        throw new \LogicException("The configuration for '$name' does not exist!");
         return null;
     }
 

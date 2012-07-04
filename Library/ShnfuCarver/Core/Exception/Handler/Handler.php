@@ -40,10 +40,10 @@ class Handler
      *
      * If no exception handler exists, return false
      *
-     * @param  \ShnfuCarver\Core\Exception\Base $exception 
+     * @param  \Exception $exception 
      * @return bool
      */
-    public function handle($exception)
+    public function handle(\Exception $exception)
     {
         if (!$this->_exceptionHandlerList instanceof \ShnfuCarver\Core\Exception\Handler\Callback)
         {

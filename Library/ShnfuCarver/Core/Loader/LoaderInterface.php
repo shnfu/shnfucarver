@@ -1,28 +1,35 @@
 <?php
 
 /**
- * Base class file for exception
+ * Interface file for loader
  *
  * @package    ShnfuCarver
- * @subpackage Core\Exception
+ * @subpackage Core\Loader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Exception;
+namespace ShnfuCarver\Core\Loader;
 
 /**
- * Base class for exception
+ * Interface for loader
  *
  * @package    ShnfuCarver
- * @subpackage Core\Exception
+ * @subpackage Core\Loader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Base extends \Exception
+interface LoaderInterface
 {
+    /**
+     * Load the file with the name
+     *
+     * @param  string $name 
+     * @return bool  Whether load is successful
+     */
+    public function load($name);
 }
 
 ?>
