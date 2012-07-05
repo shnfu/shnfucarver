@@ -1,39 +1,35 @@
 <?php
 
 /**
- * Internal exception handler class file
+ * Interface file for exception handler
  *
  * @package    ShnfuCarver
- * @subpackage Core\Exception\Handler
+ * @subpackage Core\Debug\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Exception\Handler;
+namespace ShnfuCarver\Core\Debug\Exception;
 
 /**
- * Internal exception handler class
+ * Interface for exception handler
  *
  * @package    ShnfuCarver
- * @subpackage Core\Exception\Handler
+ * @subpackage Core\Debug\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Internal
+interface HandlerInterface
 {
     /**
-     * The handler to be set
+     * The exception handler 
      *
      * @param  \Exception $exception 
      * @return bool
      */
-    public static function handle(\Exception $exception)
-    {
-        echo '<br />Uncaught exception: ' . $exception->getMessage() . '<br />' . PHP_EOL;
-        return true;
-    }
+    public function handle(\Exception $exception);
 }
 
 ?>

@@ -21,7 +21,7 @@ namespace ShnfuCarver\Core\Loader;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class NameIterator implements Iterator
+class NameIterator implements \Iterator
 {
     /**
      * The name to be iterated
@@ -29,6 +29,21 @@ class NameIterator implements Iterator
      * @var string
      */
     private $_name = '';
+
+    /**
+     * Seperator of namespaces
+     *
+     * @var string
+     */
+    private $_seperator = '\\';
+
+    /**
+     * The order when split the namespace
+     * true means from right to left and false for left to right
+     *
+     * @var bool
+     */
+    private $_reverse = false;
 
     /**
      * The prefix for the current split
@@ -53,53 +68,19 @@ class NameIterator implements Iterator
     private $_end = false;
 
     /**
-     * The order when split the namespace
-     * true means from right to left and false for left to right
-     *
-     * @var bool
-     */
-    private $_reverse = false;
-
-    /**
-     * Seperator of namespaces
-     *
-     * @var string
-     */
-    private $_seperator = '\\';
-
-    /**
      * construct 
      *
      * @param  string $name 
      * @param  bool   $reverse 
      * @return void
      */
-    public function __construct($name, $reverse = false)
+    public function __construct($name, $seperator = '\\', $reverse = false)
     {
         $this->_name = $name;
+        $this->_seperator = $seperator;
         $this->_reverse = $reverse;
 
         $this->rewind();
-    }
-
-    /**
-     * Shift the name
-     *
-     * @param  string $name 
-     * @return bool  return false if no more shift needed
-     */
-    private static function _shiftName(&$prefix, &$suffix, $className)
-    {
-        $lastNsPos = strrpos($prefix, $this->_seperator);
-        if (false === $lastNsPos)
-        {
-            return false;
-        }
-
-        $suffix = substr($className, $lastNsPos);
-        $prefix = substr($prefix, 0, $lastNsPos);
-
-        return true;
     }
 
     /**
@@ -165,8 +146,8 @@ class NameIterator implements Iterator
             return;
         }
 
-        $suffix = substr($this->_name, $lastPos);
-        $prefix = substr($this->_name, 0, $lastPos);
+        $this->_prefix = substr($this->_name, 0, $lastPos);
+        $this->_suffix = substr($this->_name, $lastPos);
     }
 
     /**
@@ -176,7 +157,7 @@ class NameIterator implements Iterator
      */
     public function valid()
     {
-        return $this->_end;
+        return !$this->_end;
     }
 }
 

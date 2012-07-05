@@ -27,7 +27,7 @@ class Factory
      * Choose which config type to use 
      *
      * @param string $configPath 
-     * @return \ShnfuCarver\Core\Config\Base
+     * @return \ShnfuCarver\Core\Config\Config
      */
     public static function useConfig($configPath)
     {
@@ -39,10 +39,16 @@ class Factory
 
         if (!class_exists($configType))
         {
-            throw new \ShnfuCarver\Core\Exception\Base("Class $configType does not exist!");
+            throw new \InvalidArgumentException("'$configType' class does not exist!");
         }
 
-        return new $configType($configPath);
+        $config = new $configType($configPath);
+        if (!$config instanceof Config)
+        {
+            throw new \InvalidArgumentException("'$configType' is not an instance of '\ShnfuCarver\Core\Config\Config'!");
+        }
+
+        return $config;
     }
 }
 

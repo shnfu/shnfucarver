@@ -4,24 +4,24 @@
  * Internal error handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error|Handler
+ * @subpackage Core\Debug\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Error\Handler;
+namespace ShnfuCarver\Core\Debug\Error;
 
 /**
  * Internal error handler class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error\Handler
+ * @subpackage Core\Debug\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Internal
+class InternalHandler implements HandlerInterface
 {
     /**
      * Error code description 
@@ -64,12 +64,12 @@ class Internal
      * @param  array  $errContext 
      * @return bool
      */
-    public static function handle($errNo, $errStr, $errFile, $errLine, $errContext)
+    public function handle($errNo, $errStr, $errFile, $errLine, $errContext)
     {
         $dt = date("Y-m-d H:i:s (T)");
 
         $err_string = "<br />$errFile($errLine):  <b>[$errNo] ";
-        $err_string .= isset( self::$errorDescription[$errNo] ) ? self::$errorDescription[$errNo] : 'Unknown Error';
+        $err_string .= isset(self::$errorDescription[$errNo]) ? self::$errorDescription[$errNo] : 'Unknown Error';
         $err_string .= "</b>: $errStr.  [$dt]<br />\n";
 
         echo $err_string;

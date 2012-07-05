@@ -21,7 +21,7 @@ namespace ShnfuCarver\Core\Config;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Php extends Base
+class Php extends Config
 {
     /**
      * Construct 
@@ -31,10 +31,15 @@ class Php extends Base
      */
     public function __construct($filePath)
     {
+        if (!file_exists($filePath))
+        {
+            throw new \InvalidArgumentException("The configuration file $filePath does not exist!");
+        }
+
         $data = include $filePath;
         if (!is_array($data))
         {
-            throw new ShnfuCarver\Core\Exception\Base('The PHP configuration file should return an array!');
+            throw new \LogicException('The PHP configuration file should return an array!');
         }
 
         parent::__construct($data);

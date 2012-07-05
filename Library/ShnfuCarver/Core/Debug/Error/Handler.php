@@ -4,19 +4,19 @@
  * Error handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error\Handler
+ * @subpackage Core\Debug\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Error\Handler;
+namespace ShnfuCarver\Core\Debug\Error;
 
 /**
  * Error handler class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Error\Handler
+ * @subpackage Core\Debug\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -24,14 +24,9 @@ namespace ShnfuCarver\Core\Error\Handler;
 class Handler
 {
     /**
-     * The singleton traits
-     */
-    use \ShnfuCarver\Common\Singleton\Singleton;
-
-    /**
      * Error handler list 
      *
-     * @var \ShnfuCarver\Core\Error\Handler\Callback
+     * @var array  Array of \ShnfuCarver\Core\Debug\HandlerInterface
      */
     private $_errorHandlerList;
 
@@ -49,13 +44,16 @@ class Handler
      */
     public function handle($errNo, $errStr, $errFile, $errLine, $errContext)
     {
-        if (!$this->_errorHandlerList instanceof \ShnfuCarver\Core\Error\Handler\Callback)
+        $handleSuccessfully = false;
+        foreach ($this->_errorHandlerList as $handler)
         {
-            return false;
+            if ($handler->handle($errNo, $errStr, $errFile, $errLine, $errContext))
+            {
+                $handleSuccessfully = true;
+            }
         }
 
-        return $this->_errorHandlerList->callList
-            (array($errNo, $errStr, $errFile, $errLine, $errContext));
+        return $handleSuccessfully;
     }
 
     /**
@@ -69,14 +67,31 @@ class Handler
     }
 
     /**
-     * Append a new error handler 
+     * Set the error handler
      *
-     * @param  string|array $callbackList 
+     * @param  array|\ShnfuCarver\Core\Debug\Error\HandlerInterface $handler 
      * @return void
      */
-    public function setCallbackList($callbackList)
+    public function setHandler($handler)
     {
-        $this->_errorHandlerList = $callbackList;
+        if (is_array($handler))
+        {
+            $tempList = $handler;
+        }
+        else
+        {
+            $tempList = array($handler);
+        }
+
+        foreach ($tempList as $tempHandler)
+        {
+            if (!$tempHandler instanceof \ShnfuCarver\Core\Debug\Error\HandlerInterface)
+            {
+                throw new \InvalidArgumentException('The handler must be a \ShnfuCarver\Core\Debug\Error\HandlerInterface instance!');
+            }
+        }
+
+        $this->_errorHandlerList = $tempList;
     }
 }
 

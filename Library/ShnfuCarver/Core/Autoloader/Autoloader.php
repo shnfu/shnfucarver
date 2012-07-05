@@ -24,11 +24,6 @@ namespace ShnfuCarver\Core\Autoloader;
 class Autoloader
 {
     /**
-     * The singleton traits
-     */
-    use \ShnfuCarver\Common\Singleton\Singleton;
-
-    /**
      * Loader list, array of \ShnfuCarver\Core\Loader\LoaderInterface
      *
      * @var array

@@ -4,30 +4,25 @@
  * Exception handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Exception\Handler
+ * @subpackage Core\Debug\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Exception\Handler;
+namespace ShnfuCarver\Core\Debug\Exception;
 
 /**
  * Exception handler class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Exception\Handler
+ * @subpackage Core\Debug\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 class Handler
 {
-    /**
-     * The singleton traits
-     */
-    use \ShnfuCarver\Common\Singleton\Singleton;
-
     /**
      * Exception handler list 
      *
@@ -45,12 +40,16 @@ class Handler
      */
     public function handle(\Exception $exception)
     {
-        if (!$this->_exceptionHandlerList instanceof \ShnfuCarver\Core\Exception\Handler\Callback)
+        $handleSuccessfully = false;
+        foreach ($this->_exceptionHandlerList as $handler)
         {
-            return false;
+            if ($handler->handle($exception))
+            {
+                $handleSuccessfully = true;
+            }
         }
 
-        return $this->_exceptionHandlerList->callList(array($exception), true);
+        return $handleSuccessfully;
     }
 
     /**
@@ -64,14 +63,31 @@ class Handler
     }
 
     /**
-     * Append a new exception handler 
+     * Set the exception handler
      *
-     * @param  string|array $callbackList 
+     * @param  array|\ShnfuCarver\Core\Debug\Exception\HandlerInterface $handler 
      * @return void
      */
-    public function setCallbackList($callbackList)
+    public function setHandler($handler)
     {
-        $this->_exceptionHandlerList = $callbackList;
+        if (is_array($handler))
+        {
+            $tempList = $handler;
+        }
+        else
+        {
+            $tempList = array($handler);
+        }
+
+        foreach ($tempList as $tempHandler)
+        {
+            if (!$tempHandler instanceof \ShnfuCarver\Core\Debug\Exception\HandlerInterface)
+            {
+                throw new \InvalidArgumentException('The handler must be a \ShnfuCarver\Core\Debug\Exception\HandlerInterface instance!');
+            }
+        }
+
+        $this->_exceptionHandlerList = $tempList;
     }
 }
 

@@ -12,6 +12,9 @@
 
 namespace ShnfuCarver\Core\Loader;
 
+require_once LIBRARY_PATH . '/ShnfuCarver/Core/Loader/LoaderInterface.php';
+require_once LIBRARY_PATH . '/ShnfuCarver/Core/Loader/NameIterator.php';
+
 /**
  * Internal loader class
  *
@@ -24,8 +27,6 @@ namespace ShnfuCarver\Core\Loader;
 class InternalLoader implements LoaderInterface
 {
     const LOAD_EXTENSION = '.php';
-
-    const LEVEL_LIMIT = 32;
 
     /**
      * The load map 
@@ -48,9 +49,9 @@ class InternalLoader implements LoaderInterface
      * @param  bool $reverse 
      * @return void
      */
-    public function __construct(bool $reverse = false)
+    public function __construct($reverse = false)
     {
-        $this->_reverse = reverse;
+        $this->_reverse = $reverse;
     }
 
     /**
@@ -59,9 +60,9 @@ class InternalLoader implements LoaderInterface
      * @param  bool $reverse 
      * @return void
      */
-    public function setReverse(bool $reverse = true)
+    public function setReverse($reverse = true)
     {
-        $this->_reverse = reverse;
+        $this->_reverse = $reverse;
     }
 
     /**
@@ -130,12 +131,10 @@ class InternalLoader implements LoaderInterface
      */
     public function load($name)
     {
-        $className = self::_formatClassName($className);
-        $prefix = $className;
-        $suffix = '';
+        $nameIter = new NameIterator(self::_formatClassName($name), $this->_reverse);
 
         $loadFileOk = false;
-        for ($i = 0; $i < self::LEVEL_LIMIT; $i++)
+        foreach ($nameIter as $prefix => $suffix)
         {
             if (isset($this->_loadMap[$prefix]))
             {
@@ -153,11 +152,6 @@ class InternalLoader implements LoaderInterface
                 {
                     break;
                 }
-            }
-
-            if (!self::_shiftName($prefix, $suffix, $className))
-            {
-                break;
             }
         }
 
@@ -200,36 +194,16 @@ class InternalLoader implements LoaderInterface
     }
 
     /**
-     * Shift the name
-     *
-     * @param  string $name 
-     * @return bool  return false if no more shift needed
-     */
-    private static function _shiftName(&$prefix, &$suffix, $className)
-    {
-        $lastNsPos = strrpos($prefix, '\\');
-        if (false === $lastNsPos)
-        {
-            return false;
-        }
-
-        $suffix = substr($className, $lastNsPos);
-        $prefix = substr($prefix, 0, $lastNsPos);
-
-        return true;
-    }
-
-    /**
      * Load the file with the prefix and suffix
      *
      * @param  string $prefix 
      * @param  string $suffix 
      * @return bool
      */
-    private static function _loadFile($prefix, $suffix)
+    private static function _loadFile($path, $suffix)
     {
         $suffix = str_replace('\\', DIRECTORY_SEPARATOR, $suffix);
-        $filePath = $prefix . $suffix . self::LOAD_EXTENSION;
+        $filePath = $path . $suffix . self::LOAD_EXTENSION;
 
         if (is_file($filePath))
         {

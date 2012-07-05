@@ -2,7 +2,7 @@
 
 define('APPLICATION_PATH', realpath(__DIR__ . '/..'));
 
-require_once APPLICATION_PATH . '/Application/TestApplication.php';
+require_once APPLICATION_PATH . '/Application/Application.php';
 
 $application = new Application();
 $application->run();

@@ -21,7 +21,7 @@ namespace ShnfuCarver\Core\Config;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Base
+abstract class Config
 {
     /**
      * All configuration data stored here
@@ -68,7 +68,7 @@ class Base
             return $this->_data[$name];
         }
 
-        throw new \LogicException("The configuration for '$name' does not exist!");
+        throw new \DomainException("The configuration for '$name' does not exist!");
         return null;
     }
 
@@ -105,7 +105,7 @@ class Base
      */
     public function import(array $config)
     {
-        $this->_data = array_merge(($this->_data, $config);
+        $this->_data = array_merge($this->_data, $config);
     }
 
     /**
