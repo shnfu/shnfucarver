@@ -20,9 +20,6 @@ class Application extends \ShnfuCarver\Core\Application\Application
     {
         $manager = array
         (
-            new \ShnfuCarver\Core\Manager\Autoloader\AutoloaderManager,
-            new \ShnfuCarver\Core\Manager\Error\ErrorManager,
-            new \ShnfuCarver\Core\Manager\Exception\ExceptionManager,
         );
         return $manager;
     }
@@ -34,6 +31,8 @@ class Application extends \ShnfuCarver\Core\Application\Application
 
         parent::run();
 
+        $aaa = array();
+        echo $aaa['fjls'];
         echo $this->_config['test'] . PHP_EOL;
         echo $this->_config[''] . PHP_EOL;
         throw new \InvalidArgumentException('lfjklsjdslfj');

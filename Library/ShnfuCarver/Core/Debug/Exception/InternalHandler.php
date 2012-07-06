@@ -31,7 +31,14 @@ class InternalHandler implements HandlerInterface
      */
     public function handle(\Exception $exception)
     {
-        echo '<br />Uncaught exception: ' . $exception->getMessage() . '<br />' . PHP_EOL;
+        $dt = date("Y-m-d H:i:s (T)");
+
+        $err_string = '<br />Exception: ' . $exception->getFile();
+        $err_string .= '(' . $exception->getLine() . '):  ';
+        $err_string .= $exception->getMessage();
+        $err_string .= ".  [$dt]<br />\n";
+
+        echo $err_string;
         return true;
     }
 }

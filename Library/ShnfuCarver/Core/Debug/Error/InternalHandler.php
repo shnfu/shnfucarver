@@ -68,7 +68,7 @@ class InternalHandler implements HandlerInterface
     {
         $dt = date("Y-m-d H:i:s (T)");
 
-        $err_string = "<br />$errFile($errLine):  <b>[$errNo] ";
+        $err_string = "<br />Error: $errFile($errLine):  <b>[$errNo] ";
         $err_string .= isset(self::$errorDescription[$errNo]) ? self::$errorDescription[$errNo] : 'Unknown Error';
         $err_string .= "</b>: $errStr.  [$dt]<br />\n";
 

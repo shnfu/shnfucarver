@@ -57,12 +57,28 @@ class Handler
     }
 
     /**
+     * The shutdown handler
+     *
+     * @return void
+     */
+    public function shutdown()
+    {
+        $error = error_get_last();
+        if (!$error)
+        {
+            return;
+        }
+        $this->handle($error['type'], $error['message'], $error['file'], $error['line'], null);
+    }
+
+    /**
      * Substitue the system error handler
      *
      * @return mixed
      */
     public function register()
     {
+        register_shutdown_function(array($this, 'shutdown'));
         return set_error_handler(array($this, 'handle'));
     }
 

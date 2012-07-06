@@ -38,13 +38,6 @@ abstract class Application
     /**
      * Configuration of application 
      *
-     * @var \ShnfuCarver\Core\Config\Base
-     */
-    protected $_configObject;
-
-    /**
-     * Configuration of application 
-     *
      * @var array
      */
     protected $_config = array();
@@ -57,11 +50,24 @@ abstract class Application
      */
     public function run()
     {
-        $this->_frameworkAutoloader();
+        $this->initialize();
+    }
+
+    /**
+     * Initialization
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+        // first call this so the autoloader is available
+        $this->_initializeFrameworkAutoloader();
 
         $this->_config = $this->_registerConfiguration();
 
-        $this->_manager = $this->_registerManager();
+        $internalManager = $this->_registerInternalManager();
+        $extraManager = $this->_registerManager();
+        $this->_manager = array_merge($internalManager, $extraManager);
 
         foreach ($this->_manager as $manager)
         {
@@ -79,7 +85,7 @@ abstract class Application
      *
      * @return void
      */
-    private function _frameworkAutoloader()
+    private function _initializeFrameworkAutoloader()
     {
         require_once LIBRARY_PATH . '/ShnfuCarver/Core/Loader/InternalLoader.php';
         $loader = new \ShnfuCarver\Core\Loader\InternalLoader;
@@ -91,6 +97,22 @@ abstract class Application
         }
         $this->_frameworkAutoloader->setLoader($loader);
         $this->_frameworkAutoloader->register();
+    }
+
+    /**
+     * Register internal managers
+     *
+     * @return array
+     */
+    private function _registerInternalManager()
+    {
+        $manager = array
+        (
+            new \ShnfuCarver\Core\Manager\Autoloader\AutoloaderManager,
+            new \ShnfuCarver\Core\Manager\Error\ErrorManager,
+            new \ShnfuCarver\Core\Manager\Exception\ExceptionManager,
+        );
+        return $manager;
     }
 }
 
