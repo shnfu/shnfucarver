@@ -89,7 +89,7 @@ abstract class Manager implements ManagerInterface
      * @param  array $config 
      * @return void
      */
-    public function setConfig($config)
+    public function setConfig(array $config)
     {
         if (is_array($config))
         {

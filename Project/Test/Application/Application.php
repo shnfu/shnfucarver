@@ -29,6 +29,10 @@ class Application extends \ShnfuCarver\Core\Application\Application
     {
         date_default_timezone_set('Asia/Shanghai');
 
+        setcookie("cookie[three]", "cookiethree");
+        setcookie("cookie[two]", "cookietwo");
+        setcookie("cookie[one]", "cookieone");
+
         parent::run();
 
         $aaa = array();
