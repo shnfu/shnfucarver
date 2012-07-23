@@ -1,44 +1,37 @@
 <?php
 
 /**
- * Path info class file
+ * File class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Entity
+ * @subpackage Core\Dispatcher\Request\Component
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Entity;
+namespace ShnfuCarver\Core\Dispatcher\Request\Component;
 
 /**
- * Path info class
+ * File class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Entity
+ * @subpackage Core\Dispatcher\Request\Component
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Path
+class File extends Parameter
 {
-    /**
-     * The path info
-     *
-     * @var string
-     */
-    private $_path = '';
-
     /**
      * construct 
      *
-     * @param  string $path 
+     * @param  array $parameter
      * @return void
      */
-    public function __construct($path)
+    public function __construct(array $parameter)
     {
-        $this->_path = $path;
+        parent::__construct($parameter);
     }
 }
 

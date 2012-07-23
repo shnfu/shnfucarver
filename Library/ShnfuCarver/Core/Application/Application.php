@@ -63,11 +63,9 @@ abstract class Application
         // first call this so the autoloader is available
         $this->_initializeFrameworkAutoloader();
 
-        $this->_config = $this->_registerConfiguration();
+        $this->_config = $this->_loadConfiguration();
 
-        $internalManager = $this->_registerInternalManager();
-        $extraManager = $this->_registerManager();
-        $this->_manager = array_merge($internalManager, $extraManager);
+        $this->_manager = $this->_registerManager();
 
         foreach ($this->_manager as $manager)
         {
@@ -97,22 +95,6 @@ abstract class Application
         }
         $this->_frameworkAutoloader->setLoader($loader);
         $this->_frameworkAutoloader->register();
-    }
-
-    /**
-     * Register internal managers
-     *
-     * @return array
-     */
-    private function _registerInternalManager()
-    {
-        $manager = array
-        (
-            new \ShnfuCarver\Core\Manager\Autoloader\AutoloaderManager,
-            new \ShnfuCarver\Core\Manager\Error\ErrorManager,
-            new \ShnfuCarver\Core\Manager\Exception\ExceptionManager,
-        );
-        return $manager;
     }
 }
 

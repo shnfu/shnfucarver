@@ -10,7 +10,7 @@ require_once SHNFUCARVER_PATH . '/ShnfuCarver/Core/Application/Application.php';
 
 class Application extends \ShnfuCarver\Core\Application\Application
 {
-    protected function _registerConfiguration()
+    protected function _loadConfiguration()
     {
         $configObject = \ShnfuCarver\Core\Config\Factory::useConfig(CONFIGURATION_PATH . '/Config.php');
         return $configObject->retrieve();
@@ -20,6 +20,9 @@ class Application extends \ShnfuCarver\Core\Application\Application
     {
         $manager = array
         (
+            new \ShnfuCarver\Core\Manager\Autoloader\AutoloaderManager,
+            new \ShnfuCarver\Core\Manager\Error\ErrorManager,
+            new \ShnfuCarver\Core\Manager\Exception\ExceptionManager,
         );
         return $manager;
     }
