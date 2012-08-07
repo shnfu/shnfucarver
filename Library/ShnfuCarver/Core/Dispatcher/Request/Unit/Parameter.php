@@ -1,51 +1,44 @@
 <?php
 
 /**
- * Header class file
+ * Parameter class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Component\Header
+ * @subpackage Core\Dispatcher\Request\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Response\Component\Header;
+namespace ShnfuCarver\Core\Dispatcher\Request\Unit;
 
 /**
- * Header class
+ * Parameter class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Component\Header
+ * @subpackage Core\Dispatcher\Request\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Header
+class Parameter
 {
     /**
-     * The header
+     * The parameter
      *
      * @var array
      */
-    private $_header = array();
-
-    /**
-     * The header could appear more than once
-     *
-     * @var bool
-     */
-    private $_unique = false;
+    private $_parameter = array();
 
     /**
      * construct 
      *
-     * @param  array $header
+     * @param  array $parameter
      * @return void
      */
-    public function __construct(array $header)
+    public function __construct(array $parameter)
     {
-        $this->_header = $header;
+        $this->_parameter = $parameter;
     }
 
     /**
@@ -56,11 +49,11 @@ class Header
      */
     public function get($name)
     {
-        if (!isset($this->_header[$name]))
+        if (!isset($this->_parameter[$name]))
         {
             return null;
         }
-        return $this->_header[$name];
+        return $this->_parameter[$name];
     }
 
     /**

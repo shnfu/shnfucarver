@@ -1,44 +1,58 @@
 <?php
 
 /**
- * Parameter class file
+ * Header class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Component
+ * @subpackage Core\Dispatcher\Response\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Response\Component;
+namespace ShnfuCarver\Core\Dispatcher\Response\Unit
 
 /**
- * Parameter class
+ * Header class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Component
+ * @subpackage Core\Dispatcher\Response\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Parameter
+class Header
 {
     /**
-     * The parameter
+     * The header
      *
      * @var array
      */
-    private $_parameter = array();
+    private $_header = array();
+
+    /**
+     * The header content
+     *
+     * @var string
+     */
+    private $_content = '';
+
+    /**
+     * The header could appear more than once
+     *
+     * @var bool
+     */
+    private $_unique = false;
 
     /**
      * construct 
      *
-     * @param  array $parameter
+     * @param  array $header
      * @return void
      */
-    public function __construct(array $parameter)
+    public function __construct(array $header)
     {
-        $this->_parameter = $parameter;
+        $this->_header = $header;
     }
 
     /**
@@ -49,11 +63,11 @@ class Parameter
      */
     public function get($name)
     {
-        if (!isset($this->_parameter[$name]))
+        if (!isset($this->_header[$name]))
         {
             return null;
         }
-        return $this->_parameter[$name];
+        return $this->_header[$name];
     }
 
     /**
@@ -65,7 +79,7 @@ class Parameter
      */
     public function set($name, $value)
     {
-        $this->_parameter[$name] = $value;
+        $this->_header[$name] = $value;
     }
 }
 
