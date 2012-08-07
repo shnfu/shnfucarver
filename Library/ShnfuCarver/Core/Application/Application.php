@@ -43,6 +43,13 @@ abstract class Application
     protected $_config = array();
 
     /**
+     * All managers
+     *
+     * @var array
+     */
+    protected $_manager = array();
+
+    /**
      * Main process of the application 
      *
      * @param  string $configPath 
@@ -51,6 +58,7 @@ abstract class Application
     public function run()
     {
         $this->initialize();
+        $this->execute();
     }
 
     /**
@@ -60,7 +68,7 @@ abstract class Application
      */
     public function initialize()
     {
-        // first call this so the autoloader is available
+        // first call this so the autoloader for the framework is available
         $this->_initializeFrameworkAutoloader();
 
         $this->_config = $this->_loadConfiguration();
@@ -69,12 +77,57 @@ abstract class Application
 
         foreach ($this->_manager as $manager)
         {
-            $managerName = $manager->getName();
-            if (isset($this->_config[$managerName]))
+            if (!$manager instanceof \ShnfuCarver\Core\Manager\ManagerInterface)
             {
-                $manager->setConfig($this->_config[$managerName]);
+                throw new \RuntimeException('Not an instance of \ShnfuCarver\Core\Manager\ManagerInterface!');
             }
+
+            $configName = $manager->getConfigName();
+            if (isset($this->_config[$configName]))
+            {
+                $manager->setConfig($this->_config[$configName]);
+            }
+
+            // do the initialization
             $manager->initialize();
+        }
+    }
+
+    /**
+     * Execution
+     *
+     * @return void
+     */
+    public function execute()
+    {
+        foreach ($this->_manager as $manager)
+        {
+            if (!$manager instanceof \ShnfuCarver\Core\Manager\ManagerInterface)
+            {
+                throw new \RuntimeException('Not an instance of \ShnfuCarver\Core\Manager\ManagerInterface!');
+            }
+
+            // do the execution
+            $manager->execute();
+        }
+    }
+
+    /**
+     * Finalization, this is often only needed for the debug purpose
+     *
+     * @return void
+     */
+    public function finalize()
+    {
+        foreach ($this->_manager as $manager)
+        {
+            if (!$manager instanceof \ShnfuCarver\Core\Manager\ManagerInterface)
+            {
+                throw new \RuntimeException('Not an instance of \ShnfuCarver\Core\Manager\ManagerInterface!');
+            }
+
+            // do the finalization
+            $manager->finalize();
         }
     }
 

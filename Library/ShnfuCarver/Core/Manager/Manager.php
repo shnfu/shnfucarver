@@ -40,6 +40,15 @@ abstract class Manager implements ManagerInterface
     }
 
     /**
+     * Execution
+     *
+     * @return void
+     */
+    public function execute()
+    {
+    }
+
+    /**
      * Finalization
      *
      * @return void

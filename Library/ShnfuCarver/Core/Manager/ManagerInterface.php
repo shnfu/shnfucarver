@@ -31,6 +31,13 @@ interface ManagerInterface
     public function initialize();
 
     /**
+     * Execution
+     *
+     * @return void
+     */
+    public function execute();
+
+    /**
      * Finalization
      *
      * @return void
