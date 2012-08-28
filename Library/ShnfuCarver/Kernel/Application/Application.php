@@ -12,9 +12,6 @@
 
 namespace ShnfuCarver\Core\Application;
 
-defined('LIBRARY_PATH')
-    || define('LIBRARY_PATH', realpath(__DIR__ . '/../../..'));
-
 /**
  * Application class
  *
@@ -29,11 +26,11 @@ defined('LIBRARY_PATH')
 abstract class Application
 {
     /**
-     * ShnfuCarver framework autoloader
+     * The service registry
      *
-     * @var \ShnfuCarver\Core\Autoloader\Autoloader
+     * @var \ShnfuCarver\Core\Service\Service
      */
-    protected $_frameworkAutoloader;
+    protected $_serviceRegistry;
 
     /**
      * Configuration of application 
@@ -68,9 +65,6 @@ abstract class Application
      */
     public function initialize()
     {
-        // first call this so the autoloader for the framework is available
-        $this->_initializeFrameworkAutoloader();
-
         $this->_config = $this->_loadConfiguration();
 
         $this->_manager = $this->_registerManager();
@@ -129,25 +123,6 @@ abstract class Application
             // do the finalization
             $manager->finalize();
         }
-    }
-
-    /**
-     * Register framework autoloader
-     *
-     * @return void
-     */
-    private function _initializeFrameworkAutoloader()
-    {
-        require_once LIBRARY_PATH . '/ShnfuCarver/Core/Loader/InternalLoader.php';
-        $loader = new \ShnfuCarver\Core\Loader\InternalLoader;
-        $loader->add('', LIBRARY_PATH);
-        if (!isset($this->_frameworkAutoloader))
-        {
-            require_once LIBRARY_PATH . '/ShnfuCarver/Core/Autoloader/Autoloader.php';
-            $this->_frameworkAutoloader = new \ShnfuCarver\Core\Autoloader\Autoloader;
-        }
-        $this->_frameworkAutoloader->setLoader($loader);
-        $this->_frameworkAutoloader->register();
     }
 }
 

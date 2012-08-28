@@ -1,27 +1,27 @@
 <?php
 
 /**
- * Manager class file
+ * Service class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager
+ * @subpackage Core\Service
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Manager;
+namespace ShnfuCarver\Core\Service;
 
 /**
- * Manager class
+ * Service class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager
+ * @subpackage Core\Service
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-abstract class Manager implements ManagerInterface
+abstract class Service implements ServiceInterface
 {
     /**
      * Name
@@ -29,40 +29,6 @@ abstract class Manager implements ManagerInterface
      * @var string
      */
     protected $_name;
-
-    /**
-     * Service registry
-     *
-     * @var \ShnfuCarver\Kernel\Service\ServiceRegistry
-     */
-    protected $_serviceRegistry;
-
-    /**
-     * Initialization
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-    }
-
-    /**
-     * Execution
-     *
-     * @return void
-     */
-    public function execute()
-    {
-    }
-
-    /**
-     * Finalization
-     *
-     * @return void
-     */
-    public function finalize()
-    {
-    }
 
     /**
      * Get name from the class name
@@ -83,8 +49,8 @@ abstract class Manager implements ManagerInterface
         {
             $name = substr($name, $pos + 1);
         }
-        // Strip the Manager suffix
-        $pos = strrpos($name, 'Manager');
+        // Strip the Service suffix
+        $pos = strrpos($name, 'Service');
         if (false !== $pos)
         {
             $name = substr($name, 0, $pos);
@@ -97,17 +63,6 @@ abstract class Manager implements ManagerInterface
         $this->_name = $name;
 
         return $this->_name;
-    }
-
-    /**
-     * Set service registry
-     *
-     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry
-     * @return void
-     */
-    public function setService(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
-    {
-        $this->_serviceRegistry = $serviceRegistry;
     }
 }
 

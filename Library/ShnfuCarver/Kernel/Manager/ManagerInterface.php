@@ -24,6 +24,13 @@ namespace ShnfuCarver\Core\Manager;
 interface ManagerInterface
 {
     /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName();
+
+    /**
      * Initialization
      *
      * @return void
@@ -45,19 +52,12 @@ interface ManagerInterface
     public function finalize();
 
     /**
-     * Get name
+     * Set service registry
      *
-     * @return string
-     */
-    public function getName();
-
-    /**
-     * Set config
-     *
-     * @param  array $config 
+     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry
      * @return void
      */
-    public function setConfig(array $config);
+    public function setService(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
 }
 
 ?>
