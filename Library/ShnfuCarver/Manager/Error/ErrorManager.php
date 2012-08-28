@@ -4,29 +4,29 @@
  * Error manager class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager\Error
+ * @subpackage Manager\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Manager\Error;
+namespace ShnfuCarver\Manager\Error;
 
 /**
  * Error manager class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager\Error
+ * @subpackage Manager\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ErrorManager extends \ShnfuCarver\Core\Manager\Manager
+class ErrorManager extends \ShnfuCarver\Kernel\Manager\Manager
 {
     /**
      * The error handler
      *
-     * @var \ShnfuCarver\Core\Debug\Error\Handler
+     * @var \ShnfuCarver\Component\Debug\Error\Handler
      */
     protected $_errorHandler;
 
@@ -37,7 +37,7 @@ class ErrorManager extends \ShnfuCarver\Core\Manager\Manager
      */
     public function initialize()
     {
-        $this->_errorHandler = new \ShnfuCarver\Core\Debug\Error\Handler;
+        $this->_errorHandler = new \ShnfuCarver\Component\Debug\Error\Handler;
 
         $handler = array();
 
@@ -58,7 +58,7 @@ class ErrorManager extends \ShnfuCarver\Core\Manager\Manager
     /**
      * Internal handler
      *
-     * @return bool|\ShnfuCarver\Core\Debug\Error\InternalHandler
+     * @return bool|\ShnfuCarver\Component\Debug\Error\InternalHandler
      */
     protected function _internalHandler()
     {
@@ -69,7 +69,7 @@ class ErrorManager extends \ShnfuCarver\Core\Manager\Manager
             return false;
         }
 
-        $internalHandler = new \ShnfuCarver\Core\Debug\Error\InternalHandler;
+        $internalHandler = new \ShnfuCarver\Component\Debug\Error\InternalHandler;
         //if (is_array($this->_config['internal_handler']))
         //{
         //    foreach ($this->_config['internal_handler'] as $)

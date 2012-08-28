@@ -4,29 +4,29 @@
  * Autoloader manager class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager\Autoloader
+ * @subpackage Manager\Autoloader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Manager\Autoloader;
+namespace ShnfuCarver\Manager\Autoloader;
 
 /**
  * Autoloader manager class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager\Autoloader
+ * @subpackage Manager\Autoloader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class AutoloaderManager extends \ShnfuCarver\Core\Manager\Manager
+class AutoloaderManager extends \ShnfuCarver\Kernel\Manager\Manager
 {
     /**
      * The autoloader
      *
-     * @var \ShnfuCarver\Core\Autoloader\Autoloader
+     * @var \ShnfuCarver\Component\Autoloader\Autoloader
      */
     protected $_autoloader;
 
@@ -37,7 +37,7 @@ class AutoloaderManager extends \ShnfuCarver\Core\Manager\Manager
      */
     public function initialize()
     {
-        $this->_autoloader = new \ShnfuCarver\Core\Autoloader\Autoloader;
+        $this->_autoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
 
         $loader = array();
 
@@ -58,7 +58,7 @@ class AutoloaderManager extends \ShnfuCarver\Core\Manager\Manager
     /**
      * Internal loader
      *
-     * @return bool|\ShnfuCarver\Core\Loader\InternalLoader
+     * @return bool|\ShnfuCarver\Component\Loader\InternalLoader
      */
     protected function _internalLoader()
     {
@@ -69,7 +69,7 @@ class AutoloaderManager extends \ShnfuCarver\Core\Manager\Manager
             return false;
         }
 
-        $internalLoader = new \ShnfuCarver\Core\Loader\InternalLoader;
+        $internalLoader = new \ShnfuCarver\Component\Loader\InternalLoader;
         //if (is_array($this->_config['internal_loader']))
         //{
         //    foreach ($this->_config['internal_loader'] as $)

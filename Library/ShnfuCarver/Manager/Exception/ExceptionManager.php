@@ -4,29 +4,29 @@
  * Exception manager class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager\Exception
+ * @subpackage Manager\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Manager\Exception;
+namespace ShnfuCarver\Manager\Exception;
 
 /**
  * Exception manager class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager\Exception
+ * @subpackage Manager\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ExceptionManager extends \ShnfuCarver\Core\Manager\Manager
+class ExceptionManager extends \ShnfuCarver\Kernel\Manager\Manager
 {
     /**
      * The exception handler
      *
-     * @var \ShnfuCarver\Core\Debug\Exception\Handler
+     * @var \ShnfuCarver\Component\Debug\Exception\Handler
      */
     protected $_exceptionHandler;
 
@@ -37,7 +37,7 @@ class ExceptionManager extends \ShnfuCarver\Core\Manager\Manager
      */
     public function initialize()
     {
-        $this->_exceptionHandler = new \ShnfuCarver\Core\Debug\Exception\Handler;
+        $this->_exceptionHandler = new \ShnfuCarver\Component\Debug\Exception\Handler;
 
         $handler = array();
 
@@ -58,7 +58,7 @@ class ExceptionManager extends \ShnfuCarver\Core\Manager\Manager
     /**
      * Internal handler
      *
-     * @return bool|\ShnfuCarver\Core\Debug\Exception\InternalHandler
+     * @return bool|\ShnfuCarver\Component\Debug\Exception\InternalHandler
      */
     protected function _internalHandler()
     {
@@ -69,7 +69,7 @@ class ExceptionManager extends \ShnfuCarver\Core\Manager\Manager
             return false;
         }
 
-        $internalHandler = new \ShnfuCarver\Core\Debug\Exception\InternalHandler;
+        $internalHandler = new \ShnfuCarver\Component\Debug\Exception\InternalHandler;
         //if (is_array($this->_config['internal_handler']))
         //{
         //    foreach ($this->_config['internal_handler'] as $)

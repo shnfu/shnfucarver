@@ -4,19 +4,19 @@
  * Interface file for manager
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager
+ * @subpackage Kernel\Manager
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Manager;
+namespace ShnfuCarver\Kernel\Manager;
 
 /**
  * Interface for manager
  *
  * @package    ShnfuCarver
- * @subpackage Core\Manager
+ * @subpackage Kernel\Manager
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -57,7 +57,7 @@ interface ManagerInterface
      * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry
      * @return void
      */
-    public function setService(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
+    public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
 }
 
 ?>

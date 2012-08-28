@@ -4,24 +4,24 @@
  * Service registry class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Service
+ * @subpackage Kernel\Service
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Service;
+namespace ShnfuCarver\Kernel\Service;
 
 /**
  * Service registry class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Service
+ * @subpackage Kernel\Service
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-abstract class Registry
+class ServiceRegistry
 {
     /**
      * Service registry

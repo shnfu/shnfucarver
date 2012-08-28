@@ -6,14 +6,14 @@ defined('APPLICATION_PATH')
 define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../Library'));
 define('CONFIGURATION_PATH', realpath(APPLICATION_PATH . '/Application/Config'));
 
-require_once SHNFUCARVER_PATH . '/ShnfuCarver/Core/Application/Application.php';
+require_once SHNFUCARVER_PATH . '/ShnfuCarver/Kernel/Application/Application.php';
 
-class Application extends \ShnfuCarver\Core\Application\Application
+class Application extends \ShnfuCarver\Kernel\Application\Application
 {
     /**
      * ShnfuCarver framework autoloader
      *
-     * @var \ShnfuCarver\Core\Autoloader\Autoloader
+     * @var \ShnfuCarver\Kernel\Autoloader\Autoloader
      */
     protected $_frameworkAutoloader;
 
@@ -27,9 +27,10 @@ class Application extends \ShnfuCarver\Core\Application\Application
     {
         $manager = array
         (
-            new \ShnfuCarver\Core\Manager\Autoloader\AutoloaderManager,
-            new \ShnfuCarver\Core\Manager\Error\ErrorManager,
-            new \ShnfuCarver\Core\Manager\Exception\ExceptionManager,
+            new \ShnfuCarver\Manager\Config\ConfigManager(CONFIGURATION_PATH . '/Config.php');
+            new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
+            new \ShnfuCarver\Manager\Error\ErrorManager,
+            new \ShnfuCarver\Manager\Exception\ExceptionManager,
         );
         return $manager;
     }
@@ -47,7 +48,7 @@ class Application extends \ShnfuCarver\Core\Application\Application
 
 
     // For test purpose
-    public function run()
+    public function execute()
     {
         // Testing...
         setcookie("cookie[three]", "cookiethree");
@@ -60,7 +61,7 @@ class Application extends \ShnfuCarver\Core\Application\Application
         echo $this->_config[''] . PHP_EOL;
         throw new \InvalidArgumentException('lfjklsjdslfj');
 
-        parent::run();
+        parent::execute();
     }
 
     /**

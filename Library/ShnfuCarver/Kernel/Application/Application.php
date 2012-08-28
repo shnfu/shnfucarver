@@ -4,13 +4,13 @@
  * Application class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Application
+ * @subpackage Kernel\Application
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Application;
+namespace ShnfuCarver\Kernel\Application;
 
 /**
  * Application class
@@ -18,7 +18,7 @@ namespace ShnfuCarver\Core\Application;
  * Control the process of the application
  *
  * @package    ShnfuCarver
- * @subpackage Core\Application
+ * @subpackage Kernel\Application
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -28,16 +28,9 @@ abstract class Application
     /**
      * The service registry
      *
-     * @var \ShnfuCarver\Core\Service\Service
+     * @var \ShnfuCarver\Kernel\Service\ServiceRegistry
      */
     protected $_serviceRegistry;
-
-    /**
-     * Configuration of application 
-     *
-     * @var array
-     */
-    protected $_config = array();
 
     /**
      * All managers
@@ -49,7 +42,6 @@ abstract class Application
     /**
      * Main process of the application 
      *
-     * @param  string $configPath 
      * @return void
      */
     public function run()
@@ -65,22 +57,18 @@ abstract class Application
      */
     public function initialize()
     {
-        $this->_config = $this->_loadConfiguration();
+        if (!isset($this->_serviceRegistry))
+        {
+            $this->_serviceRegistry = new \ShnfuCarver\Kernel\Service\ServiceRegistry;
+        }
 
         $this->_manager = $this->_registerManager();
 
         foreach ($this->_manager as $manager)
         {
-            if (!$manager instanceof \ShnfuCarver\Core\Manager\ManagerInterface)
-            {
-                throw new \RuntimeException('Not an instance of \ShnfuCarver\Core\Manager\ManagerInterface!');
-            }
+            self::$validateManager($manager);
 
-            $configName = $manager->getConfigName();
-            if (isset($this->_config[$configName]))
-            {
-                $manager->setConfig($this->_config[$configName]);
-            }
+            $manager->setServiceRegistry($this->_serviceRegistry);
 
             // do the initialization
             $manager->initialize();
@@ -96,10 +84,7 @@ abstract class Application
     {
         foreach ($this->_manager as $manager)
         {
-            if (!$manager instanceof \ShnfuCarver\Core\Manager\ManagerInterface)
-            {
-                throw new \RuntimeException('Not an instance of \ShnfuCarver\Core\Manager\ManagerInterface!');
-            }
+            self::$validateManager($manager);
 
             // do the execution
             $manager->execute();
@@ -115,13 +100,24 @@ abstract class Application
     {
         foreach ($this->_manager as $manager)
         {
-            if (!$manager instanceof \ShnfuCarver\Core\Manager\ManagerInterface)
-            {
-                throw new \RuntimeException('Not an instance of \ShnfuCarver\Core\Manager\ManagerInterface!');
-            }
+            self::$validateManager($manager);
 
             // do the finalization
             $manager->finalize();
+        }
+    }
+
+    /**
+     * Check whether this is a valid manager
+     *
+     * @param  mixed $manager 
+     * @return void
+     */
+    public static function validateManager($manager)
+    {
+        if (!$manager instanceof \ShnfuCarver\Kernel\Manager\ManagerInterface)
+        {
+            throw new \RuntimeException('Not an instance of \ShnfuCarver\Kernel\Manager\ManagerInterface!');
         }
     }
 }
