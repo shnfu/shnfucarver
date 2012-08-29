@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Service config manager class file
+ * Manager with config service class file
  *
  * @package    ShnfuCarver
  * @subpackage Manager
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Manager;
 
 /**
- * Service config manager class
+ * Manager with config service class
  *
  * @package    ShnfuCarver
  * @subpackage Manager
@@ -21,7 +21,7 @@ namespace ShnfuCarver\Manager;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-abstract class ConfigManager extends \ShnfuCarver\Kernel\Manager\Manager
+abstract class Manager extends \ShnfuCarver\Kernel\Manager\Manager
 {
     /**
      * Load config

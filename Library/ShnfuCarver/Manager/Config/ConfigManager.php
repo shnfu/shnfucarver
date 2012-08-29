@@ -21,7 +21,7 @@ namespace ShnfuCarver\Manager\Config;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ConfigServiceManager extends \ShnfuCarver\Kernel\Manager\Manager
+class ConfigManager extends \ShnfuCarver\Kernel\Manager\Manager
 {
     /**
      * Config path

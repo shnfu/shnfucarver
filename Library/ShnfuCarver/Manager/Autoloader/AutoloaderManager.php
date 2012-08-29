@@ -21,7 +21,7 @@ namespace ShnfuCarver\Manager\Autoloader;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class AutoloaderManager extends \ShnfuCarver\Manager\ConfigManager
+class AutoloaderManager extends \ShnfuCarver\Manager\Manager
 {
     /**
      * The autoloader

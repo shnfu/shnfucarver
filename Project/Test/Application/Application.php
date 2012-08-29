@@ -19,12 +19,15 @@ class Application extends \ShnfuCarver\Kernel\Application\Application
 
     protected function _registerManager()
     {
+        require_once APPLICATION_PATH . '/Application/Manager/TestManager.php';
+
         $manager = array
         (
-            new \ShnfuCarver\Manager\Config\ConfigServiceManager(CONFIGURATION_PATH . '/Config.php'),
+            new \ShnfuCarver\Manager\Config\ConfigManager(CONFIGURATION_PATH . '/Config.php'),
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
+            new TestManager,
         );
         return $manager;
     }
@@ -38,26 +41,6 @@ class Application extends \ShnfuCarver\Kernel\Application\Application
         date_default_timezone_set('Asia/Shanghai');
 
         parent::initialize();
-    }
-
-
-    // For test purpose
-    public function execute()
-    {
-        // Testing...
-        setcookie("cookie[three]", "cookiethree");
-        setcookie("cookie[two]", "cookietwo");
-        setcookie("cookie[one]", "cookieone");
-
-        $aaa = array();
-        echo $aaa['fjls'];
-        echo $this->_config['test'] . PHP_EOL;
-        echo $this->_config[''] . PHP_EOL;
-        echo $this->_serviceRegistry->get('config')->get('autoloader')['loader'][1] . PHP_EOL;
-        //print_r($this->_serviceRegistry->get('config')->get('autoloader'));
-        throw new \InvalidArgumentException('lfjklsjdslfj');
-
-        parent::execute();
     }
 
     /**

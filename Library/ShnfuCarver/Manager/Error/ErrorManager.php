@@ -21,7 +21,7 @@ namespace ShnfuCarver\Manager\Error;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ErrorManager extends \ShnfuCarver\Manager\ConfigManager
+class ErrorManager extends \ShnfuCarver\Manager\Manager
 {
     /**
      * The error handler
@@ -62,7 +62,6 @@ class ErrorManager extends \ShnfuCarver\Manager\ConfigManager
      */
     protected function _internalHandler()
     {
-print_r($this->_config);
         $useInternalHandler = isset($this->_config['use_internal_handler'])
             ? $this->_config['use_internal_handler'] : false;
         if (!$useInternalHandler)
