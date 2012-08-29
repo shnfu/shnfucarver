@@ -4,19 +4,19 @@
  * Internal error handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Debug\Error
+ * @subpackage Component\Debug\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Debug\Error;
+namespace ShnfuCarver\Component\Debug\Error;
 
 /**
  * Internal error handler class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Debug\Error
+ * @subpackage Component\Debug\Error
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License

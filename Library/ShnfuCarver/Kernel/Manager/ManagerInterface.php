@@ -58,6 +58,13 @@ interface ManagerInterface
      * @return void
      */
     public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
+
+    /**
+     * Load config
+     *
+     * @return void
+     */
+    public function loadConfig();
 }
 
 ?>

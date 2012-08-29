@@ -31,38 +31,18 @@ abstract class Manager implements ManagerInterface
     protected $_name;
 
     /**
+     * Config
+     *
+     * @var array
+     */
+    protected $_config;
+
+    /**
      * Service registry
      *
      * @var \ShnfuCarver\Kernel\Service\ServiceRegistry
      */
     protected $_serviceRegistry;
-
-    /**
-     * Initialization
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-    }
-
-    /**
-     * Execution
-     *
-     * @return void
-     */
-    public function execute()
-    {
-    }
-
-    /**
-     * Finalization
-     *
-     * @return void
-     */
-    public function finalize()
-    {
-    }
 
     /**
      * Get name from the class name
@@ -100,14 +80,61 @@ abstract class Manager implements ManagerInterface
     }
 
     /**
+     * Initialization
+     *
+     * @return void
+     */
+    public function initialize()
+    {
+    }
+
+    /**
+     * Execution
+     *
+     * @return void
+     */
+    public function execute()
+    {
+    }
+
+    /**
+     * Finalization
+     *
+     * @return void
+     */
+    public function finalize()
+    {
+    }
+
+    /**
      * Set service registry
      *
      * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry
      * @return void
      */
-    public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
+    public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry)
     {
         $this->_serviceRegistry = $serviceRegistry;
+    }
+
+    /**
+     * Load config
+     *
+     * @return void
+     */
+    public function loadConfig()
+    {
+    }
+
+    /**
+     * Get a service
+     *
+     * @param  string $name
+     * @return \ShnfuCarver\Kernel\Service\ServiceInterface $service
+     */
+    protected function _getService($name)
+    {
+        return $this->_serviceRegistry->get($name);
     }
 }
 

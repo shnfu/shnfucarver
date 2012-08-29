@@ -4,19 +4,19 @@
  * Autoloader class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Autoloader
+ * @subpackage Component\Autoloader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Autoloader;
+namespace ShnfuCarver\Component\Autoloader;
 
 /**
  * Autoloader class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Autoloader
+ * @subpackage Component\Autoloader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -24,7 +24,7 @@ namespace ShnfuCarver\Core\Autoloader;
 class Autoloader
 {
     /**
-     * Loader list, array of \ShnfuCarver\Core\Loader\LoaderInterface
+     * Loader list, array of \ShnfuCarver\Component\Loader\LoaderInterface
      *
      * @var array
      */
@@ -61,7 +61,7 @@ class Autoloader
     /**
      * Set the loader for autoload
      *
-     * @param  array|\ShnfuCarver\Core\Loader\LoaderInterface $loader 
+     * @param  array|\ShnfuCarver\Component\Loader\LoaderInterface $loader 
      * @return void
      */
     public function setLoader($loader)
@@ -77,9 +77,9 @@ class Autoloader
 
         foreach ($tempList as $tempLoader)
         {
-            if (!$tempLoader instanceof \ShnfuCarver\Core\Loader\LoaderInterface)
+            if (!$tempLoader instanceof \ShnfuCarver\Component\Loader\LoaderInterface)
             {
-                throw new \InvalidArgumentException('The loader must be a \ShnfuCarver\Core\Loader\LoaderInterface instance!');
+                throw new \InvalidArgumentException('The loader must be a \ShnfuCarver\Component\Loader\LoaderInterface instance!');
             }
         }
 

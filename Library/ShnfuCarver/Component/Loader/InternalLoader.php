@@ -4,22 +4,19 @@
  * Internal loader class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Loader
+ * @subpackage Component\Loader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Loader;
-
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Loader/LoaderInterface.php';
-require_once LIBRARY_PATH . '/ShnfuCarver/Core/Loader/NameIterator.php';
+namespace ShnfuCarver\Component\Loader;
 
 /**
  * Internal loader class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Loader
+ * @subpackage Component\Loader
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -74,7 +71,7 @@ class InternalLoader implements LoaderInterface
      *
      * @param  string $name 
      * @param  string|array $path 
-     * @return ShnfuCarver\Core\Loader\Internal
+     * @return ShnfuCarver\Component\Loader\Internal
      */
     public function add($name, $path)
     {
@@ -111,7 +108,7 @@ class InternalLoader implements LoaderInterface
      * Remove an entry for the load map 
      *
      * @param  string $name 
-     * @return ShnfuCarver\Core\Loader\Internal
+     * @return ShnfuCarver\Component\Loader\Internal
      */
     public function remove($name)
     {

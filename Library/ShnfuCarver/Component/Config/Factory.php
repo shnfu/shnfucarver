@@ -4,19 +4,19 @@
  * Factory class file for config
  *
  * @package    ShnfuCarver
- * @subpackage Core\Config
+ * @subpackage Component\Config
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Config;
+namespace ShnfuCarver\Component\Config;
 
 /**
  * Factory class for config
  *
  * @package    ShnfuCarver
- * @subpackage Core\Config
+ * @subpackage Component\Config
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -27,7 +27,7 @@ class Factory
      * Choose which config type to use 
      *
      * @param string $configPath 
-     * @return \ShnfuCarver\Core\Config\Config
+     * @return \ShnfuCarver\Component\Config\Config
      */
     public static function useConfig($configPath)
     {
@@ -45,7 +45,7 @@ class Factory
         $config = new $configType($configPath);
         if (!$config instanceof Config)
         {
-            throw new \InvalidArgumentException("'$configType' is not an instance of '\ShnfuCarver\Core\Config\Config'!");
+            throw new \InvalidArgumentException("'$configType' is not an instance of '\ShnfuCarver\Component\Config\Config'!");
         }
 
         return $config;

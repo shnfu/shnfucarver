@@ -4,19 +4,19 @@
  * Base class file for any config
  *
  * @package    ShnfuCarver
- * @subpackage Core\Config
+ * @subpackage Component\Config
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Config;
+namespace ShnfuCarver\Component\Config;
 
 /**
  * Base class for any config
  *
  * @package    ShnfuCarver
- * @subpackage Core\Config
+ * @subpackage Component\Config
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -39,7 +39,6 @@ abstract class Config
     public function __construct(array $config)
     {
         $this->import($config);
-        $this->_data = $config;
     }
 
     /**

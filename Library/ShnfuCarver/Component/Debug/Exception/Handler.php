@@ -4,19 +4,19 @@
  * Exception handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Debug\Exception
+ * @subpackage Component\Debug\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Debug\Exception;
+namespace ShnfuCarver\Component\Debug\Exception;
 
 /**
  * Exception handler class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Debug\Exception
+ * @subpackage Component\Debug\Exception
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -26,7 +26,7 @@ class Handler
     /**
      * Exception handler list 
      *
-     * @var \ShnfuCarver\Core\Exception\Handler\Callback
+     * @var \ShnfuCarver\Component\Exception\Handler\Callback
      */
     private $_exceptionHandlerList;
 
@@ -65,7 +65,7 @@ class Handler
     /**
      * Set the exception handler
      *
-     * @param  array|\ShnfuCarver\Core\Debug\Exception\HandlerInterface $handler 
+     * @param  array|\ShnfuCarver\Component\Debug\Exception\HandlerInterface $handler 
      * @return void
      */
     public function setHandler($handler)
@@ -81,9 +81,9 @@ class Handler
 
         foreach ($tempList as $tempHandler)
         {
-            if (!$tempHandler instanceof \ShnfuCarver\Core\Debug\Exception\HandlerInterface)
+            if (!$tempHandler instanceof \ShnfuCarver\Component\Debug\Exception\HandlerInterface)
             {
-                throw new \InvalidArgumentException('The handler must be a \ShnfuCarver\Core\Debug\Exception\HandlerInterface instance!');
+                throw new \InvalidArgumentException('The handler must be a \ShnfuCarver\Component\Debug\Exception\HandlerInterface instance!');
             }
         }
 

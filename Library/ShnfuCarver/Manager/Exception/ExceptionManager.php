@@ -21,7 +21,7 @@ namespace ShnfuCarver\Manager\Exception;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ExceptionManager extends \ShnfuCarver\Kernel\Manager\Manager
+class ExceptionManager extends \ShnfuCarver\Manager\ConfigManager
 {
     /**
      * The exception handler

@@ -72,7 +72,7 @@ class ServiceRegistry
      */
     public function register($service)
     {
-        if (!instanceof ServiceInterface)
+        if (!$service instanceof ServiceInterface)
         {
             throw new \InvalidArgumentException("Not an instance of ServiceInterface!");
         }
@@ -96,12 +96,12 @@ class ServiceRegistry
     }
 
     /**
-     * Load a service
+     * Get a service
      *
      * @param  string $name
      * @return object
      */
-    public function load($name)
+    public function get($name)
     {
         $name = $this->formatName($name);
 

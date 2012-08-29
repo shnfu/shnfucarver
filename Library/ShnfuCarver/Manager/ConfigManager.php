@@ -1,35 +1,37 @@
 <?php
 
 /**
- * Interface file for loader
+ * Service config manager class file
  *
  * @package    ShnfuCarver
- * @subpackage Component\Loader
+ * @subpackage Manager
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Loader;
+namespace ShnfuCarver\Manager;
 
 /**
- * Interface for loader
+ * Service config manager class
  *
  * @package    ShnfuCarver
- * @subpackage Component\Loader
+ * @subpackage Manager
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-interface LoaderInterface
+abstract class ConfigManager extends \ShnfuCarver\Kernel\Manager\Manager
 {
     /**
-     * Load the file with the name
+     * Load config
      *
-     * @param  string $name 
-     * @return bool  Whether load is successful
+     * @return void
      */
-    public function load($name);
+    public function loadConfig()
+    {
+        $this->_config = $this->_getService('Config')->get($this->getName());
+    }
 }
 
 ?>

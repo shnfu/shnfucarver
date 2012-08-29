@@ -40,6 +40,15 @@ abstract class Application
     protected $_manager = array();
 
     /**
+     * construct 
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * Main process of the application 
      *
      * @return void
@@ -57,20 +66,19 @@ abstract class Application
      */
     public function initialize()
     {
-        if (!isset($this->_serviceRegistry))
-        {
-            $this->_serviceRegistry = new \ShnfuCarver\Kernel\Service\ServiceRegistry;
-        }
+        $this->_serviceRegistry = new \ShnfuCarver\Kernel\Service\ServiceRegistry;
 
+        // load all managers
         $this->_manager = $this->_registerManager();
 
         foreach ($this->_manager as $manager)
         {
-            self::$validateManager($manager);
+            self::_validateManager($manager);
 
             $manager->setServiceRegistry($this->_serviceRegistry);
 
             // do the initialization
+            $manager->loadConfig();
             $manager->initialize();
         }
     }
@@ -84,7 +92,7 @@ abstract class Application
     {
         foreach ($this->_manager as $manager)
         {
-            self::$validateManager($manager);
+            self::_validateManager($manager);
 
             // do the execution
             $manager->execute();
@@ -100,7 +108,7 @@ abstract class Application
     {
         foreach ($this->_manager as $manager)
         {
-            self::$validateManager($manager);
+            self::_validateManager($manager);
 
             // do the finalization
             $manager->finalize();
@@ -113,7 +121,7 @@ abstract class Application
      * @param  mixed $manager 
      * @return void
      */
-    public static function validateManager($manager)
+    private static function _validateManager($manager)
     {
         if (!$manager instanceof \ShnfuCarver\Kernel\Manager\ManagerInterface)
         {
