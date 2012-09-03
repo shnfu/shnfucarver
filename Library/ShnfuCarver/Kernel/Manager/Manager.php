@@ -28,7 +28,7 @@ abstract class Manager implements ManagerInterface
      *
      * @var string
      */
-    protected static $_name;
+    protected $_name;
 
     /**
      * Sub manager
@@ -36,14 +36,14 @@ abstract class Manager implements ManagerInterface
      *
      * @var array
      */
-    protected $_subManager;
+    protected $_subManager = array();
 
     /**
      * Config
      *
      * @var array
      */
-    protected $_config;
+    protected $_config = array();
 
     /**
      * Service registry
@@ -57,11 +57,11 @@ abstract class Manager implements ManagerInterface
      *
      * @return string
      */
-    public static function getName()
+    public function getName()
     {
-        if (isset(static::$_name))
+        if (isset($this->_name))
         {
-            return static::$_name;
+            return $this->_name;
         }
 
         $name = get_called_class();
@@ -82,9 +82,9 @@ abstract class Manager implements ManagerInterface
         $name = strtolower(implode('_', $nameFragment));
         $name = ltrim($name, '_');
 
-        static::$_name = $name;
+        $this->_name = $name;
 
-        return static::$_name;
+        return $this->_name;
     }
 
     /**

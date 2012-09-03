@@ -6,6 +6,9 @@ defined('APPLICATION_PATH')
 define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../Library'));
 define('CONFIGURATION_PATH', realpath(APPLICATION_PATH . '/Application/Config'));
 
+require_once SHNFUCARVER_PATH . '/ShnfuCarver/Kernel/Manager/ManagerInterface.php';
+require_once SHNFUCARVER_PATH . '/ShnfuCarver/Kernel/Manager/Manager.php';
+require_once SHNFUCARVER_PATH . '/ShnfuCarver/Manager/Manager.php';
 require_once SHNFUCARVER_PATH . '/ShnfuCarver/Manager/App/AppManager.php';
 
 class AppManager extends \ShnfuCarver\Manager\App\AppManager

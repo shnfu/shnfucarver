@@ -13,9 +13,9 @@ class TestManager extends \ShnfuCarver\Manager\Manager
         echo $aaa['fjls'];
         echo $this->_config['test'] . PHP_EOL;
         echo $this->_config[''] . PHP_EOL;
-        echo $this->_serviceRegistry->get('config')->get('autoloader')['loader'][1] . PHP_EOL;
+        echo $this->_getService('config')->get('autoloader')['loader'][1] . PHP_EOL;
         //print_r($this->_serviceRegistry->get('config')->get('autoloader'));
-        throw new \InvalidArgumentException('lfjklsjdslfj');
+        throw new \InvalidArgumentException('Test an exception');
     }
 }
 

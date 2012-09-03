@@ -28,7 +28,7 @@ interface ManagerInterface
      *
      * @return string
      */
-    public static function getName();
+    public function getName();
 
     /**
      * Run

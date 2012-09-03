@@ -23,7 +23,7 @@ namespace ShnfuCarver\Manager\App;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class AppManager extends \ShnfuCarver\Kernel\Manager\Manager
+class AppManager extends \ShnfuCarver\Manager\Manager
 {
     /**
      * construct 
@@ -51,19 +51,20 @@ class AppManager extends \ShnfuCarver\Kernel\Manager\Manager
     /**
      * Create service registry
      *
+     * @param  string $configPath
      * @return void
      */
-    public function registerConfigService()
+    public function registerConfigService($configPath)
     {
         $this->createServiceRegistry();
 
-        if (!$this->_existService(\ShnfuCarver\Service\Config\ConfigService::getName()))
+        if (!$this->_existService('Config'))
         {
-            $this->_serviceRegistry->register(new \ShnfuCarver\Service\Config\ConfigService);
+            $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
         }
 
-        $configService = $this->_getService(\ShnfuCarver\Service\Config\ConfigService::getName());
-        $configService->load($this->_configPath);
+        $configService = $this->_getService('Config');
+        $configService->load($configPath);
     }
 
     /**
