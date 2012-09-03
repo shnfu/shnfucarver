@@ -6,41 +6,36 @@ defined('APPLICATION_PATH')
 define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../Library'));
 define('CONFIGURATION_PATH', realpath(APPLICATION_PATH . '/Application/Config'));
 
-require_once SHNFUCARVER_PATH . '/ShnfuCarver/Kernel/Application/Application.php';
+require_once SHNFUCARVER_PATH . '/ShnfuCarver/Manager/App/AppManager.php';
 
-class Application extends \ShnfuCarver\Kernel\Application\Application
+class AppManager extends \ShnfuCarver\Manager\App\AppManager
 {
-    /**
-     * ShnfuCarver framework autoloader
-     *
-     * @var \ShnfuCarver\Kernel\Autoloader\Autoloader
-     */
-    protected $_frameworkAutoloader;
-
-    protected function _registerManager()
+    public function __construct()
     {
-        require_once APPLICATION_PATH . '/Application/Manager/TestManager.php';
+        // first call this so the autoloader for the framework is available
+        $this->_initializeFrameworkAutoloader();
 
+        require_once APPLICATION_PATH . '/Application/Manager/TestManager.php';
         $manager = array
         (
-            new \ShnfuCarver\Manager\Config\ConfigManager(CONFIGURATION_PATH . '/Config.php'),
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
             new TestManager,
         );
-        return $manager;
+        $this->addSubManager($manager);
+
+        parent::__construct();
     }
 
     // For test purpose
-    public function initialize()
+    public function run()
     {
-        // first call this so the autoloader for the framework is available
-        $this->_initializeFrameworkAutoloader();
-
         date_default_timezone_set('Asia/Shanghai');
 
-        parent::initialize();
+        $this->registerConfigService(CONFIGURATION_PATH . '/Config.php');
+
+        parent::run();
     }
 
     /**
@@ -50,13 +45,8 @@ class Application extends \ShnfuCarver\Kernel\Application\Application
      */
     private function _initializeFrameworkAutoloader()
     {
-        if (isset($this->_frameworkAutoloader))
-        {
-            return;
-        }
-
         require_once SHNFUCARVER_PATH . '/ShnfuCarver/Component/Autoloader/Autoloader.php';
-        $this->_frameworkAutoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
+        $frameworkAutoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
 
         require_once SHNFUCARVER_PATH . '/ShnfuCarver/Component/Loader/LoaderInterface.php';
         require_once SHNFUCARVER_PATH . '/ShnfuCarver/Component/Loader/NameIterator.php';
@@ -64,8 +54,8 @@ class Application extends \ShnfuCarver\Kernel\Application\Application
         $loader = new \ShnfuCarver\Component\Loader\InternalLoader;
         $loader->add('', SHNFUCARVER_PATH);
 
-        $this->_frameworkAutoloader->setLoader($loader);
-        $this->_frameworkAutoloader->register();
+        $frameworkAutoloader->setLoader($loader);
+        $frameworkAutoloader->register();
     }
 }
 

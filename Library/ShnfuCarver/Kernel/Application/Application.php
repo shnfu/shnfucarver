@@ -55,16 +55,15 @@ abstract class Application
      */
     public function run()
     {
-        $this->initialize();
-        $this->execute();
+        $this->run();
     }
 
     /**
-     * Initialization
+     * Run
      *
      * @return void
      */
-    public function initialize()
+    public function run()
     {
         $this->_serviceRegistry = new \ShnfuCarver\Kernel\Service\ServiceRegistry;
 
@@ -77,41 +76,25 @@ abstract class Application
 
             $manager->setServiceRegistry($this->_serviceRegistry);
 
-            // do the initialization
+            // do the run
             $manager->loadConfig();
-            $manager->initialize();
+            $manager->run();
         }
     }
 
     /**
-     * Execution
+     * Clean, this is often only needed for the debug purpose
      *
      * @return void
      */
-    public function execute()
+    public function clean()
     {
         foreach ($this->_manager as $manager)
         {
             self::_validateManager($manager);
 
-            // do the execution
-            $manager->execute();
-        }
-    }
-
-    /**
-     * Finalization, this is often only needed for the debug purpose
-     *
-     * @return void
-     */
-    public function finalize()
-    {
-        foreach ($this->_manager as $manager)
-        {
-            self::_validateManager($manager);
-
-            // do the finalization
-            $manager->finalize();
+            // do the clean
+            $manager->clean();
         }
     }
 

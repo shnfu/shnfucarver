@@ -31,11 +31,11 @@ class ExceptionManager extends \ShnfuCarver\Manager\Manager
     protected $_exceptionHandler;
 
     /**
-     * Initialization
+     * Run
      *
      * @return void
      */
-    public function initialize()
+    public function run()
     {
         $this->_exceptionHandler = new \ShnfuCarver\Component\Debug\Exception\Handler;
 
@@ -53,6 +53,8 @@ class ExceptionManager extends \ShnfuCarver\Manager\Manager
             $this->_exceptionHandler->setHandler($handler);
             $this->_exceptionHandler->register();
         }
+
+        parent::run();
     }
 
     /**

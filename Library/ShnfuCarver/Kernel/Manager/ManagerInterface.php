@@ -28,28 +28,21 @@ interface ManagerInterface
      *
      * @return string
      */
-    public function getName();
+    public static function getName();
 
     /**
-     * Initialization
+     * Run
      *
      * @return void
      */
-    public function initialize();
+    public function run();
 
     /**
-     * Execution
+     * Clean
      *
      * @return void
      */
-    public function execute();
-
-    /**
-     * Finalization
-     *
-     * @return void
-     */
-    public function finalize();
+    public function clean();
 
     /**
      * Set service registry

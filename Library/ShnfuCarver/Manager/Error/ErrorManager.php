@@ -31,11 +31,11 @@ class ErrorManager extends \ShnfuCarver\Manager\Manager
     protected $_errorHandler;
 
     /**
-     * Initialization
+     * Run
      *
      * @return void
      */
-    public function initialize()
+    public function run()
     {
         $this->_errorHandler = new \ShnfuCarver\Component\Debug\Error\Handler;
 
@@ -53,6 +53,8 @@ class ErrorManager extends \ShnfuCarver\Manager\Manager
             $this->_errorHandler->setHandler($handler);
             $this->_errorHandler->register();
         }
+
+        parent::run();
     }
 
     /**

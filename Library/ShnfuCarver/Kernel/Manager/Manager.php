@@ -28,7 +28,15 @@ abstract class Manager implements ManagerInterface
      *
      * @var string
      */
-    protected $_name;
+    protected static $_name;
+
+    /**
+     * Sub manager
+     * Array of \ShnfuCarver\Kernel\Manager\Manager
+     *
+     * @var array
+     */
+    protected $_subManager;
 
     /**
      * Config
@@ -49,14 +57,14 @@ abstract class Manager implements ManagerInterface
      *
      * @return string
      */
-    public function getName()
+    public static function getName()
     {
-        if (isset($this->_name))
+        if (isset(static::$_name))
         {
-            return $this->_name;
+            return static::$_name;
         }
 
-        $name = get_class($this);
+        $name = get_called_class();
         // Get rid of the namespace
         $pos = strrpos($name, '\\');
         if (false !== $pos)
@@ -74,36 +82,60 @@ abstract class Manager implements ManagerInterface
         $name = strtolower(implode('_', $nameFragment));
         $name = ltrim($name, '_');
 
-        $this->_name = $name;
+        static::$_name = $name;
 
-        return $this->_name;
+        return static::$_name;
     }
 
     /**
-     * Initialization
+     * Add sub manager
      *
+     * @param  array|\ShnfuCarver\Kernel\Manager\Manager $subManager
      * @return void
      */
-    public function initialize()
+    public function addSubManager($subManager)
     {
+        if ($subManager instanceof \ShnfuCarver\Kernel\Manager\Manager)
+        {
+            $this->_subManager[] = $subManager;
+        }
+        else if (is_array($subManager))
+        {
+            foreach ($subManager as $oneSubManager)
+            {
+                $this->_subManager[] = $oneSubManager;
+            }
+        }
+        else
+        {
+            throw \InvalidArgumentException('subManager must be an array or instance of \ShnfuCarver\Kernel\Manager\Manager!');
+        }
     }
 
     /**
-     * Execution
+     * Run
      *
      * @return void
      */
-    public function execute()
+    public function run()
     {
+        foreach ($this->_subManager as $subManager)
+        {
+            $subManager->run();
+        }
     }
 
     /**
-     * Finalization
+     * Clean
      *
      * @return void
      */
-    public function finalize()
+    public function clean()
     {
+        foreach ($this->_subManager as $subManager)
+        {
+            $subManager->clean();
+        }
     }
 
     /**
@@ -115,6 +147,10 @@ abstract class Manager implements ManagerInterface
     public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry)
     {
         $this->_serviceRegistry = $serviceRegistry;
+        foreach ($this->_subManager as $subManager)
+        {
+            $subManager->setServiceRegistry($serviceRegistry);
+        }
     }
 
     /**
@@ -124,6 +160,10 @@ abstract class Manager implements ManagerInterface
      */
     public function loadConfig()
     {
+        foreach ($this->_subManager as $subManager)
+        {
+            $subManager->loadConfig();
+        }
     }
 
     /**
@@ -134,7 +174,44 @@ abstract class Manager implements ManagerInterface
      */
     protected function _getService($name)
     {
+        if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        {
+            throw \RuntimeException('The service registry is not set properly!');
+        }
+
         return $this->_serviceRegistry->get($name);
+    }
+
+    /**
+     * Does a service exist
+     *
+     * @param  string $name
+     * @return bool
+     */
+    protected function _existService($name)
+    {
+        if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        {
+            throw \RuntimeException('The service registry is not set properly!');
+        }
+
+        return $this->_serviceRegistry->exist($name);
+    }
+
+    /**
+     * Register a service
+     *
+     * @param  string $name
+     * @return void
+     */
+    protected function _registerService($name)
+    {
+        if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        {
+            throw \RuntimeException('The service registry is not set properly!');
+        }
+
+        $this->_serviceRegistry->register($name);
     }
 }
 

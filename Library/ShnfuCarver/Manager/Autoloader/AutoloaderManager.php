@@ -31,11 +31,11 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
     protected $_autoloader;
 
     /**
-     * Initialization
+     * Run
      *
      * @return void
      */
-    public function initialize()
+    public function run()
     {
         $this->_autoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
 
@@ -53,6 +53,8 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
             $this->_autoloader->setLoader($loader);
             $this->_autoloader->register();
         }
+
+        parent::run();
     }
 
     /**

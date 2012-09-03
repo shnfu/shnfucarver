@@ -28,21 +28,21 @@ abstract class Service implements ServiceInterface
      *
      * @var string
      */
-    protected $_name;
+    protected static $_name;
 
     /**
      * Get name from the class name
      *
      * @return string
      */
-    public function getName()
+    public static function getName()
     {
-        if (isset($this->_name))
+        if (isset(static::$_name))
         {
-            return $this->_name;
+            return static::$_name;
         }
 
-        $name = get_class($this);
+        $name = get_called_class();
         // Get rid of the namespace
         $pos = strrpos($name, '\\');
         if (false !== $pos)
@@ -60,9 +60,9 @@ abstract class Service implements ServiceInterface
         $name = strtolower(implode('_', $nameFragment));
         $name = ltrim($name, '_');
 
-        $this->_name = $name;
+        static::$_name = $name;
 
-        return $this->_name;
+        return static::$_name;
     }
 }
 

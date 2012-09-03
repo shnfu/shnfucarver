@@ -1,43 +1,8 @@
 <?php
 
-/**
- * Test manager class file
- *
- * @package    ShnfuCarver
- * @subpackage Manager\Error
- * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com>
- * @license    http://carver.shnfu.com/license.txt    New BSD License
- */
-
-//namespace ShnfuCarver\Manager\Error;
-
-/**
- * Error manager class
- *
- * @package    ShnfuCarver
- * @subpackage Manager\Error
- * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com>
- * @license    http://carver.shnfu.com/license.txt    New BSD License
- */
 class TestManager extends \ShnfuCarver\Manager\Manager
 {
-    /**
-     * Initialization
-     *
-     * @return void
-     */
-    public function initialize()
-    {
-    }
-
-    /**
-     * Execution
-     *
-     * @return void
-     */
-    public function execute()
+    public function run()
     {
         // Testing...
         setcookie("cookie[three]", "cookiethree");

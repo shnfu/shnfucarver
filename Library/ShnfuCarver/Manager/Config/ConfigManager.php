@@ -42,16 +42,21 @@ class ConfigManager extends \ShnfuCarver\Kernel\Manager\Manager
     }
 
     /**
-     * Initialization
+     * Run
      *
      * @return void
      */
-    public function initialize()
+    public function run()
     {
-        $configService = new \ShnfuCarver\Service\Config\ConfigService;
-        $this->_serviceRegistry->register($configService);
+        if (!$this->_serviceRegistry->exist(\ShnfuCarver\Service\Config\ConfigService::getName()))
+        {
+            $this->_serviceRegistry->register(new \ShnfuCarver\Service\Config\ConfigService);
+        }
 
+        $configService = $this->_getService(\ShnfuCarver\Service\Config\ConfigService::getName());
         $configService->load($this->_configPath);
+
+        parent::run();
     }
 }
 
