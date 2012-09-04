@@ -167,6 +167,16 @@ abstract class Manager implements ManagerInterface
     }
 
     /**
+     * Get config
+     *
+     * @return array
+     */
+    public function getConfig()
+    {
+        return $this->_config;
+    }
+
+    /**
      * Get a service
      *
      * @param  string $name
@@ -201,17 +211,17 @@ abstract class Manager implements ManagerInterface
     /**
      * Register a service
      *
-     * @param  string $name
-     * @return void
+     * @param  \ShnfuCarver\Kernel\Service\Service $service
+     * @return \ShnfuCarver\Kernel\Service\Service
      */
-    protected function _registerService($name)
+    protected function _registerService($service)
     {
         if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
         {
             throw \RuntimeException('The service registry is not set properly!');
         }
 
-        $this->_serviceRegistry->register($name);
+        return $this->_serviceRegistry->register($service);
     }
 }
 

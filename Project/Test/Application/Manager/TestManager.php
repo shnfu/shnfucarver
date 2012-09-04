@@ -9,6 +9,8 @@ class TestManager extends \ShnfuCarver\Manager\Manager
 
     private function _test()
     {
+        print_r($this->getConfig());
+
         // Testing...
         setcookie("cookie[three]", "cookiethree");
         setcookie("cookie[two]", "cookietwo");

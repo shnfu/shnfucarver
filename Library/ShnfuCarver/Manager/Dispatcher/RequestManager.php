@@ -37,7 +37,9 @@ class RequestManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        if (!$this->_existService(''));
+        $request = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\Request);
+
+        $request->set($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
 
         parent::run();
     }

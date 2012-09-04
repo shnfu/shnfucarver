@@ -8,7 +8,7 @@ include CONFIGURATION_PATH . '/Error.php';
 
 include CONFIGURATION_PATH . '/Exception.php';
 
-$tempConfig['test'] = 'OK';
+include CONFIGURATION_PATH . '/Test.php';
 
 return $tempConfig;
 

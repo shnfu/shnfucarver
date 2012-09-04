@@ -58,6 +58,13 @@ interface ManagerInterface
      * @return void
      */
     public function loadConfig();
+
+    /**
+     * Get config
+     *
+     * @return array
+     */
+    public function getConfig();
 }
 
 ?>

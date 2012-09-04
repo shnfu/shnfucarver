@@ -42,9 +42,8 @@ class ServiceRegistry
     /**
      * Register a service
      *
-     * @param  string $name
-     * @param  object $service
-     * @return void
+     * @param  \ShnfuCarver\Kernel\Service\Service $service
+     * @return \ShnfuCarver\Kernel\Service\Service
      */
     public function register($service)
     {
@@ -55,7 +54,12 @@ class ServiceRegistry
 
         $name = $service->getName();
 
-        $this->_service[$name] = $service;
+        if (!$this->exist($name))
+        {
+            $this->_service[$name] = $service;
+        }
+
+        return = $this->get($name);
     }
 
     /**
