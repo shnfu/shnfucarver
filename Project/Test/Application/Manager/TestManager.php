@@ -4,6 +4,11 @@ class TestManager extends \ShnfuCarver\Manager\Manager
 {
     public function run()
     {
+        $this->_test();
+    }
+
+    private function _test()
+    {
         // Testing...
         setcookie("cookie[three]", "cookiethree");
         setcookie("cookie[two]", "cookietwo");

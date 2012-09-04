@@ -58,12 +58,12 @@ class AppManager extends \ShnfuCarver\Manager\Manager
     {
         $this->createServiceRegistry();
 
-        if (!$this->_existService('Config'))
+        if (!$this->_existService('config'))
         {
             $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
         }
 
-        $configService = $this->_getService('Config');
+        $configService = $this->_getService('config');
         $configService->load($configPath);
     }
 

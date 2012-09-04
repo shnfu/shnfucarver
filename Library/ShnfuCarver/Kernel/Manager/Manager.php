@@ -64,7 +64,7 @@ abstract class Manager implements ManagerInterface
             return $this->_name;
         }
 
-        $name = get_called_class();
+        $name = get_class($this);
         // Get rid of the namespace
         $pos = strrpos($name, '\\');
         if (false !== $pos)

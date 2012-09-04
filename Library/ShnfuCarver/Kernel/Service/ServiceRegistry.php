@@ -31,36 +31,12 @@ class ServiceRegistry
     protected $_service = array();
 
     /**
-     * Is case sensitive
-     *
-     * @var bool
-     */
-    protected $_caseSensitive = false;
-
-    /**
      * construct 
      *
-     * @param  bool $caseSensitive
      * @return void
      */
-    public function __construct($caseSensitive = false)
+    public function __construct()
     {
-        $this->_caseSensitive = $caseSensitive;
-    }
-
-    /**
-     * Format the name of service
-     *
-     * @param  string $name
-     * @return string
-     */
-    public function formatName($name)
-    {
-        if (!$this->_caseSensitive)
-        {
-            $name = strtolower($name);
-        }
-        return $name;
     }
 
     /**
@@ -77,7 +53,7 @@ class ServiceRegistry
             throw new \InvalidArgumentException("Not an instance of ServiceInterface!");
         }
 
-        $name = $this->formatName($service->getName());
+        $name = $service->getName();
 
         $this->_service[$name] = $service;
     }
@@ -90,8 +66,6 @@ class ServiceRegistry
      */
     public function exist($name)
     {
-        $name = $this->formatName($name);
-
         return isset($this->_service[$name]);
     }
 
@@ -103,8 +77,6 @@ class ServiceRegistry
      */
     public function get($name)
     {
-        $name = $this->formatName($name);
-
         if (!isset($this->_service[$name]))
         {
             throw new \InvalidArgumentException("The service $name does not exist!");

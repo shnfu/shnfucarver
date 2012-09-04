@@ -30,6 +30,12 @@ class DispatcherManager extends \ShnfuCarver\Manager\Manager
      */
     public function __construct()
     {
+        $subManager = array
+        (
+            new \ShnfuCarver\Manager\Dispatcher\RequestManager,
+        );
+
+        $this->addSubManager($subManager);
     }
 
     /**

@@ -19,19 +19,18 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
         $this->_initializeFrameworkAutoloader();
 
         require_once APPLICATION_PATH . '/Application/Manager/TestManager.php';
-        $manager = array
+        $subManager = array
         (
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
             new TestManager,
         );
-        $this->addSubManager($manager);
+        $this->addSubManager($subManager);
 
         parent::__construct();
     }
 
-    // For test purpose
     public function run()
     {
         date_default_timezone_set('Asia/Shanghai');
