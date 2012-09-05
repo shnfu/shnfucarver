@@ -108,7 +108,7 @@ abstract class Manager implements ManagerInterface
         }
         else
         {
-            throw \InvalidArgumentException('subManager must be an array or instance of \ShnfuCarver\Kernel\Manager\Manager!');
+            throw new \InvalidArgumentException('subManager must be an array or instance of \ShnfuCarver\Kernel\Manager\Manager!');
         }
     }
 
@@ -186,7 +186,7 @@ abstract class Manager implements ManagerInterface
     {
         if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
         {
-            throw \RuntimeException('The service registry is not set properly!');
+            throw new \RuntimeException('The service registry is not set properly!');
         }
 
         return $this->_serviceRegistry->get($name);
@@ -202,7 +202,7 @@ abstract class Manager implements ManagerInterface
     {
         if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
         {
-            throw \RuntimeException('The service registry is not set properly!');
+            throw new \RuntimeException('The service registry is not set properly!');
         }
 
         return $this->_serviceRegistry->exist($name);
@@ -218,7 +218,7 @@ abstract class Manager implements ManagerInterface
     {
         if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
         {
-            throw \RuntimeException('The service registry is not set properly!');
+            throw new \RuntimeException('The service registry is not set properly!');
         }
 
         return $this->_serviceRegistry->register($service);

@@ -19,17 +19,21 @@ $frameworkAutoloader->setLoader($loader);
 $frameworkAutoloader->register();
 
 
+date_default_timezone_set('Asia/Shanghai');
+
+
 // app manager
 $appManager = new \ShnfuCarver\Manager\App\AppManager();
-$subManager = array
-(
-    new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
-    new \ShnfuCarver\Manager\Error\ErrorManager,
-    new \ShnfuCarver\Manager\Exception\ExceptionManager,
-    new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
+$appManager->addSubManager(
+    array
+    (
+        new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
+        new \ShnfuCarver\Manager\Error\ErrorManager,
+        new \ShnfuCarver\Manager\Exception\ExceptionManager,
+        //new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
+    )
 );
-$appManager->addSubManager($subManager);
-$appManager->registerConfigService(CONFIGURATION_PATH . '/Config.php');
+$appManager->setConfigPath(CONFIGURATION_PATH . '/Config.php');
 $appManager->run();
 
 ?>

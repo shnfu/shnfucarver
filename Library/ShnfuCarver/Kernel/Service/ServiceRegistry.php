@@ -59,7 +59,7 @@ class ServiceRegistry
             $this->_service[$name] = $service;
         }
 
-        return = $this->get($name);
+        return $this->get($name);
     }
 
     /**

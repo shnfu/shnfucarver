@@ -41,7 +41,9 @@ class AppManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $this->createServiceRegistry();
+        $this->setServiceRegistry(new \ShnfuCarver\Kernel\Service\ServiceRegistry);
+
+        $this->_loadAllConfig();
 
         $this->loadConfig();
 
@@ -49,31 +51,26 @@ class AppManager extends \ShnfuCarver\Manager\Manager
     }
 
     /**
-     * Create service registry
+     * Set the config path
      *
      * @param  string $configPath
      * @return void
      */
-    public function registerConfigService($configPath)
+    public function setConfigPath($configPath)
     {
-        $this->createServiceRegistry();
-
-        $configService = $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
-
-        $configService->load($configPath);
+        $this->_configPath = $configPath;
     }
 
     /**
-     * Create service registry
+     * Set the config path
      *
+     * @param  string $configPath
      * @return void
      */
-    public function createServiceRegistry()
+    private function _loadAllConfig()
     {
-        if (!isset($this->_serviceRegistry))
-        {
-            $this->setServiceRegistry(new \ShnfuCarver\Kernel\Service\ServiceRegistry);
-        }
+        $configService = $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
+        $configService->load($this->_configPath);
     }
 }
 

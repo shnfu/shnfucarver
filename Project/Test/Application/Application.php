@@ -24,6 +24,7 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
+            //new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
             new TestManager,
         );
         $this->addSubManager($subManager);
@@ -35,7 +36,7 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
     {
         date_default_timezone_set('Asia/Shanghai');
 
-        $this->registerConfigService(CONFIGURATION_PATH . '/Config.php');
+        $this->setConfigPath(CONFIGURATION_PATH . '/Config.php');
 
         parent::run();
     }
