@@ -38,7 +38,7 @@ class Response
     private $_content = '';
 
     /**
-     * The header could appear more than once
+     * The header could appear only once
      *
      * @var bool
      */

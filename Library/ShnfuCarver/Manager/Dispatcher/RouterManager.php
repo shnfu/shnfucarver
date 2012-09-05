@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Request manager class file
+ * Router manager class file
  *
  * @package    ShnfuCarver
  * @subpackage Manager\Dispatcher
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Manager\Dispatcher;
 
 /**
- * Request manager class
+ * Router manager class
  *
  * @package    ShnfuCarver
  * @subpackage Manager\Dispatcher
@@ -26,7 +26,7 @@ class RequestManager extends \ShnfuCarver\Manager\Manager
     /**
      * The autoloader
      *
-     * @var \ShnfuCarver\Component\Request\Request
+     * @var \ShnfuCarver\Component\Router\Router
      */
     protected $_request;
 
@@ -37,7 +37,7 @@ class RequestManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $request = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\Request);
+        $request = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\Router);
 
         $request->create($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
 
