@@ -97,12 +97,14 @@ abstract class Manager implements ManagerInterface
     {
         if ($subManager instanceof \ShnfuCarver\Kernel\Manager\Manager)
         {
+            $subManager->setServiceRegistry($this->_serviceRegistry);
             $this->_subManager[] = $subManager;
         }
         else if (is_array($subManager))
         {
             foreach ($subManager as $oneSubManager)
             {
+                $oneSubManager->setServiceRegistry($this->_serviceRegistry);
                 $this->_subManager[] = $oneSubManager;
             }
         }
@@ -141,11 +143,16 @@ abstract class Manager implements ManagerInterface
     /**
      * Set service registry
      *
-     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry
+     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry|null $serviceRegistry
      * @return void
      */
-    public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry)
+    public function setServiceRegistry($serviceRegistry)
     {
+        if (!$serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        {
+            $serviceRegistry = null;
+        }
+
         $this->_serviceRegistry = $serviceRegistry;
         foreach ($this->_subManager as $subManager)
         {

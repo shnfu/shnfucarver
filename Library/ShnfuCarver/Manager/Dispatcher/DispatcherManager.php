@@ -33,6 +33,7 @@ class DispatcherManager extends \ShnfuCarver\Manager\Manager
         $subManager = array
         (
             new \ShnfuCarver\Manager\Dispatcher\RequestManager,
+            new \ShnfuCarver\Manager\Dispatcher\RouterManager,
         );
 
         $this->addSubManager($subManager);
@@ -45,13 +46,15 @@ class DispatcherManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $routeHandler->add(new route);
-        $routeHandler->add(new route);
-        $controller = find($request, $routeHandler);
-        $response = call($controller);
-        $response->send();
+        //$routeHandler->add(new route);
+        //$routeHandler->add(new route);
+        //$controller = find($request, $routeHandler);
+        //$response = call($controller);
+        //$response->send();
 
-        $this->_getService('Response')->send();
+        //$this->_getService('Response')->send();
+
+        parent::run();
     }
 }
 

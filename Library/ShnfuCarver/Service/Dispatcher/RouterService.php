@@ -10,7 +10,7 @@
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Service\Router;
+namespace ShnfuCarver\Service\Dispatcher;
 
 /**
  * Router service class

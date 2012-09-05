@@ -18,25 +18,25 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
         // first call this so the autoloader for the framework is available
         $this->_initializeFrameworkAutoloader();
 
+        parent::__construct();
+
         require_once APPLICATION_PATH . '/Application/Manager/TestManager.php';
         $subManager = array
         (
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
-            //new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
+            new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
             new TestManager,
         );
         $this->addSubManager($subManager);
-
-        parent::__construct();
     }
 
     public function run()
     {
         date_default_timezone_set('Asia/Shanghai');
 
-        $this->setConfigPath(CONFIGURATION_PATH . '/Config.php');
+        $this->registerConfigService(CONFIGURATION_PATH . '/Config.php');
 
         parent::run();
     }

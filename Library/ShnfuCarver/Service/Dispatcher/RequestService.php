@@ -10,7 +10,7 @@
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Service\Request;
+namespace ShnfuCarver\Service\Dispatcher;
 
 /**
  * Request service class
@@ -37,7 +37,7 @@ class RequestService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function __construct()
     {
-        $this->_request = new ShnfuCarver\Component\Dispatcher\Request;
+        $this->_request = new \ShnfuCarver\Component\Dispatcher\Request\Request;
     }
 
     /**
@@ -49,12 +49,12 @@ class RequestService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function __call($method, array $param)
     {
-        if (!method_exists($this->_request, $method))
-        {
-            throw new \BadMethodCallException("Method '$method' for RequestService does not exist!");
-        }
+        //if (!method_exists($this->_request, $method))
+        //{
+        //    throw new \BadMethodCallException("Method '$method' for RequestService does not exist!");
+        //}
 
-        $return = call_user_func_array(array($this->_request, $method), $param);
+        return call_user_func_array(array($this->_request, $method), $param);
     }
 }
 

@@ -47,10 +47,10 @@ interface ManagerInterface
     /**
      * Set service registry
      *
-     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry
+     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry|null $serviceRegistry
      * @return void
      */
-    public function setServiceRegistry(\ShnfuCarver\Kernel\Service\ServiceRegistry $serviceRegistry);
+    public function setServiceRegistry($serviceRegistry);
 
     /**
      * Load config

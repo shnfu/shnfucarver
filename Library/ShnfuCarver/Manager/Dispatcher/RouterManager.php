@@ -21,15 +21,8 @@ namespace ShnfuCarver\Manager\Dispatcher;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class RequestManager extends \ShnfuCarver\Manager\Manager
+class RouterManager extends \ShnfuCarver\Manager\Manager
 {
-    /**
-     * The autoloader
-     *
-     * @var \ShnfuCarver\Component\Router\Router
-     */
-    protected $_request;
-
     /**
      * Run
      *
@@ -37,9 +30,11 @@ class RequestManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $request = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\Router);
+        $requestService = $this->_getService('request');
 
-        $request->create($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+        echo $requestService->getRequestUri() . PHP_EOL;
+        echo $requestService->getPathInfo() . PHP_EOL;
+        echo $requestService->getClientIp() . PHP_EOL;
 
         parent::run();
     }

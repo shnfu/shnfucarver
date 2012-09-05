@@ -30,10 +30,10 @@ $appManager->addSubManager(
         new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
         new \ShnfuCarver\Manager\Error\ErrorManager,
         new \ShnfuCarver\Manager\Exception\ExceptionManager,
-        //new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
+        new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
     )
 );
-$appManager->setConfigPath(CONFIGURATION_PATH . '/Config.php');
+$appManager->registerConfigService(CONFIGURATION_PATH . '/Config.php');
 $appManager->run();
 
 ?>

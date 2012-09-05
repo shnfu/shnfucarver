@@ -4,19 +4,19 @@
  * Parameter class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Request\Unit
+ * @subpackage Component\Dispatcher\Request\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Request\Unit;
+namespace ShnfuCarver\Component\Dispatcher\Request\Unit;
 
 /**
  * Parameter class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Request\Unit
+ * @subpackage Component\Dispatcher\Request\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -39,6 +39,17 @@ class Parameter
     public function __construct(array $parameter)
     {
         $this->_parameter = $parameter;
+    }
+
+    /**
+     * A value exists
+     *
+     * @param  string $name
+     * @return bool
+     */
+    public function has($name)
+    {
+        return isset($this->_parameter[$name]);
     }
 
     /**

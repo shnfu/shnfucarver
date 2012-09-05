@@ -10,7 +10,7 @@
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Request
+namespace ShnfuCarver\Component\Dispatcher\Request;
 
 /**
  * Request class
@@ -47,7 +47,7 @@ class Request
     /**
      * The FILES parameter
      *
-     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\File
      */
     private $_files;
 
@@ -75,21 +75,28 @@ class Request
     public function create(array $get = array(), array $post = array(),
             array $cookies = array(), array $files = array(), array $server = array())
     {
-        $this->_get     = $get;
-        $this->_post    = $post;
-        $this->_cookies = $cookies;
-        $this->_files   = $files;
-        $this->_server  = $server;
+        $this->_get     = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($get    );
+        $this->_post    = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($post   );
+        $this->_cookies = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($cookies);
+        $this->_files   = new \ShnfuCarver\Component\Dispatcher\Request\Unit\File     ($files  );
+        $this->_server  = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Server   ($server );
     }
 
     /**
-     * Get path info
+     * Call methods of request
      *
-     * @return string
+     * @param  string $method
+     * @param  array  $param
+     * @return mixed
      */
-    public function getPathInfo()
+    public function __call($method, array $param)
     {
-        return $this->_server->get['PATH_INFO'];
+        if (!method_exists($this->_server, $method))
+        {
+            throw new \BadMethodCallException("Method '$method' for RequestService does not exist!");
+        }
+
+        return call_user_func_array(array($this->_server, $method), $param);
     }
 }
 
