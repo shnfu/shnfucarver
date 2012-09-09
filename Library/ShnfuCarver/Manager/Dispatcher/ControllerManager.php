@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Dispatcher manager class file
+ * Controller manager class file
  *
  * @package    ShnfuCarver
  * @subpackage Manager\Dispatcher
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Manager\Dispatcher;
 
 /**
- * Dispatcher manager class
+ * Controller manager class
  *
  * @package    ShnfuCarver
  * @subpackage Manager\Dispatcher
@@ -21,23 +21,22 @@ namespace ShnfuCarver\Manager\Dispatcher;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class DispatcherManager extends \ShnfuCarver\Manager\Manager
+class ControllerManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * construct 
+     * Run
      *
      * @return void
      */
-    public function __construct()
+    public function run()
     {
-        $subManager = array
-        (
-            new \ShnfuCarver\Manager\Dispatcher\RequestManager,
-            new \ShnfuCarver\Manager\Dispatcher\RouterManager,
-            new \ShnfuCarver\Manager\Dispatcher\ControllerManager,
-        );
+        $commandService = $this->_getService('command');
 
-        $this->addSubManager($subManager);
+        echo 'Path: ' . $commandService->getPath() . PHP_EOL;
+        echo 'Path: ' . $commandService->getAction() . PHP_EOL;
+        echo 'Path: ' . $commandService->getParameter() . PHP_EOL;
+
+        parent::run();
     }
 }
 

@@ -32,9 +32,11 @@ class RouterManager extends \ShnfuCarver\Manager\Manager
     {
         $requestService = $this->_getService('request');
 
-        echo $requestService->getRequestUri() . PHP_EOL;
-        echo $requestService->getPathInfo() . PHP_EOL;
-        echo $requestService->getClientIp() . PHP_EOL;
+        $routeService = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\RouterService);
+        $command = $routeService->route($requestService->getPathInfo());
+
+        $commandService = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\CommandService);
+        $commandService->setCommand($command);
 
         parent::run();
     }

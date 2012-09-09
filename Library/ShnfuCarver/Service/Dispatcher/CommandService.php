@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class file for router service
+ * Class file for command service
  *
  * @package    ShnfuCarver
  * @subpackage Service\Dispatcher
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Service\Dispatcher;
 
 /**
- * Router service class
+ * Command service class
  *
  * @package    ShnfuCarver
  * @subpackage Service\Dispatcher
@@ -21,14 +21,14 @@ namespace ShnfuCarver\Service\Dispatcher;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class RouterService extends \ShnfuCarver\Kernel\Service\Service
+class CommandService extends \ShnfuCarver\Kernel\Service\Service
 {
     /**
-     * Router
+     * Command
      *
-     * @var Router
+     * @var Command
      */
-    protected $_router;
+    protected $_command;
 
     /**
      * construct 
@@ -37,11 +37,21 @@ class RouterService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function __construct()
     {
-        $this->_router = new \ShnfuCarver\Component\Dispatcher\Router\Router;
     }
 
     /**
-     * Call methods of route
+     * Set command
+     *
+     * @param  \ShnfuCarver\Component\Dispatcher\Router\Command\Command $command
+     * @return mixed
+     */
+    public function setCommand(\ShnfuCarver\Component\Dispatcher\Router\Command\Command $command)
+    {
+        $this->_command = $command;
+    }
+
+    /**
+     * Call methods of command
      *
      * @param  string $method
      * @param  array  $param
@@ -49,12 +59,12 @@ class RouterService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function __call($method, array $param)
     {
-        if (!method_exists($this->_router, $method))
+        if (!method_exists($this->_command, $method))
         {
-            throw new \BadMethodCallException("Method '$method' for RouterService does not exist!");
+            throw new \BadMethodCallException("Method '$method' for CommandService does not exist!");
         }
 
-        return call_user_func_array(array($this->_router, $method), $param);
+        return call_user_func_array(array($this->_command, $method), $param);
     }
 }
 

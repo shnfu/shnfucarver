@@ -10,7 +10,7 @@
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Router
+namespace ShnfuCarver\Component\Dispatcher\Router;
 
 /**
  * Router class
@@ -24,36 +24,44 @@ namespace ShnfuCarver\Component\Dispatcher\Router
 class Router
 {
     /**
-     * The header
-     *
-     * @var array
-     */
-    private $_header = array();
-
-    /**
      * construct 
      *
      * @param  array $header
      * @return void
      */
-    public function __construct(array $header)
+    public function __construct()
     {
-        $this->_header = $header;
     }
 
     /**
-     * Retrieve a value 
+     * Route a path info
      *
-     * @param  string $name
-     * @return mixed
+     * @param  string $pathInfo
+     * @return \ShnfuCarver\Component\Dispatcher\Router\Command\Command
      */
-    public function get($name)
+    public function route($pathInfo)
     {
-        if (!isset($this->_header[$name]))
+        $urlSegment = array_filter(explode('/', $pathInfo));
+
+        $path        = '\Default';
+        $action      = 'index';
+        $parameter   = array();
+
+        if (count($urlSegment) == 0)
         {
-            return null;
         }
-        return $this->_header[$name];
+        else if (count($urlSegment) == 1)
+        {
+            $path      = $urlSegment[0];
+        }
+        else
+        {
+            $path      = $urlSegment[0];
+            $action    = $urlSegment[1];
+            $parameter = array_slice($urlSegment, 2);
+        }
+
+        return new \ShnfuCarver\Component\Dispatcher\Router\Command\Command($path, $action, $parameter);
     }
 }
 
