@@ -51,6 +51,16 @@ class CommandService extends \ShnfuCarver\Kernel\Service\Service
     }
 
     /**
+     * Get command
+     *
+     * @return \ShnfuCarver\Component\Dispatcher\Router\Command\Command
+     */
+    public function getCommand()
+    {
+        return $this->_command;
+    }
+
+    /**
      * Call methods of command
      *
      * @param  string $method

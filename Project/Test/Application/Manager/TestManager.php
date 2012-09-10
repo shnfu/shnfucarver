@@ -4,7 +4,9 @@ class TestManager extends \ShnfuCarver\Manager\Manager
 {
     public function run()
     {
-        $this->_test();
+        //$this->_test();
+
+        parent::run();
     }
 
     private function _test()

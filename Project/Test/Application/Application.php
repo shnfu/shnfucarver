@@ -38,6 +38,9 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
 
         $this->registerConfigService(CONFIGURATION_PATH . '/Config.php');
 
+        require_once APPLICATION_PATH . '/Application/Controller/DefaultController.php';
+        require_once APPLICATION_PATH . '/Application/Controller/DemoController.php';
+
         parent::run();
     }
 

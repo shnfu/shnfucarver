@@ -4,19 +4,19 @@
  * Response class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit
+ * @subpackage Component\Dispatcher\Response
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Response\Unit
+namespace ShnfuCarver\Component\Dispatcher\Response;
 
 /**
  * Response class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit
+ * @subpackage Component\Dispatcher\Response
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -24,25 +24,25 @@ namespace ShnfuCarver\Core\Dispatcher\Response\Unit
 class Response
 {
     /**
-     * The header
+     * The headers
      *
-     * @var array
+     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\Header
      */
-    private $_header = array();
+    private $_header;
 
     /**
-     * The header content
+     * The cookies
      *
-     * @var string
+     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\Cookie
      */
-    private $_content = '';
+    private $_cookie;
 
     /**
-     * The header could appear only once
+     * The body
      *
-     * @var bool
+     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\Body
      */
-    private $_unique = false;
+    private $_body;
 
     /**
      * construct 
@@ -50,36 +50,21 @@ class Response
      * @param  array $header
      * @return void
      */
-    public function __construct(array $header)
+    public function __construct($bodyContent)
     {
-        $this->_header = $header;
+        $this->_body = new Unit\Body($bodyContent);
     }
 
     /**
-     * Retrieve a value 
+     * Send
      *
-     * @param  string $name
-     * @return mixed
+     * @return bool
      */
-    public function get($name)
+    public function send()
     {
-        if (!isset($this->_header[$name]))
-        {
-            return null;
-        }
-        return $this->_header[$name];
-    }
+        $this->_body->send();
 
-    /**
-     * Set a value, append if not exist
-     *
-     * @param  string $name
-     * @param  mixed  $value
-     * @return void
-     */
-    public function set($name, $value)
-    {
-        $this->_header[$name] = $value;
+        return true;
     }
 }
 

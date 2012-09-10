@@ -42,10 +42,11 @@ class Router
     public function route($pathInfo)
     {
         $urlSegment = array_filter(explode('/', $pathInfo));
+        $urlSegment = array_values($urlSegment);
 
-        $path        = '\Default';
-        $action      = 'index';
-        $parameter   = array();
+        $path      = '\Default';
+        $action    = 'index';
+        $parameter = array();
 
         if (count($urlSegment) == 0)
         {

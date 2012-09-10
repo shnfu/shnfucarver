@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Router manager class file
+ * Response manager class file
  *
  * @package    ShnfuCarver
  * @subpackage Manager\Dispatcher
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Manager\Dispatcher;
 
 /**
- * Router manager class
+ * Response manager class
  *
  * @package    ShnfuCarver
  * @subpackage Manager\Dispatcher
@@ -21,7 +21,7 @@ namespace ShnfuCarver\Manager\Dispatcher;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class RouterManager extends \ShnfuCarver\Manager\Manager
+class ResponseManager extends \ShnfuCarver\Manager\Manager
 {
     /**
      * Run
@@ -30,11 +30,9 @@ class RouterManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $route = new \ShnfuCarver\Component\Dispatcher\Router\Router;
-        $command = $route->route($this->_getService('request')->getPathInfo());
+        $responseService = $this->_getService('response');
 
-        $commandService = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\CommandService);
-        $commandService->setCommand($command);
+        $responseService->send();
 
         parent::run();
     }

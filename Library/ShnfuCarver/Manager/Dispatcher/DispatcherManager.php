@@ -35,6 +35,7 @@ class DispatcherManager extends \ShnfuCarver\Manager\Manager
             new \ShnfuCarver\Manager\Dispatcher\RequestManager,
             new \ShnfuCarver\Manager\Dispatcher\RouterManager,
             new \ShnfuCarver\Manager\Dispatcher\ControllerManager,
+            new \ShnfuCarver\Manager\Dispatcher\ResponseManager,
         );
 
         $this->addSubManager($subManager);

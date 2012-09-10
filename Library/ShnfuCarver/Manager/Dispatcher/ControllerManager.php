@@ -32,9 +32,13 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
     {
         $commandService = $this->_getService('command');
 
-        echo 'Path: ' . $commandService->getPath() . PHP_EOL;
-        echo 'Path: ' . $commandService->getAction() . PHP_EOL;
-        echo 'Path: ' . $commandService->getParameter() . PHP_EOL;
+        $command = $commandService->getCommand();
+
+        $resolver = new \ShnfuCarver\Component\Dispatcher\Controller\Resolver;
+        $response = $resolver->resolve($command);
+
+        $responseService = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\ResponseService);
+        $responseService->setResponse($response);
 
         parent::run();
     }

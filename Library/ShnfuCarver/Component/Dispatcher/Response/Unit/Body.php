@@ -1,71 +1,54 @@
 <?php
 
 /**
- * Parameter class file
+ * Body class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit
+ * @subpackage Component\Dispatcher\Response\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Response\Unit;
+namespace ShnfuCarver\Component\Dispatcher\Response\Unit;
 
 /**
  * Parameter class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit
+ * @subpackage Component\Dispatcher\Response\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Parameter
+class Body
 {
     /**
-     * The parameter
+     * The content of body
      *
-     * @var array
+     * @var string
      */
-    private $_parameter = array();
+    private $_content = '';
 
     /**
      * construct 
      *
-     * @param  array $parameter
+     * @param  string $content
      * @return void
      */
-    public function __construct(array $parameter)
+    public function __construct($content)
     {
-        $this->_parameter = $parameter;
+        $this->_content = $content;
     }
 
     /**
-     * Retrieve a value 
+     * Send
      *
-     * @param  string $name
-     * @return mixed
+     * @return bool
      */
-    public function get($name)
+    public function send()
     {
-        if (!isset($this->_parameter[$name]))
-        {
-            return null;
-        }
-        return $this->_parameter[$name];
-    }
-
-    /**
-     * Set a value, append if not exist
-     *
-     * @param  string $name
-     * @param  mixed  $value
-     * @return void
-     */
-    public function set($name, $value)
-    {
-        $this->_parameter[$name] = $value;
+        echo $this->_content;
     }
 }
 
