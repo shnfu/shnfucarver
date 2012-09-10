@@ -78,7 +78,7 @@ class Handler
      */
     public function register()
     {
-        register_shutdown_function(array($this, 'shutdown'));
+        //register_shutdown_function(array($this, 'shutdown'));
         return set_error_handler(array($this, 'handle'));
     }
 

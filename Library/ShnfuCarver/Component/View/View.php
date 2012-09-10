@@ -1,29 +1,38 @@
 <?php
 
 /**
- * Dispatcher class file
+ * View class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher
+ * @subpackage Component\View
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher;
+namespace ShnfuCarver\Component\View;
 
 /**
- * Dispatcher class
+ * View class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher
+ * @subpackage Component\View
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Dispatcher
+class View
 {
-
+    /**
+     * Load a view
+     *
+     * @param  string $viewPath
+     * @return \ShnfuCarver\Kernel\Service\ServiceInterface $service
+     */
+    protected function load($viewPath)
+    {
+        return $this->_serviceRegistry->get($name);
+    }
 }
 
 ?>

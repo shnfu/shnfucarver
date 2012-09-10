@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Base class file for any config
+ * Factory class file for config
  *
  * @package    ShnfuCarver
  * @subpackage Component\Config
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Component\Config;
 
 /**
- * Base class for any config
+ * Factory class for config
  *
  * @package    ShnfuCarver
  * @subpackage Component\Config
@@ -21,100 +21,34 @@ namespace ShnfuCarver\Component\Config;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-abstract class Config
+class Config
 {
     /**
-     * All configuration data stored here
+     * Choose which config type to use 
      *
-     * @var array
+     * @param string $configPath 
+     * @return \ShnfuCarver\Component\Config\Config
      */
-    protected $_data = array();
-
-    /**
-     * construct 
-     *
-     * @param  array $config 
-     * @return void
-     */
-    public function __construct(array $config)
+    public static function useConfig($configPath)
     {
-        $this->import($config);
-    }
+        $configType = pathinfo($configPath, PATHINFO_EXTENSION);
 
-    /**
-     * Magic method __set 
-     *
-     * @param  string $name 
-     * @param  mixed  $value 
-     * @return void
-     */
-    public function __set($name, $value)
-    {
-        $this->_data[$name] = $value;
-    }
+        // Upper case for the first letter, lower for the left
+        $configType = ucfirst(strtolower($configType));
+        $configType = __NAMESPACE__ . '\Format\\' . $configType;
 
-    /**
-     * Magic method __get 
-     *
-     * @param  string $name 
-     * @return mixed
-     */
-    public function __get($name)
-    {
-        // the value could be null, so not use isset()
-        if (array_key_exists($name, $this->_data))
+        if (!class_exists($configType))
         {
-            return $this->_data[$name];
+            throw new \InvalidArgumentException("'$configType' class does not exist!");
         }
 
-        throw new \DomainException("The configuration for '$name' does not exist!");
-        return null;
-    }
+        $config = new $configType($configPath);
+        if (!$config instanceof Format\Config)
+        {
+            throw new \InvalidArgumentException("'$configType' is not an instance of '\ShnfuCarver\Component\Config\Format\Config' !");
+        }
 
-    /**
-     * Magic method __isset 
-     *
-     * @param  string $name 
-     * @return bool
-     */
-    public function __isset($name)
-    {
-        return isset($this->_data[$name]);
-    }
-
-    /**
-     * Magic method __unset 
-     *
-     * @param  string $name 
-     * @return void
-     */
-    public function __unset($name)
-    {
-        unset($this->_data[$name]);
-    }
-
-    /**
-     * Import config
-     *
-     * Old config preserved
-     * Existed config will be overwritten
-     *
-     * @param  array $config 
-     * @return void
-     */
-    public function import(array $config)
-    {
-        $this->_data = array_merge($this->_data, $config);
-    }
-
-    /**
-     * Retrieve config
-     *
-     * @return array
-     */
-    public function retrieve()
-    {
-        return $this->_data;
+        return $config;
     }
 }
 

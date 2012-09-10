@@ -7,10 +7,10 @@ class DemoController extends \ShnfuCarver\Component\Dispatcher\Controller\Contro
         return 'This is a demo!';
     }
 
-    public function otherAction()
+    public function otherAction($haha)
     {
         $param = func_get_args();
-        return 'This is other action of the demo!' . '  Param is: ';// . $param[0];
+        return 'This is other action of the demo!' . '  Param is: ' . $param[0];
     }
 }
 

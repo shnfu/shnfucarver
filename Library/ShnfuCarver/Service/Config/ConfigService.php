@@ -38,7 +38,7 @@ class ConfigService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function load($configPath)
     {
-        $configObject = \ShnfuCarver\Component\Config\Factory::useConfig($configPath);
+        $configObject = \ShnfuCarver\Component\Config\Config::useConfig($configPath);
         $this->_config = $configObject->retrieve();
     }
 
