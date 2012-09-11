@@ -24,11 +24,28 @@ namespace ShnfuCarver\Service\Config;
 class ConfigService extends \ShnfuCarver\Kernel\Service\Service
 {
     /**
+     * The config loader
+     *
+     * @var \ShnfuCarver\Component\Config\Loader
+     */
+    protected $_configLoader;
+
+    /**
      * All configuration data stored here
      *
      * @var array
      */
     protected $_config = array();
+
+    /**
+     * construct 
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->_configLoader = new \ShnfuCarver\Component\Config\Loader;
+    }
 
     /**
      * Load a specified config
@@ -38,7 +55,7 @@ class ConfigService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function load($configPath)
     {
-        $configObject = \ShnfuCarver\Component\Config\Config::useConfig($configPath);
+        $configObject = $this->_configLoader->load($configPath);
         $this->_config = $configObject->retrieve();
     }
 
