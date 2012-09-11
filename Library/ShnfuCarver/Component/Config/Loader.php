@@ -40,13 +40,25 @@ class Loader
     /**
      * construct
      *
-     * @param  array $config
      * @return void
      */
     public function __construct()
     {
         // add the "Format" namespace
         $this->addNamespace(__NAMESPACE__ . '\Format');
+    }
+
+    /**
+     * Add config type to the config map
+     *
+     * @param  string $configType
+     * @param  string $className
+     * @return void
+     */
+    public function addConfigType($configType, $className)
+    {
+        $configType = strtolower($configType);
+        $this->_configMap[$configType] = $className;
     }
 
     /**
@@ -58,19 +70,6 @@ class Loader
     public function addNamespace($namespace)
     {
         $this->_configNamespace[] = $namespace;
-    }
-
-    /**
-     * Add config map for config
-     *
-     * @param  string $configType
-     * @param  string $className
-     * @return void
-     */
-    public function addConfigMap($configType, $className)
-    {
-        $configType = strtolower($configType);
-        $this->_configMap[$configType] = $className;
     }
 
     /**

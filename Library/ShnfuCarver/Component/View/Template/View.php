@@ -1,38 +1,35 @@
 <?php
 
 /**
- * View class file
+ * View base class file
  *
  * @package    ShnfuCarver
- * @subpackage Component\View
+ * @subpackage Component\View\Template
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\View;
+namespace ShnfuCarver\Component\View\Template;
 
 /**
- * View class
+ * View base class
  *
  * @package    ShnfuCarver
- * @subpackage Component\View
+ * @subpackage Component\View\Template
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class View
+abstract class View implements ViewInterface
 {
     /**
-     * Load a view
+     * Load the view file
      *
      * @param  string $viewPath
-     * @return \ShnfuCarver\Kernel\Service\ServiceInterface $service
+     * @return string
      */
-    protected function load($viewPath)
-    {
-        return $this->_serviceRegistry->get($name);
-    }
+    abstract public function load($viewPath);
 }
 
 ?>

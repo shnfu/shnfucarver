@@ -28,14 +28,14 @@ class ConfigService extends \ShnfuCarver\Kernel\Service\Service
      *
      * @var \ShnfuCarver\Component\Config\Loader
      */
-    protected $_configLoader;
+    private $_configLoader;
 
     /**
      * All configuration data stored here
      *
      * @var array
      */
-    protected $_config = array();
+    private $_config = array();
 
     /**
      * construct 

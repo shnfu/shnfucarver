@@ -4,19 +4,19 @@
  * Controller class file
  *
  * @package    ShnfuCarver
- * @subpackage Component\Dispatcher\Controller
+ * @subpackage Kernel\Controller
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Controller;
+namespace ShnfuCarver\Kernel\Controller;
 
 /**
  * Controller class
  *
  * @package    ShnfuCarver
- * @subpackage Component\Dispatcher\Controller
+ * @subpackage Kernel\Controller
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
@@ -86,10 +86,6 @@ class Controller implements ControllerInterface
         }
 
         $this->_serviceRegistry = $serviceRegistry;
-        foreach ($this->_subManager as $subManager)
-        {
-            $subManager->setServiceRegistry($serviceRegistry);
-        }
     }
 
     /**

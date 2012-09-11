@@ -4,19 +4,19 @@
  * Controller interface file
  *
  * @package    ShnfuCarver
- * @subpackage Component\Dispatcher\Controller
+ * @subpackage Kernel\Controller
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Controller;
+namespace ShnfuCarver\Kernel\Controller;
 
 /**
  * Controller interface
  *
  * @package    ShnfuCarver
- * @subpackage Component\Dispatcher\Controller
+ * @subpackage Kernel\Controller
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License

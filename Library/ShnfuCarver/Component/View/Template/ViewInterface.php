@@ -1,37 +1,35 @@
 <?php
 
 /**
- * NotFound Controller class file
+ * View interface file
  *
  * @package    ShnfuCarver
- * @subpackage Component\Dispatcher\Controller
+ * @subpackage Component\View\Template
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Controller;
+namespace ShnfuCarver\Component\View\Template;
 
 /**
- * NotFound Controller class
+ * View interface
  *
  * @package    ShnfuCarver
- * @subpackage Component\Dispatcher\Controller
+ * @subpackage Component\View\Template
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class NotFoundController extends Controller
+interface ViewInterface
 {
     /**
-     * Index action
+     * Load the view file
      *
+     * @param  string $viewPath
      * @return string
      */
-    public function indexAction()
-    {
-        return 'Not Found!!!';
-    }
+    public function load($viewPath);
 }
 
 ?>

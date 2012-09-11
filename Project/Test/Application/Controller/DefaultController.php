@@ -1,6 +1,6 @@
 <?php
 
-class DefaultController extends \ShnfuCarver\Component\Dispatcher\Controller\Controller
+class DefaultController extends \ShnfuCarver\Kernel\Controller\Controller
 {
     public function indexAction()
     {
