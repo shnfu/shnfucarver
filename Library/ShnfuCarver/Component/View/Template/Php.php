@@ -1,7 +1,7 @@
 <?php
 
 /**
- * View base class file
+ * Php view class file
  *
  * @package    ShnfuCarver
  * @subpackage Component\View\Template
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Component\View\Template;
 
 /**
- * View base class
+ * Php view class
  *
  * @package    ShnfuCarver
  * @subpackage Component\View\Template
@@ -21,7 +21,7 @@ namespace ShnfuCarver\Component\View\Template;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-abstract class View implements ViewInterface
+class Php extends View
 {
     /**
      * Load the view file
@@ -30,7 +30,19 @@ abstract class View implements ViewInterface
      * @param  array  $par
      * @return string
      */
-    abstract public function load($viewPath, $par);
+    public function load($viewPath, $par)
+    {
+        if (!file_exists($viewPath))
+        {
+            throw new \InvalidArgumentException('File "' . $viewPath . '" does not exist!');
+        }
+
+        ob_start();
+
+        include $viewPath;
+
+        return ob_get_clean();
+    }
 }
 
 ?>

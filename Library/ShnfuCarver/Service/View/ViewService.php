@@ -51,17 +51,18 @@ class ViewService extends \ShnfuCarver\Kernel\Service\Service
      * Load a specified view
      *
      * @param  string $viewName
+     * @param  array  $parameter
      * @param  string $viewType
      * @return string
      */
-    public function load($viewName, $viewType)
+    public function load($viewName, array $parameter = array(), $viewType = '')
     {
         foreach ($this->_viewDirectory as $viewDirectory)
         {
             $viewPath = rtrim($viewDirectory, DIRECTORY_SEPARATOR) . DIRECTORY_SEPARATOR . $viewName;
             if (file_exists($viewPath))
             {
-                return $this->_viewLoader->load($viewPath, $viewType);
+                return $this->_viewLoader->load($viewPath, $parameter, $viewType);
             }
         }
 

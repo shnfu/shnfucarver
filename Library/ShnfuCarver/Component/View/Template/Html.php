@@ -27,9 +27,10 @@ class Html extends View
      * Load the view file
      *
      * @param  string $viewPath
+     * @param  array  $par
      * @return string
      */
-    public function load($viewPath)
+    public function load($viewPath, $par)
     {
         if (!file_exists($viewPath))
         {

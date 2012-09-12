@@ -39,6 +39,7 @@ class Loader
     {
         // add some internal type
         $this->addType('html', __NAMESPACE__ . '\Template\Html');
+        $this->addType('php' , __NAMESPACE__ . '\Template\Php');
     }
 
     /**
@@ -61,11 +62,13 @@ class Loader
      *
      * @param  string $viewPath
      * @param  string $viewType
+     * @param  array  $par
      * @return string
      */
-    public function load($viewPath, $viewType)
+    public function load($viewPath, array $par= array(), $viewType = '')
     {
-        $viewType = strtolower($viewType);
+        $viewType = $this->_guessType($viewPath, $viewType);
+
         if (isset($this->_viewMap[$viewType]))
         {
             $viewClass = $this->_viewMap[$viewType];
@@ -84,7 +87,24 @@ class Loader
             throw new \InvalidArgumentException("'$viewClass' is not an instance of '\ShnfuCarver\Component\View\Template\View' !");
         }
 
-        return $view->load($viewPath);
+        return $view->load($viewPath, $par);
+    }
+
+    /**
+     * Guess the type
+     *
+     * @param  string $viewPath
+     * @param  string $viewType
+     * @return string
+     */
+    private function _guessType($viewPath, $viewType)
+    {
+        if (empty($viewType))
+        {
+            $viewType = pathinfo($viewPath, PATHINFO_EXTENSION);
+        }
+
+        return strtolower($viewType);
     }
 }
 
