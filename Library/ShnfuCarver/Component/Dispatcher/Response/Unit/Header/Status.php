@@ -4,24 +4,24 @@
  * Status header class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit\Header
+ * @subpackage Component\Dispatcher\Response\Unit\Header
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Response\Unit\Header;
+namespace ShnfuCarver\Component\Dispatcher\Response\Unit\Header;
 
 /**
  * Status header class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit\Header
+ * @subpackage Component\Dispatcher\Response\Unit\Header
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Status extends Content
+class Status extends Header
 {
     /**
      * The http protocol version
@@ -102,7 +102,7 @@ class Status extends Content
      * @param  string $statusText
      * @return void
      */
-    public function __construct($version = '1.1', $statusCode = 200, $statusText = null)
+    public function __construct($statusCode = 200, $statusText = null, $version = '1.1')
     {
         $this->_version    = $version;
         $this->_statusCode = $statusCode;
@@ -115,7 +115,19 @@ class Status extends Content
             ? (string)$statusText
             : (isset(self::$_statusTextTable[$statusCode]) ? self::$_statusTextTable[$statusCode] : '');
 
-        parent::__construct($content, true);
+        parent::__construct('Status', $this->_statusText, true);
+    }
+
+    /**
+     * Send the header
+     *
+     * @return void
+     */
+    public function send()
+    {
+        $content = 'HTTP/' . $this->_version . ' ' . $this->_statusCode . ' ' . $this->_statusText;
+
+        header($content, false);
     }
 
     /**

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Body class file
+ * Header collection class file
  *
  * @package    ShnfuCarver
  * @subpackage Component\Dispatcher\Response\Unit
@@ -10,10 +10,10 @@
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Response\Unit;
+namespace ShnfuCarver\Component\Dispatcher\Response\Unit
 
 /**
- * Parameter class
+ * Header collection class
  *
  * @package    ShnfuCarver
  * @subpackage Component\Dispatcher\Response\Unit
@@ -21,24 +21,24 @@ namespace ShnfuCarver\Component\Dispatcher\Response\Unit;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class Body
+class HeaderCollection
 {
     /**
-     * The content of body
+     * The header
      *
-     * @var string
+     * @var array
      */
-    private $_content = '';
+    private $_header = array();
 
     /**
      * construct 
      *
-     * @param  string $content
+     * @param  array $header
      * @return void
      */
-    public function __construct($content)
+    public function __construct(array $header = array())
     {
-        $this->_content = $content;
+        $this->_header = $header;
     }
 
     /**
@@ -48,7 +48,15 @@ class Body
      */
     public function send()
     {
-        echo $this->_content;
+        if (headers_sent())
+        {
+            return;
+        }
+
+        foreach ($this->_header as $header)
+        {
+            $header->send();
+        }
     }
 }
 

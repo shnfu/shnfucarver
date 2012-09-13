@@ -24,11 +24,18 @@ namespace ShnfuCarver\Component\Dispatcher\Response;
 class Response
 {
     /**
+     * The status header
+     *
+     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\Header\Status
+     */
+    private $_status;
+
+    /**
      * The headers
      *
-     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\Header
+     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\HeaderCollection
      */
-    private $_header;
+    private $_headerCollection;
 
     /**
      * The cookies
@@ -47,24 +54,50 @@ class Response
     /**
      * construct 
      *
-     * @param  array $header
+     * @param  string $bodyContent
+     * @param  int    $statusCode
+     * @param  \ShnfuCarver\Component\Dispatcher\Response\Unit\HeaderCollection $header
      * @return void
      */
-    public function __construct($bodyContent)
+    public function __construct($bodyContent = '', $statusCode = 200, $headerCollection = null)
     {
+        $this->_status = new Unit\Header\Status($statusCode);
         $this->_body = new Unit\Body($bodyContent);
+        $this->_headerCollection = $headerCollection;
+    }
+
+    /**
+     * Send headers
+     *
+     * @return void
+     */
+    private function _sendHeader()
+    {
+        if (!empty($this->_headerCollection))
+        {
+            $this->_headerCollection->send();
+        }
+    }
+
+    /**
+     * Send body
+     *
+     * @return void
+     */
+    private function _sendBody()
+    {
+        $this->_body->send();
     }
 
     /**
      * Send
      *
-     * @return bool
+     * @return void
      */
     public function send()
     {
-        $this->_body->send();
-
-        return true;
+        $this->_sendHeader();
+        $this->_sendBody();
     }
 }
 

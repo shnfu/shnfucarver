@@ -4,19 +4,19 @@
  * Cookie class file
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit
+ * @subpackage Component\Dispatcher\Response\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Core\Dispatcher\Response\Unit;
+namespace ShnfuCarver\Component\Dispatcher\Response\Unit;
 
 /**
  * Cookie class
  *
  * @package    ShnfuCarver
- * @subpackage Core\Dispatcher\Response\Unit
+ * @subpackage Component\Dispatcher\Response\Unit
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
