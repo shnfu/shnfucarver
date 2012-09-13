@@ -27,6 +27,11 @@ class DemoController extends \ShnfuCarver\Kernel\Controller\Controller
         );
         return $this->_getService('view')->load('hello.view.php', $param);
     }
+
+    public function redirectAction()
+    {
+        return new \ShnfuCarver\Component\Dispatcher\Response\RedirectResponse('http://www.baidu.com');
+    }
 }
 
 ?>

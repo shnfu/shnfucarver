@@ -52,8 +52,9 @@ class Header implements HeaderInterface
      * @param  bool         $unique
      * @return void
      */
-    public function __construct($name, $content = null, $unique = false)
+    public function __construct($name, $content = null, $unique = true)
     {
+        $this->_name = $name;
         $this->_unique = (bool)$unique;
         $this->add($content);
     }

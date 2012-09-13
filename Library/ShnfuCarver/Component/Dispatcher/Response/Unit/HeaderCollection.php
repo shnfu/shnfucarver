@@ -10,7 +10,7 @@
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Component\Dispatcher\Response\Unit
+namespace ShnfuCarver\Component\Dispatcher\Response\Unit;
 
 /**
  * Header collection class

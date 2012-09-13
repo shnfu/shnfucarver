@@ -115,7 +115,7 @@ class Status extends Header
             ? (string)$statusText
             : (isset(self::$_statusTextTable[$statusCode]) ? self::$_statusTextTable[$statusCode] : '');
 
-        parent::__construct('Status', $this->_statusText, true);
+        parent::__construct('Status', $this->_statusText);
     }
 
     /**

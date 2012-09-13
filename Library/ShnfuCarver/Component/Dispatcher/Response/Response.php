@@ -56,14 +56,13 @@ class Response
      *
      * @param  string $bodyContent
      * @param  int    $statusCode
-     * @param  \ShnfuCarver\Component\Dispatcher\Response\Unit\HeaderCollection $header
      * @return void
      */
-    public function __construct($bodyContent = '', $statusCode = 200, $headerCollection = null)
+    public function __construct($bodyContent = '', $statusCode = 200)
     {
         $this->_status = new Unit\Header\Status($statusCode);
         $this->_body = new Unit\Body($bodyContent);
-        $this->_headerCollection = $headerCollection;
+        $this->_headerCollection = new Unit\HeaderCollection;
     }
 
     /**
@@ -79,7 +78,7 @@ class Response
         }
 
         // set the status header
-        header($this->_status->getFirst());
+        header($this->_status->getStatusHeader());
 
         // all other headers
         foreach ($this->_headerCollection->getAll() as $header)
@@ -113,6 +112,17 @@ class Response
     {
         $this->_sendHeader();
         $this->_sendBody();
+    }
+
+    /**
+     * Add header
+     *
+     * @param  \ShnfuCarver\Component\Dispatcher\Response\Unit\Header\Header $header
+     * @return void
+     */
+    public function addHeader(Unit\Header\HeaderInterface $header)
+    {
+        $this->_headerCollection->add($header);
     }
 }
 
