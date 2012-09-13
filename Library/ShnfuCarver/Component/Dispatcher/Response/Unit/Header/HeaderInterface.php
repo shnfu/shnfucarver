@@ -47,17 +47,10 @@ interface HeaderInterface
     /**
      * Add content. If this is a unique content, empty the existed one first
      *
-     * @param  string $value
+     * @param  string|array $value
      * @return void
      */
     public function add($value);
-
-    /**
-     * Send the header
-     *
-     * @return void
-     */
-    public function send();
 }
 
 ?>

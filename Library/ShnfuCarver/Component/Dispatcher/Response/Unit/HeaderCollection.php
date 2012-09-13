@@ -42,21 +42,62 @@ class HeaderCollection
     }
 
     /**
-     * Send
+     * Add header
      *
+     * @param  \ShnfuCarver\Component\Dispatcher\Response\Unit\Header\Header $header
      * @return void
      */
-    public function send()
+    public function add(Header\HeaderInterface $header)
     {
-        if (headers_sent())
+        $headerName = str_replace('-', '_', strtolower($header->getName()));
+
+        if (isset($this->_header[$headerName]))
         {
-            return;
+            $this->_header[$headerName]->add($header->getAll());
+        }
+        else
+        {
+            $this->_header[$headerName] = $header;
+        }
+    }
+
+    /**
+     * Exist header
+     *
+     * @param  string $headerName
+     * @return bool
+     */
+    public function exist($headerName)
+    {
+        $headerName = str_replace('-', '_', strtolower($header->getName()));
+        return isset($this->_header[$headerName]);
+    }
+
+    /**
+     * Get header with the name
+     *
+     * @param  string $headerName
+     * @return \ShnfuCarver\Component\Dispatcher\Response\Unit\Header\Header
+     */
+    public function get($headerName)
+    {
+        $headerName = str_replace('-', '_', strtolower($header->getName()));
+        if (!isset($this->_header[$headerName]))
+        {
+            return null;
         }
 
-        foreach ($this->_header as $header)
-        {
-            $header->send();
-        }
+        return $this->_header[$headerName];
+    }
+
+    /**
+     * Get all headers
+     *
+     * @return array
+     */
+    public function getAll()
+    {
+        return $this->_header;
     }
 }
 

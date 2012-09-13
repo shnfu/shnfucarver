@@ -28,7 +28,7 @@ class Body
      *
      * @var string
      */
-    private $_content = '';
+    private $_body = '';
 
     /**
      * construct 
@@ -36,19 +36,19 @@ class Body
      * @param  string $content
      * @return void
      */
-    public function __construct($content)
+    public function __construct($body)
     {
-        $this->_content = $content;
+        $this->_body = $body;
     }
 
     /**
-     * Send
+     * Get content of body
      *
      * @return void
      */
-    public function send()
+    public function getBody()
     {
-        echo $this->_content;
+        return $this->_body;
     }
 }
 

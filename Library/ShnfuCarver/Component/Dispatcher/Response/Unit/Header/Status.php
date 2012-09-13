@@ -119,15 +119,13 @@ class Status extends Header
     }
 
     /**
-     * Send the header
+     * Get the header
      *
-     * @return void
+     * @return string
      */
-    public function send()
+    public function getStatusHeader()
     {
-        $content = 'HTTP/' . $this->_version . ' ' . $this->_statusCode . ' ' . $this->_statusText;
-
-        header($content, false);
+        return 'HTTP/' . $this->_version . ' ' . $this->_statusCode . ' ' . $this->_statusText;
     }
 
     /**

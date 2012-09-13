@@ -73,10 +73,25 @@ class Response
      */
     private function _sendHeader()
     {
-        if (!empty($this->_headerCollection))
+        if (headers_sent())
         {
-            $this->_headerCollection->send();
+            return;
         }
+
+        // set the status header
+        header($this->_status->getFirst());
+
+        // all other headers
+        foreach ($this->_headerCollection->getAll() as $header)
+        {
+            foreach ($header->getAll() as $content)
+            {
+                header($header->getName() . ': ' . $content, false);
+            }
+        }
+
+        // set the cookies
+        //$this->_cookie->getAll()
     }
 
     /**
@@ -86,7 +101,7 @@ class Response
      */
     private function _sendBody()
     {
-        $this->_body->send();
+        echo $this->_body->getBody();
     }
 
     /**

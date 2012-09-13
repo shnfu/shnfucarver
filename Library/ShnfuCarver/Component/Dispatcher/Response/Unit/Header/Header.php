@@ -91,7 +91,7 @@ class Header implements HeaderInterface
     /**
      * Add content. If this is a unique content, empty the existed one first
      *
-     * @param  string $content
+     * @param  string|array $content
      * @return void
      */
     public function add($content)
@@ -107,19 +107,6 @@ class Header implements HeaderInterface
         }
 
         $this->_content = ($this->_unique && count($content)) > 1 ? array_slice($content, -1) : (array)$content;
-    }
-
-    /**
-     * Send the header
-     *
-     * @return void
-     */
-    public function send()
-    {
-        foreach ($this->_content as $content)
-        {
-            header($this->_name . ': ' . $content, false);
-        }
     }
 }
 
