@@ -42,7 +42,7 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
         $loader = array();
 
         $internalLoader = $this->_internalLoader();
-        if (false !== $internalLoader)
+        if (!empty($internalLoader))
         {
             $loader[] = $internalLoader;
         }
@@ -60,7 +60,7 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
     /**
      * Internal loader
      *
-     * @return bool|\ShnfuCarver\Component\Loader\InternalLoader
+     * @return \ShnfuCarver\Component\Loader\InternalLoader
      */
     protected function _internalLoader()
     {
@@ -68,17 +68,17 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
             ? $this->_config['use_internal_loader'] : false;
         if (!$useInternalLoader)
         {
-            return false;
+            return null;
         }
 
         $internalLoader = new \ShnfuCarver\Component\Loader\InternalLoader;
-        //if (is_array($this->_config['internal_loader']))
-        //{
-        //    foreach ($this->_config['internal_loader'] as $)
-        //    {
-        //        $internalLoader->add($key, $value);
-        //    }
-        //}
+        if (is_array($this->_config['internal_loader']))
+        {
+            foreach ($this->_config['internal_loader'] as $key => $value)
+            {
+                $internalLoader->add($key, $value);
+            }
+        }
 
         return $internalLoader;
     }

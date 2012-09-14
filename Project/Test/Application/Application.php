@@ -20,15 +20,17 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
 
         parent::__construct();
 
-        require_once APPLICATION_PATH . '/Application/Manager/TestManager.php';
+        require_once APPLICATION_PATH . '/Application/Manager/Test/TestManager.php';
+        require_once APPLICATION_PATH . '/Application/Manager/Test/EndManager.php';
         $subManager = array
         (
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
             new \ShnfuCarver\Manager\View\ViewManager,
+            new \Test\TestManager,
             new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
-            new TestManager,
+            new \Test\EndManager,
         );
         $this->addSubManager($subManager);
     }
@@ -38,9 +40,6 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
         date_default_timezone_set('Asia/Shanghai');
 
         $this->registerConfigService(CONFIGURATION_PATH . '/Config.php');
-
-        require_once APPLICATION_PATH . '/Application/Controller/DefaultController.php';
-        require_once APPLICATION_PATH . '/Application/Controller/DemoController.php';
 
         parent::run();
     }

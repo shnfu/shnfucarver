@@ -4,8 +4,8 @@ $tempConfig['autoloader']['use_internal_loader'] = true;
 
 $tempConfig['autoloader']['internal_loader'] = array
 (
-    '\ShnfuCarver' => array('', ''),
-    '\Test' => '',
+//    '\ShnfuCarver' => array('', ''),
+    '\Test' => APPLICATION_PATH . '/Application/Manager/Test',
 );
 
 // TODO: redesign this later

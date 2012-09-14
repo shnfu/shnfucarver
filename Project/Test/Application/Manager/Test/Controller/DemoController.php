@@ -1,5 +1,7 @@
 <?php
 
+namespace Test\Controller;
+
 class DemoController extends \ShnfuCarver\Kernel\Controller\Controller
 {
     public function indexAction()

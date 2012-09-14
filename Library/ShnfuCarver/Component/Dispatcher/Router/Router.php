@@ -41,6 +41,38 @@ class Router
      */
     public function route($pathInfo)
     {
+        $pathInfo = $this->_rewriter->rewrite($pathInfo);
+
+        list($path, $action, $parameter) = $this->_parser->parse($pathInfo);
+        $path = $path ?: '\Default';
+        $action = $action ?: 'index';
+
+        return new \ShnfuCarver\Component\Dispatcher\Router\Command\Command($path, $action, $parameter);
+    }
+
+    /**
+     * Rewrite a path info
+     *
+     * @param  string $pathInfo
+     * @return string
+     */
+    public function rewrite($pathInfo)
+    {
+        return $pathInfo;
+    }
+
+    /**
+     * Parse a standard path info
+     * The form of a standard URI is like:
+     * http://www.example.com/index.php/good_forum.display_all_post-param1-param2-last_param
+     * Standard path info is:
+     * /good_forum.display_all_post-param1-param2-last_param
+     *
+     * @param  string $pathInfo
+     * @return array
+     */
+    public function parse($pathInfo)
+    {
         $urlSegment = array_filter(explode('/', $pathInfo));
         $urlSegment = array_values($urlSegment);
 
@@ -62,7 +94,10 @@ class Router
             $parameter = array_slice($urlSegment, 2);
         }
 
-        return new \ShnfuCarver\Component\Dispatcher\Router\Command\Command($path, $action, $parameter);
+        $path   = ucfirst(strtolower($path));
+        $action = strtolower($action);
+
+        return array($path, $action, $parameter);
     }
 }
 

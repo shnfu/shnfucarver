@@ -30,7 +30,7 @@ class NotFoundController extends \ShnfuCarver\Kernel\Controller\Controller
      */
     public function indexAction()
     {
-        return 'Not Found!!!';
+        return 'Not Found!!!' . PHP_EOL;
     }
 }
 
