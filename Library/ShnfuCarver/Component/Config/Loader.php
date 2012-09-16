@@ -76,7 +76,7 @@ class Loader
      * Choose which config type to load
      *
      * @param  string $configPath
-     * @return \ShnfuCarver\Component\Config\Format\Config
+     * @return array
      */
     public function load($configPath)
     {
@@ -109,7 +109,7 @@ class Loader
             throw new \InvalidArgumentException("'$configClass' is not an instance of '\ShnfuCarver\Component\Config\Format\Config' !");
         }
 
-        return $config;
+        return $config->retrieve();
     }
 }
 

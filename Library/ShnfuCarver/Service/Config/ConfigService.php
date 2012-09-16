@@ -55,8 +55,18 @@ class ConfigService extends \ShnfuCarver\Kernel\Service\Service
      */
     public function load($configPath)
     {
-        $configObject = $this->_configLoader->load($configPath);
-        $this->_config = $configObject->retrieve();
+        $this->_config = $this->_configLoader->load($configPath);
+    }
+
+    /**
+     * Add a config
+     *
+     * @param  array $config
+     * @return void
+     */
+    public function add($config)
+    {
+        $this->_config = array_merge_recursive($this->_config, $config);
     }
 
     /**
