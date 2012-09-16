@@ -35,21 +35,93 @@ class StandardParser extends Parser
      */
     public function parse($pathInfo)
     {
+        list($controllerActionString, $paramString) = $this->_seperateParameter(ltrim($pathInfo, '/'));
+        list($controllerString, $actionString) = $this->_seperateControllerAction($controllerActionString);
+
+        $this->_controllerName = $this->_formatControllerName($controllerString);
+        $this->_actionName = $this->_formatActionName($actionString);
+        $this->_parameter = explode('-', $paramString);
+    }
+
+    /**
+     * Seperate the controller and action from parameters
+     *
+     * @param  string $pathInfo 
+     * @return array
+     */
+    private function _seperateParameter($pathInfo)
+    {
         $paramPos = strpos($pathInfo, '-');
         if (false === $paramPos)
         {
-            $prefix = $pathInfo;
+            $controllerActionString = $pathInfo;
             $paramString = '';
         }
         else
         {
-            $prefix = substr($pathInfo, 0, $paramPos);
-            $paramString = substr($pathInfo, $paramPos);
+            $controllerActionString = substr($pathInfo, 0, $paramPos);
+            $paramString = substr($pathInfo, $paramPos + 1);
         }
 
-        $actionPos = strpos($
+        return array($controllerActionString, $paramString);
+    }
 
-        $this->_parameter = explode($paramString, '-');
+    /**
+     * Seperate the controller from action
+     *
+     * @param  string $controllerActionString 
+     * @return array
+     */
+    private function _seperateControllerAction($controllerActionString)
+    {
+        $actionPos = strpos($controllerActionString, '.');
+        if (false === $actionPos)
+        {
+            $controllerName = $controllerActionString;
+            $actionName = '';
+        }
+        else
+        {
+            $controllerName = substr($controllerActionString, 0, $actionPos);
+            $actionName = substr($controllerActionString, $actionPos + 1);
+        }
+
+        return array($controllerName, $actionName);
+    }
+
+    /**
+     * Format the controller name
+     *
+     * @param  string $controllerName 
+     * @return string
+     */
+    private function _formatControllerName($controllerName)
+    {
+        return $this->_formatName($controllerName);
+    }
+
+    /**
+     * Format the action name
+     *
+     * @param  string $actionName 
+     * @return string
+     */
+    private function _formatActionName($actionName)
+    {
+        return lcfirst($this->_formatName($actionName));
+    }
+
+    /**
+     * Format name
+     *
+     * @param  string $Name 
+     * @return string
+     */
+    private function _formatName($name)
+    {
+        $segment = explode('_', strtolower($name));
+        $segment = array_map('ucfirst', $segment);
+        return implode($segment);
     }
 }
 

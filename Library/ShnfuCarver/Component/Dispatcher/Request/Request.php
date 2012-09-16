@@ -26,35 +26,35 @@ class Request
     /**
      * The GET parameter
      *
-     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
      */
     private $_get;
 
     /**
      * The POST parameter
      *
-     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
      */
     private $_post;
 
     /**
      * The COOKIE parameter
      *
-     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
      */
     private $_cookies;
 
     /**
      * The FILES parameter
      *
-     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\File
+     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\File
      */
     private $_files;
 
     /**
      * The SERVER parameter
      *
-     * @var ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
      */
     private $_server;
 

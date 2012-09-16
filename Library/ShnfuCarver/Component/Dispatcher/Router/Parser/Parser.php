@@ -28,21 +28,21 @@ abstract class Parser implements ParserInterface
      *
      * @var string
      */
-    private $_controllerName = '';
+    protected $_controllerName = '';
 
     /**
      * The action name
      *
      * @var string
      */
-    private $_actionName = '';
+    protected $_actionName = '';
 
     /**
      * The parameters
      *
      * @var array
      */
-    private $_parameter = array();
+    protected $_parameter = array();
 
     /**
      * Parse the path info

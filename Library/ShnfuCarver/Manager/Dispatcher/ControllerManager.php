@@ -53,6 +53,7 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
         $path      = $command->getPath();
         $action    = $command->getAction();
         $parameter = $command->getAllParameter();
+echo '======================  ' . $path . '  ' . $action . PHP_EOL;
 
         $pathName   = $path . 'Controller';
         $actionName = $action . 'Action';

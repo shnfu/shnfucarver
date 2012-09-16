@@ -24,13 +24,30 @@ namespace ShnfuCarver\Component\Dispatcher\Router;
 class Router
 {
     /**
+     * The path info rewriter
+     *
+     * @var \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface
+     */
+    private $_rewriter;
+
+    /**
+     * The path info parser
+     *
+     * @var \ShnfuCarver\Component\Dispatcher\Router\Parser\ParserInterface
+     */
+    private $_parser;
+
+    /**
      * construct 
      *
-     * @param  array $header
+     * @param  \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface $rewriter
+     * @param  \ShnfuCarver\Component\Dispatcher\Router\Parser\ParserInterface    $parser
      * @return void
      */
-    public function __construct()
+    public function __construct($rewriter, $parser)
     {
+        $this->_rewriter = $rewriter;
+        $this->_parser   = $parser;
     }
 
     /**
@@ -43,11 +60,11 @@ class Router
     {
         $pathInfo = $this->_rewriter->rewrite($pathInfo);
 
-        list($path, $action, $parameter) = $this->_parser->parse($pathInfo);
-        $path = $path ?: '\Default';
-        $action = $action ?: 'index';
+        $this->_parser->parse($pathInfo);
+        $path = $this->_parser->getControllerName() ?: 'Default';
+        $action = $this->_parser->getActionName() ?: 'index';
 
-        return new Command\Command($path, $action, $parameter);
+        return new Command\Command($path, $action, $this->_parser->getParameter());
     }
 
     /**
