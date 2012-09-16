@@ -47,7 +47,7 @@ class Router
         $path = $path ?: '\Default';
         $action = $action ?: 'index';
 
-        return new \ShnfuCarver\Component\Dispatcher\Router\Command\Command($path, $action, $parameter);
+        return new Command\Command($path, $action, $parameter);
     }
 
     /**
