@@ -39,8 +39,8 @@ class StandardParser extends Parser
         list($controllerString, $actionString) = $this->_seperateControllerAction($controllerActionString);
 
         $this->_controllerName = $this->_formatControllerName($controllerString);
-        $this->_actionName = $this->_formatActionName($actionString);
-        $this->_parameter = explode('-', $paramString);
+        $this->_actionName     = $this->_formatActionName($actionString);
+        $this->_parameter      = $this->_buildParameter($paramString);
     }
 
     /**
@@ -109,6 +109,22 @@ class StandardParser extends Parser
     private function _formatActionName($actionName)
     {
         return lcfirst($this->_formatName($actionName));
+    }
+
+    /**
+     * Build the parameters
+     *
+     * @param  string $paramString
+     * @return array
+     */
+    private function _buildParameter($paramString)
+    {
+        if (empty($paramString))
+        {
+            return array();
+        }
+
+        return explode('-', $paramString);
     }
 
     /**
