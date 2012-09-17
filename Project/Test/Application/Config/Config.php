@@ -2,17 +2,15 @@
 
 $tempConfig = array();
 
-include CONFIGURATION_PATH . '/Autoloader.php';
+include __DIR__ . '/Autoloader.php';
 
-include CONFIGURATION_PATH . '/Error.php';
+include __DIR__ . '/Error.php';
 
-include CONFIGURATION_PATH . '/Exception.php';
+include __DIR__ . '/Exception.php';
 
-include CONFIGURATION_PATH . '/Test.php';
+include __DIR__ . '/Test.php';
 
-include CONFIGURATION_PATH . '/Route.php';
-
-include CONFIGURATION_PATH . '/View.php';
+include __DIR__ . '/Route.php';
 
 return $tempConfig;
 

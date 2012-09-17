@@ -30,7 +30,7 @@ class StandardParser extends Parser
      * Standard path info is:
      * /good_forum.display_all_post-param1-param2-last_param
      *
-     * @param  string $pathInfo 
+     * @param  string $pathInfo
      * @return void
      */
     public function parse($pathInfo)
@@ -46,7 +46,7 @@ class StandardParser extends Parser
     /**
      * Seperate the controller and action from parameters
      *
-     * @param  string $pathInfo 
+     * @param  string $pathInfo
      * @return array
      */
     private function _seperateParameter($pathInfo)
@@ -69,7 +69,7 @@ class StandardParser extends Parser
     /**
      * Seperate the controller from action
      *
-     * @param  string $controllerActionString 
+     * @param  string $controllerActionString
      * @return array
      */
     private function _seperateControllerAction($controllerActionString)
@@ -92,7 +92,7 @@ class StandardParser extends Parser
     /**
      * Format the controller name
      *
-     * @param  string $controllerName 
+     * @param  string $controllerName
      * @return string
      */
     private function _formatControllerName($controllerName)
@@ -103,7 +103,7 @@ class StandardParser extends Parser
     /**
      * Format the action name
      *
-     * @param  string $actionName 
+     * @param  string $actionName
      * @return string
      */
     private function _formatActionName($actionName)
@@ -114,7 +114,7 @@ class StandardParser extends Parser
     /**
      * Format name
      *
-     * @param  string $Name 
+     * @param  string $Name
      * @return string
      */
     private function _formatName($name)

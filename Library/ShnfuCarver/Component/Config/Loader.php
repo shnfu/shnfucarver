@@ -6,7 +6,7 @@
  * @package    ShnfuCarver
  * @subpackage Component\Config
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
@@ -18,7 +18,7 @@ namespace ShnfuCarver\Component\Config;
  * @package    ShnfuCarver
  * @subpackage Component\Config
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 class Loader

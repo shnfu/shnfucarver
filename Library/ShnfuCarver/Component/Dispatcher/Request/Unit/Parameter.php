@@ -31,7 +31,7 @@ class Parameter
     private $_parameter = array();
 
     /**
-     * construct 
+     * construct
      *
      * @param  array $parameter
      * @return void
@@ -53,7 +53,7 @@ class Parameter
     }
 
     /**
-     * Retrieve a value 
+     * Retrieve a value
      *
      * @param  string $name
      * @return mixed

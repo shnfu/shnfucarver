@@ -47,7 +47,7 @@ abstract class Parser implements ParserInterface
     /**
      * Parse the path info
      *
-     * @param  string $pathInfo 
+     * @param  string $pathInfo
      * @return void
      */
     abstract public function parse($pathInfo);

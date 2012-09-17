@@ -26,7 +26,7 @@ class InternalLoader implements LoaderInterface
     const LOAD_EXTENSION = '.php';
 
     /**
-     * The load map 
+     * The load map
      *
      * @var array
      */
@@ -41,9 +41,9 @@ class InternalLoader implements LoaderInterface
     private $_reverse = false;
 
     /**
-     * construct 
+     * construct
      *
-     * @param  bool $reverse 
+     * @param  bool $reverse
      * @return void
      */
     public function __construct($reverse = false)
@@ -52,9 +52,9 @@ class InternalLoader implements LoaderInterface
     }
 
     /**
-     * Set the reverse 
+     * Set the reverse
      *
-     * @param  bool $reverse 
+     * @param  bool $reverse
      * @return void
      */
     public function setReverse($reverse = true)
@@ -63,14 +63,14 @@ class InternalLoader implements LoaderInterface
     }
 
     /**
-     * Add an entry for the load map 
+     * Add an entry for the load map
      *
      * If the specified entry exists, append the path to the array
      * Do not append the '.php' extension to the path,
      * because this may also be used for a directory.
      *
-     * @param  string $name 
-     * @param  string|array $path 
+     * @param  string $name
+     * @param  string|array $path
      * @return ShnfuCarver\Component\Loader\Internal
      */
     public function add($name, $path)
@@ -105,9 +105,9 @@ class InternalLoader implements LoaderInterface
     }
 
     /**
-     * Remove an entry for the load map 
+     * Remove an entry for the load map
      *
-     * @param  string $name 
+     * @param  string $name
      * @return ShnfuCarver\Component\Loader\Internal
      */
     public function remove($name)
@@ -123,7 +123,7 @@ class InternalLoader implements LoaderInterface
      *
      * Only load the first file matched
      *
-     * @param  string $name 
+     * @param  string $name
      * @return bool
      */
     public function load($name)
@@ -160,7 +160,7 @@ class InternalLoader implements LoaderInterface
      *
      * The name should start with a '\' and end without '\'
      *
-     * @param  string $name 
+     * @param  string $name
      * @return string
      */
     private static function _formatClassName($name)
@@ -178,7 +178,7 @@ class InternalLoader implements LoaderInterface
      *
      * The name should end without '\'
      *
-     * @param  string $name 
+     * @param  string $name
      * @return string
      */
     private static function _formatPathName($name)
@@ -193,8 +193,8 @@ class InternalLoader implements LoaderInterface
     /**
      * Load the file with the prefix and suffix
      *
-     * @param  string $prefix 
-     * @param  string $suffix 
+     * @param  string $prefix
+     * @param  string $suffix
      * @return bool
      */
     private static function _loadFile($path, $suffix)

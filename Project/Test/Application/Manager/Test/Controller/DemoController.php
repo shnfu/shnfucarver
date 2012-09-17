@@ -12,7 +12,7 @@ class DemoController extends \ShnfuCarver\Kernel\Controller\Controller
     public function otherAction()
     {
         $param = func_get_args();
-        return 'This is other action of the demo!' . '  Param is: ' . $param[0];
+        return 'This is other action of the demo!' . '  Param is: ' . $param[0] . PHP_EOL;
     }
 
     public function viewAction()

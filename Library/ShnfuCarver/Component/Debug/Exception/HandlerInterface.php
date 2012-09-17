@@ -24,9 +24,9 @@ namespace ShnfuCarver\Component\Debug\Exception;
 interface HandlerInterface
 {
     /**
-     * The exception handler 
+     * The exception handler
      *
-     * @param  \Exception $exception 
+     * @param  \Exception $exception
      * @return bool
      */
     public function handle(\Exception $exception);

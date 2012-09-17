@@ -24,13 +24,13 @@ namespace ShnfuCarver\Component\Debug\Error;
 interface HandlerInterface
 {
     /**
-     * The error handler 
+     * The error handler
      *
-     * @param  int    $errNo 
-     * @param  string $errStr 
-     * @param  string $errFile 
-     * @param  int    $errLine 
-     * @param  array  $errContext 
+     * @param  int    $errNo
+     * @param  string $errStr
+     * @param  string $errFile
+     * @param  int    $errLine
+     * @param  array  $errContext
      * @return bool
      */
     public function handle($errNo, $errStr, $errFile, $errLine, $errContext);

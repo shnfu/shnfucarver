@@ -24,7 +24,7 @@ namespace ShnfuCarver\Component\Debug\Error;
 class InternalHandler implements HandlerInterface
 {
     /**
-     * Error code description 
+     * Error code description
      *
      * @var array
      */
@@ -57,11 +57,11 @@ class InternalHandler implements HandlerInterface
     /**
      * The handler to be set
      *
-     * @param  int    $errNo 
-     * @param  string $errStr 
-     * @param  string $errFile 
-     * @param  int    $errLine 
-     * @param  array  $errContext 
+     * @param  int    $errNo
+     * @param  string $errStr
+     * @param  string $errFile
+     * @param  int    $errLine
+     * @param  array  $errContext
      * @return bool
      */
     public function handle($errNo, $errStr, $errFile, $errLine, $errContext)

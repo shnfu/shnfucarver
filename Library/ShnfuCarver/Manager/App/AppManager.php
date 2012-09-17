@@ -26,7 +26,7 @@ namespace ShnfuCarver\Manager\App;
 class AppManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * construct 
+     * construct
      *
      * @return void
      */
@@ -36,7 +36,7 @@ class AppManager extends \ShnfuCarver\Manager\Manager
     }
 
     /**
-     * Main process of the application 
+     * Main process of the application
      *
      * @return void
      */

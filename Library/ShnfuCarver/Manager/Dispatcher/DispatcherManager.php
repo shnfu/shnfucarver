@@ -24,7 +24,7 @@ namespace ShnfuCarver\Manager\Dispatcher;
 class DispatcherManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * construct 
+     * construct
      *
      * @return void
      */

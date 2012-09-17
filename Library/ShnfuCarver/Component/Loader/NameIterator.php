@@ -68,10 +68,10 @@ class NameIterator implements \Iterator
     private $_end = false;
 
     /**
-     * construct 
+     * construct
      *
-     * @param  string $name 
-     * @param  bool   $reverse 
+     * @param  string $name
+     * @param  bool   $reverse
      * @return void
      */
     public function __construct($name, $seperator = '\\', $reverse = false)

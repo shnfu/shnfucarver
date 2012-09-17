@@ -26,7 +26,7 @@ interface ParserInterface
     /**
      * Parse the path info
      *
-     * @param  string $pathInfo 
+     * @param  string $pathInfo
      * @return void
      */
     public function parse($pathInfo);

@@ -24,7 +24,7 @@ namespace ShnfuCarver\Component\Dispatcher\Request\Unit;
 class File extends Parameter
 {
     /**
-     * construct 
+     * construct
      *
      * @param  array $parameter
      * @return void

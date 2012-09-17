@@ -26,7 +26,7 @@ interface RewriterInterface
     /**
      * Rewrite the path info
      *
-     * @param  string $pathInfo 
+     * @param  string $pathInfo
      * @return string
      */
     public function rewrite($pathInfo);

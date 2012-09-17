@@ -8,7 +8,7 @@ class EndManager extends \ShnfuCarver\Manager\Manager
     {
         echo 'PathInfo: ' . $this->_getService('request')->getPathInfo() . PHP_EOL;
 
-        $this->_test();
+//        $this->_test();
 
         parent::run();
     }

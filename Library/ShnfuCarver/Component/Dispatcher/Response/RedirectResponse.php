@@ -24,7 +24,7 @@ namespace ShnfuCarver\Component\Dispatcher\Response;
 class RedirectResponse extends Response
 {
     /**
-     * construct 
+     * construct
      *
      * @param  string $bodyContent
      * @param  int    $statusCode

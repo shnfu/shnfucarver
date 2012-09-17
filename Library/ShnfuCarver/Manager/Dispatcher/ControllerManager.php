@@ -50,35 +50,51 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
      */
     private function _resolve($command)
     {
-        $path      = $command->getPath();
-        $action    = $command->getAction();
-        $parameter = $command->getAllParameter();
-echo '======================  ' . $path . '  ' . $action . PHP_EOL;
+        $controller = $command->getController();
+        $action     = $command->getAction();
+        $parameter  = $command->getAllParameter();
 
-        $pathName   = $path . 'Controller';
-        $actionName = $action . 'Action';
+        $controllerName = isset($this->_config['map'][$controller]) ? $this->_config['map'][$controller] : $controller;
+        $controllerName = $controllerName   ?: '\Default';
+        $actionName     = $action ?: 'index';
+
+        $controllerName = $controllerName   . 'Controller';
+        $actionName     = $actionName . 'Action';
 
         $notFound = true;
-        if (class_exists($pathName))
+        if (class_exists($controllerName))
         {
-            $pathClass = new $pathName;
+            $controllerClass = new $controllerName;
 
-            if ($pathClass instanceof \ShnfuCarver\Kernel\Controller\ControllerInterface
-                    && method_exists($pathClass, $actionName))
+            if ($controllerClass instanceof \ShnfuCarver\Kernel\Controller\ControllerInterface)
             {
-                $notFound = false;
+                if (method_exists($controllerClass, $actionName))
+                {
+                    $notFound = false;
+                }
+                else
+                {
+                    if (method_exists($controllerClass, 'notFoundAction'))
+                    {
+                        $notFound = false;
+                    }
+                    else
+                    {
+                        $actionName = 'notFoundAction';
+                    }
+                }
             }
         }
 
         if ($notFound)
         {
-            $pathClass  = new \ShnfuCarver\Controller\NotFoundController;
-            $actionName = 'indexAction';
+            $controllerClass  = new \ShnfuCarver\Controller\NotFoundController;
+            $actionName       = 'indexAction';
         }
 
-        $pathClass->setServiceRegistry($this->_serviceRegistry);
+        $controllerClass->setServiceRegistry($this->_serviceRegistry);
 
-        return call_user_func_array(array($pathClass, $actionName), $parameter);
+        return call_user_func_array(array($controllerClass, $actionName), $parameter);
     }
 }
 

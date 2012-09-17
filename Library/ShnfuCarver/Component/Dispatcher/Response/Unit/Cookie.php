@@ -79,15 +79,15 @@ class Cookie
     private $_httpOnly = true;
 
     /**
-     * construct 
+     * construct
      *
-     * @param  string $name 
-     * @param  string $value 
-     * @param  int    $expire 
-     * @param  string $path 
-     * @param  string $domain 
-     * @param  bool   $secure 
-     * @param  bool   $httpOnly 
+     * @param  string $name
+     * @param  string $value
+     * @param  int    $expire
+     * @param  string $path
+     * @param  string $domain
+     * @param  bool   $secure
+     * @param  bool   $httpOnly
      * @return void
      */
     public function __construct($name, $value = '', $expire = 0, $path = '', $domain = null, $secure = false, $httpOnly = true )
@@ -95,11 +95,11 @@ class Cookie
         // from PHP source code
         if (preg_match("/[=,; \t\r\n\013\014]/", $name)) {
             throw new \InvalidArgumentException("The cookie name \"$name\" contains invalid characters."));
-        }   
+        }
 
         if (empty($name)) {
             throw new \InvalidArgumentException('The cookie name cannot be empty.');
-        }   
+        }
 
         $this->_name     = $name;
         $this->_value    = $value;

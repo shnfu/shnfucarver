@@ -31,7 +31,7 @@ class HeaderCollection
     private $_header = array();
 
     /**
-     * construct 
+     * construct
      *
      * @param  array $header
      * @return void

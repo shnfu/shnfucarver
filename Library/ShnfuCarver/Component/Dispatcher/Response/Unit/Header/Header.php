@@ -45,7 +45,7 @@ class Header implements HeaderInterface
     private $_unique = false;
 
     /**
-     * construct 
+     * construct
      *
      * @param  string       $name
      * @param  array|string $content

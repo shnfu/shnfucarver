@@ -6,7 +6,7 @@
  * @package    ShnfuCarver
  * @subpackage Component\Config\Format
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
@@ -18,15 +18,15 @@ namespace ShnfuCarver\Component\Config\Format;
  * @package    ShnfuCarver
  * @subpackage Component\Config\Format
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 class Php extends Config
 {
     /**
-     * Construct 
+     * Construct
      *
-     * @param  string $filePath 
+     * @param  string $filePath
      * @return void
      */
     public function __construct($filePath)

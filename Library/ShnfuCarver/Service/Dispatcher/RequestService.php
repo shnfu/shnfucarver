@@ -6,7 +6,7 @@
  * @package    ShnfuCarver
  * @subpackage Service\Dispatcher
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
@@ -18,7 +18,7 @@ namespace ShnfuCarver\Service\Dispatcher;
  * @package    ShnfuCarver
  * @subpackage Service\Dispatcher
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 class RequestService extends \ShnfuCarver\Kernel\Service\Service
@@ -31,7 +31,7 @@ class RequestService extends \ShnfuCarver\Kernel\Service\Service
     protected $_request;
 
     /**
-     * construct 
+     * construct
      *
      * @return void
      */

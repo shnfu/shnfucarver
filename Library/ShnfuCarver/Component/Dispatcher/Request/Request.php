@@ -59,7 +59,7 @@ class Request
     private $_server;
 
     /**
-     * construct 
+     * construct
      *
      * @return void
      */

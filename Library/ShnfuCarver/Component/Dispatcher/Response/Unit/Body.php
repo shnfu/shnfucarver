@@ -31,7 +31,7 @@ class Body
     private $_body = '';
 
     /**
-     * construct 
+     * construct
      *
      * @param  string $content
      * @return void

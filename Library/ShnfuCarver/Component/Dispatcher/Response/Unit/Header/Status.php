@@ -95,7 +95,7 @@ class Status extends Header
     );
 
     /**
-     * construct 
+     * construct
      *
      * @param  string $version
      * @param  int    $statusCode

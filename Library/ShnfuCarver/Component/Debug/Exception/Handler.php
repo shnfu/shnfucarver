@@ -24,18 +24,18 @@ namespace ShnfuCarver\Component\Debug\Exception;
 class Handler
 {
     /**
-     * Exception handler list 
+     * Exception handler list
      *
      * @var \ShnfuCarver\Component\Exception\Handler\Callback
      */
     private $_exceptionHandlerList;
 
     /**
-     * The main exception handler 
+     * The main exception handler
      *
      * If no exception handler exists, return false
      *
-     * @param  \Exception $exception 
+     * @param  \Exception $exception
      * @return bool
      */
     public function handle(\Exception $exception)
@@ -65,7 +65,7 @@ class Handler
     /**
      * Set the exception handler
      *
-     * @param  array|\ShnfuCarver\Component\Debug\Exception\HandlerInterface $handler 
+     * @param  array|\ShnfuCarver\Component\Debug\Exception\HandlerInterface $handler
      * @return void
      */
     public function setHandler($handler)

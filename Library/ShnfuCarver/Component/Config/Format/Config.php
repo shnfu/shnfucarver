@@ -6,7 +6,7 @@
  * @package    ShnfuCarver
  * @subpackage Component\Config\Format
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
@@ -18,7 +18,7 @@ namespace ShnfuCarver\Component\Config\Format;
  * @package    ShnfuCarver
  * @subpackage Component\Config\Format
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 abstract class Config
@@ -31,9 +31,9 @@ abstract class Config
     protected $_data = array();
 
     /**
-     * construct 
+     * construct
      *
-     * @param  array $config 
+     * @param  array $config
      * @return void
      */
     public function __construct(array $config)
@@ -47,7 +47,7 @@ abstract class Config
      * Old config preserved
      * Existed config will be overwritten
      *
-     * @param  array $config 
+     * @param  array $config
      * @return void
      */
     public function import(array $config)

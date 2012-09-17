@@ -40,8 +40,8 @@ class Rewriter implements RewriterInterface
     /**
      * Construct
      *
-     * @param  string|array $pattern 
-     * @param  string|array $replace 
+     * @param  string|array $pattern
+     * @param  string|array $replace
      * @return void
      */
     public function __construct($pattern = array(), $replace = array())
@@ -52,7 +52,7 @@ class Rewriter implements RewriterInterface
     /**
      * Rewrite the path info
      *
-     * @param  string $pathInfo 
+     * @param  string $pathInfo
      * @return string
      */
     public function rewrite($pathInfo)
@@ -63,8 +63,8 @@ class Rewriter implements RewriterInterface
     /**
      * Add replace
      *
-     * @param  string|array $pattern 
-     * @param  string|array $replace 
+     * @param  string|array $pattern
+     * @param  string|array $replace
      * @return void
      */
     public function addReplace($pattern, $replace)

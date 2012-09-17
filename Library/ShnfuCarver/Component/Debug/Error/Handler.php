@@ -24,22 +24,22 @@ namespace ShnfuCarver\Component\Debug\Error;
 class Handler
 {
     /**
-     * Error handler list 
+     * Error handler list
      *
      * @var array  Array of \ShnfuCarver\Component\Debug\HandlerInterface
      */
     private $_errorHandlerList;
 
     /**
-     * The main error handler 
+     * The main error handler
      *
      * If no error handler exists, return false and back to the normal one
      *
-     * @param  int    $errNo 
-     * @param  string $errStr 
-     * @param  string $errFile 
-     * @param  int    $errLine 
-     * @param  array  $errContext 
+     * @param  int    $errNo
+     * @param  string $errStr
+     * @param  string $errFile
+     * @param  int    $errLine
+     * @param  array  $errContext
      * @return bool
      */
     public function handle($errNo, $errStr, $errFile, $errLine, $errContext)
@@ -85,7 +85,7 @@ class Handler
     /**
      * Set the error handler
      *
-     * @param  array|\ShnfuCarver\Component\Debug\Error\HandlerInterface $handler 
+     * @param  array|\ShnfuCarver\Component\Debug\Error\HandlerInterface $handler
      * @return void
      */
     public function setHandler($handler)

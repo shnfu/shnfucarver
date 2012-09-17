@@ -52,7 +52,7 @@ class Response
     private $_body;
 
     /**
-     * construct 
+     * construct
      *
      * @param  string $bodyContent
      * @param  int    $statusCode

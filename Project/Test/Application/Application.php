@@ -27,8 +27,8 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             new \ShnfuCarver\Manager\Exception\ExceptionManager,
-            new \ShnfuCarver\Manager\View\ViewManager,
             new \Test\TestManager,
+            new \ShnfuCarver\Manager\View\ViewManager,
             new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
             new \Test\EndManager,
         );

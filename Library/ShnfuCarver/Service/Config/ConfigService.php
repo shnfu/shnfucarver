@@ -6,7 +6,7 @@
  * @package    ShnfuCarver
  * @subpackage Service\Config
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
@@ -18,7 +18,7 @@ namespace ShnfuCarver\Service\Config;
  * @package    ShnfuCarver
  * @subpackage Service\Config
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 class ConfigService extends \ShnfuCarver\Kernel\Service\Service
@@ -38,7 +38,7 @@ class ConfigService extends \ShnfuCarver\Kernel\Service\Service
     private $_config = array();
 
     /**
-     * construct 
+     * construct
      *
      * @return void
      */
@@ -59,26 +59,27 @@ class ConfigService extends \ShnfuCarver\Kernel\Service\Service
     }
 
     /**
-     * Add a config
+     * Load and append the config to the original one
      *
-     * @param  array $config
+     * @param  string $configPath
      * @return void
      */
-    public function add($config)
+    public function loadAppend($configPath)
     {
-        $this->_config = array_merge_recursive($this->_config, $config);
+        $newConfig = $this->_configLoader->load($configPath);
+        $this->_config = array_merge_recursive($this->_config, $newConfig);
     }
 
     /**
      * Retrieve config
      *
-     * @return array|null
+     * @return array
      */
     public function get($name)
     {
         if (!isset($this->_config[$name]))
         {
-            return null;
+            return array();
         }
 
         return $this->_config[$name];

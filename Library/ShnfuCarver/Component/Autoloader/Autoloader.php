@@ -61,7 +61,7 @@ class Autoloader
     /**
      * Set the loader for autoload
      *
-     * @param  array|\ShnfuCarver\Component\Loader\LoaderInterface $loader 
+     * @param  array|\ShnfuCarver\Component\Loader\LoaderInterface $loader
      * @return void
      */
     public function setLoader($loader)

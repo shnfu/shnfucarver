@@ -31,7 +31,7 @@ class ServiceRegistry
     protected $_service = array();
 
     /**
-     * construct 
+     * construct
      *
      * @return void
      */

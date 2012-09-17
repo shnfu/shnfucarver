@@ -26,7 +26,7 @@ class InternalHandler implements HandlerInterface
     /**
      * The handler to be set
      *
-     * @param  \Exception $exception 
+     * @param  \Exception $exception
      * @return bool
      */
     public function handle(\Exception $exception)

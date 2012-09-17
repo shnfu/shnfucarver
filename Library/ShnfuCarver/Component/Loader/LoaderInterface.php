@@ -26,7 +26,7 @@ interface LoaderInterface
     /**
      * Load the file with the name
      *
-     * @param  string $name 
+     * @param  string $name
      * @return bool  Whether load is successful
      */
     public function load($name);

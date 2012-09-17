@@ -6,7 +6,7 @@
  * @package    ShnfuCarver
  * @subpackage Service\View
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
@@ -18,7 +18,7 @@ namespace ShnfuCarver\Service\View;
  * @package    ShnfuCarver
  * @subpackage Service\View
  * @copyright  2012 Shnfu
- * @author     Zhao Xianghu <xianghuzhao@gmail.com> 
+ * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 class ViewService extends \ShnfuCarver\Kernel\Service\Service
@@ -38,7 +38,7 @@ class ViewService extends \ShnfuCarver\Kernel\Service\Service
     private $_viewDirectory = array();
 
     /**
-     * construct 
+     * construct
      *
      * @return void
      */

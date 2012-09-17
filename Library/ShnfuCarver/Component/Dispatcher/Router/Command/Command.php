@@ -24,11 +24,11 @@ namespace ShnfuCarver\Component\Dispatcher\Router\Command;
 class Command
 {
     /**
-     * The command path
+     * The controller name
      *
      * @var string
      */
-    private $_path = '\\';
+    private $_controller = '';
 
     /**
      * The action name
@@ -45,28 +45,28 @@ class Command
     private $_parameter = array();
 
     /**
-     * construct 
+     * construct
      *
-     * @param  string $path
+     * @param  string $controller
      * @param  string $action
      * @param  array  $parameter
      * @return void
      */
-    public function __construct($path, $action, array $parameter)
+    public function __construct($controller, $action, array $parameter)
     {
-        $this->_path      = $path;
-        $this->_action    = $action;
-        $this->_parameter = $parameter;
+        $this->_controller = $controller;
+        $this->_action     = $action;
+        $this->_parameter  = $parameter;
     }
 
     /**
-     * Get path
+     * Get controller
      *
      * @return string
      */
-    public function getPath()
+    public function getController()
     {
-        return $this->_path;
+        return $this->_controller;
     }
 
     /**
