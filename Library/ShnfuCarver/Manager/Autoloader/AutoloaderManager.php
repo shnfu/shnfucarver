@@ -31,26 +31,39 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
     protected $_autoloader;
 
     /**
+     * The loader
+     *
+     * @var array
+     */
+    protected $_loader;
+
+    /**
+     * Init
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->_autoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
+
+        $internalLoader = $this->_internalLoader();
+        if (!empty($internalLoader))
+        {
+            $this->_loader[] = $internalLoader;
+        }
+    }
+
+    /**
      * Run
      *
      * @return void
      */
     public function run()
     {
-        $this->_autoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
-
-        $loader = array();
-
-        $internalLoader = $this->_internalLoader();
-        if (!empty($internalLoader))
-        {
-            $loader[] = $internalLoader;
-        }
-
         // not empty loader
-        if ($loader)
+        if ($this->_loader)
         {
-            $this->_autoloader->setLoader($loader);
+            $this->_autoloader->setLoader($this->_loader);
             $this->_autoloader->register();
         }
 

@@ -42,9 +42,21 @@ class AppManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $this->loadConfig();
+        $this->init();
 
         parent::run();
+    }
+
+    /**
+     * Init
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->loadConfig();
+
+        parent::init();
     }
 
     /**

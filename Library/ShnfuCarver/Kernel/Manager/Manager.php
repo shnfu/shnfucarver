@@ -128,6 +128,19 @@ abstract class Manager implements ManagerInterface
     }
 
     /**
+     * Initialization
+     *
+     * @return void
+     */
+    public function init()
+    {
+        foreach ($this->_subManager as $subManager)
+        {
+            $subManager->init();
+        }
+    }
+
+    /**
      * Clean
      *
      * @return void

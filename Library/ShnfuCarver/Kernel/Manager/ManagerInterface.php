@@ -38,6 +38,13 @@ interface ManagerInterface
     public function run();
 
     /**
+     * Initialization
+     *
+     * @return void
+     */
+    public function init();
+
+    /**
      * Clean
      *
      * @return void
