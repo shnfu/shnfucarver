@@ -51,6 +51,8 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
         {
             $this->_loader[] = $internalLoader;
         }
+
+        parent::init();
     }
 
     /**

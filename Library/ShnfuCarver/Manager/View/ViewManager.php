@@ -24,11 +24,11 @@ namespace ShnfuCarver\Manager\View;
 class ViewManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * Run
+     * Init
      *
      * @return void
      */
-    public function run()
+    public function init()
     {
         $viewService = $this->_registerService(new \ShnfuCarver\Service\View\ViewService);
 
@@ -37,7 +37,7 @@ class ViewManager extends \ShnfuCarver\Manager\Manager
             $viewService->addViewDirectory($this->_config['path']);
         }
 
-        parent::run();
+        parent::init();
     }
 }
 

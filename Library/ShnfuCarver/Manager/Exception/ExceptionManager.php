@@ -31,26 +31,41 @@ class ExceptionManager extends \ShnfuCarver\Manager\Manager
     protected $_exceptionHandler;
 
     /**
+     * The exception handler
+     *
+     * @var array
+     */
+    protected $_handler = array();
+
+    /**
+     * Init
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->_exceptionHandler = new \ShnfuCarver\Component\Debug\Exception\Handler;
+
+        $internalHandler = $this->_internalHandler();
+        if (false !== $internalHandler)
+        {
+            $this->_handler[] = $internalHandler;
+        }
+
+        parent::init();
+    }
+
+    /**
      * Run
      *
      * @return void
      */
     public function run()
     {
-        $this->_exceptionHandler = new \ShnfuCarver\Component\Debug\Exception\Handler;
-
-        $handler = array();
-
-        $internalHandler = $this->_internalHandler();
-        if (false !== $internalHandler)
-        {
-            $handler[] = $internalHandler;
-        }
-
         // not empty handler
-        if ($handler)
+        if ($this->_handler)
         {
-            $this->_exceptionHandler->setHandler($handler);
+            $this->_exceptionHandler->setHandler($this->_handler);
             $this->_exceptionHandler->register();
         }
 

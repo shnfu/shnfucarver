@@ -31,26 +31,41 @@ class ErrorManager extends \ShnfuCarver\Manager\Manager
     protected $_errorHandler;
 
     /**
+     * The error handler
+     *
+     * @var array
+     */
+    protected $_handler = array();
+
+    /**
+     * Init
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->_errorHandler = new \ShnfuCarver\Component\Debug\Error\Handler;
+
+        $internalHandler = $this->_internalHandler();
+        if (false !== $internalHandler)
+        {
+            $this->_handler[] = $internalHandler;
+        }
+
+        parent::init();
+    }
+
+    /**
      * Run
      *
      * @return void
      */
     public function run()
     {
-        $this->_errorHandler = new \ShnfuCarver\Component\Debug\Error\Handler;
-
-        $handler = array();
-
-        $internalHandler = $this->_internalHandler();
-        if (false !== $internalHandler)
-        {
-            $handler[] = $internalHandler;
-        }
-
         // not empty handler
-        if ($handler)
+        if ($this->_handler)
         {
-            $this->_errorHandler->setHandler($handler);
+            $this->_errorHandler->setHandler($this->_handler);
             $this->_errorHandler->register();
         }
 

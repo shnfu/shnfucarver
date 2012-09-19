@@ -35,13 +35,18 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
         $this->addSubManager($subManager);
     }
 
-    public function run()
+    public function loadConfig()
+    {
+        $this->_getService('config')->load(CONFIGURATION_PATH . '/Config.php');
+
+        parent::loadConfig();
+    }
+
+    public function init()
     {
         date_default_timezone_set('Asia/Shanghai');
 
-        $this->registerConfigService(CONFIGURATION_PATH . '/Config.php');
-
-        parent::run();
+        parent::init();
     }
 
     /**

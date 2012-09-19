@@ -33,6 +33,8 @@ class AppManager extends \ShnfuCarver\Manager\Manager
     public function __construct()
     {
         $this->setServiceRegistry(new \ShnfuCarver\Kernel\Service\ServiceRegistry);
+
+        $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
     }
 
     /**
@@ -44,23 +46,9 @@ class AppManager extends \ShnfuCarver\Manager\Manager
     {
         $this->loadConfig();
 
-        $this->loadAutoload();
-
         $this->init();
 
         $this->run();
-    }
-
-    /**
-     * Register config service
-     *
-     * @param  string $configPath
-     * @return void
-     */
-    public function registerConfigService($configPath)
-    {
-        $configService = $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
-        $configService->load($configPath);
     }
 }
 

@@ -24,6 +24,18 @@ namespace ShnfuCarver\Manager\Dispatcher;
 class ControllerManager extends \ShnfuCarver\Manager\Manager
 {
     /**
+     * Init
+     *
+     * @return void
+     */
+    public function init()
+    {
+        $this->_registerService(new \ShnfuCarver\Service\Dispatcher\ResponseService);
+ 
+        parent::init();
+    }
+
+    /**
      * Run
      *
      * @return void
@@ -36,8 +48,7 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
 
         $response = $this->_resolve($command);
 
-        $responseService = $this->_registerService(new \ShnfuCarver\Service\Dispatcher\ResponseService);
-        $responseService->setResponse($response);
+        $this->_getService('response')->setResponse($response);
 
         parent::run();
     }

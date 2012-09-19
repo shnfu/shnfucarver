@@ -6,8 +6,6 @@ class TestManager extends \ShnfuCarver\Manager\Manager
 {
     public function run()
     {
-        $this->_getService('config')->loadAppend(__DIR__ . '/Config/Config.php');
-
         //require_once APPLICATION_PATH . '/Application/Controller/DefaultController.php';
         //require_once APPLICATION_PATH . '/Application/Controller/DemoController.php';
         require_once __DIR__ . '/Controller/DemoController.php';
