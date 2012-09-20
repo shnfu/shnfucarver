@@ -88,8 +88,6 @@ class StandardLoader implements LoaderInterface
             }
             $this->_loadMap = array_merge_recursive($this->_loadMap, array($name => $tempPath));
         }
-echo 'loadMap: ' . PHP_EOL;
-print_r($this->_loadMap);
 
         return $this;
     }
