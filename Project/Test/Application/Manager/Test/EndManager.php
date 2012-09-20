@@ -6,7 +6,7 @@ class EndManager extends \ShnfuCarver\Manager\Manager
 {
     public function run()
     {
-        echo 'PathInfo: ' . $this->_getService('request')->getPathInfo() . PHP_EOL;
+        echo PHP_EOL . 'PathInfo: ' . $this->_getService('request')->getPathInfo() . PHP_EOL;
 
 //        $this->_test();
 

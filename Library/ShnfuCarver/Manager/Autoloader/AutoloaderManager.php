@@ -46,10 +46,10 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
     {
         $this->_autoloader = new \ShnfuCarver\Component\Autoloader\Autoloader;
 
-        $internalLoader = $this->_internalLoader();
-        if (!empty($internalLoader))
+        $standardLoader = $this->_standardLoader();
+        if (!empty($standardLoader))
         {
-            $this->_loader[] = $internalLoader;
+            $this->_loader[] = $standardLoader;
         }
 
         parent::init();
@@ -73,29 +73,29 @@ class AutoloaderManager extends \ShnfuCarver\Manager\Manager
     }
 
     /**
-     * Internal loader
+     * Standard loader
      *
-     * @return \ShnfuCarver\Component\Loader\InternalLoader
+     * @return \ShnfuCarver\Component\Loader\StandardLoader
      */
-    protected function _internalLoader()
+    protected function _standardLoader()
     {
-        $useInternalLoader = isset($this->_config['use_internal_loader'])
-            ? $this->_config['use_internal_loader'] : false;
-        if (!$useInternalLoader)
+        $useStandardLoader = isset($this->_config['use_standard_loader'])
+            ? $this->_config['use_standard_loader'] : false;
+        if (!$useStandardLoader)
         {
             return null;
         }
 
-        $internalLoader = new \ShnfuCarver\Component\Loader\InternalLoader;
-        if (is_array($this->_config['internal_loader']))
+        $standardLoader = new \ShnfuCarver\Component\Loader\StandardLoader;
+        if (is_array($this->_config['standard_loader']))
         {
-            foreach ($this->_config['internal_loader'] as $key => $value)
+            foreach ($this->_config['standard_loader'] as $key => $value)
             {
-                $internalLoader->add($key, $value);
+                $standardLoader->add($key, $value);
             }
         }
 
-        return $internalLoader;
+        return $standardLoader;
     }
 }
 

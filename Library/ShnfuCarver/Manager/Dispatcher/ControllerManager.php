@@ -65,8 +65,8 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
         $action     = $command->getAction();
         $parameter  = $command->getAllParameter();
 
-        $controllerName = isset($this->_config['map'][$controller]) ? $this->_config['map'][$controller] : $controller;
-        $controllerName = $controllerName   ?: '\Default';
+        $controllerName = $controller ?: 'Default';
+        $controllerName = isset($this->_config['map'][$controllerName]) ? $this->_config['map'][$controllerName] : $controllerName;
         $actionName     = $action ?: 'index';
 
         $controllerName = $controllerName   . 'Controller';

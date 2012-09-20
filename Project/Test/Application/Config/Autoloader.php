@@ -1,11 +1,11 @@
 <?php
 
-$tempConfig['autoloader']['use_internal_loader'] = true;
+$tempConfig['autoloader']['use_standard_loader'] = true;
 
-$tempConfig['autoloader']['internal_loader'] = array
+$tempConfig['autoloader']['standard_loader'] = array
 (
 //    '\ShnfuCarver' => array('', ''),
-    '\Test' => APPLICATION_PATH . '/Application/Manager/Test',
+//    '\Test' => APPLICATION_PATH . '/Application/Manager/Test',
 );
 
 // TODO: redesign this later

@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Internal loader class file
+ * Standard loader class file
  *
  * @package    ShnfuCarver
  * @subpackage Component\Loader
@@ -12,8 +12,11 @@
 
 namespace ShnfuCarver\Component\Loader;
 
+require_once __DIR__ . '/LoaderInterface.php';
+require_once __DIR__ . '/NameIterator.php';
+
 /**
- * Internal loader class
+ * Standard loader class
  *
  * @package    ShnfuCarver
  * @subpackage Component\Loader
@@ -21,7 +24,7 @@ namespace ShnfuCarver\Component\Loader;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class InternalLoader implements LoaderInterface
+class StandardLoader implements LoaderInterface
 {
     const LOAD_EXTENSION = '.php';
 
@@ -71,7 +74,7 @@ class InternalLoader implements LoaderInterface
      *
      * @param  string $name
      * @param  string|array $path
-     * @return ShnfuCarver\Component\Loader\Internal
+     * @return ShnfuCarver\Component\Loader\StandardLoader
      */
     public function add($name, $path)
     {
@@ -108,7 +111,7 @@ class InternalLoader implements LoaderInterface
      * Remove an entry for the load map
      *
      * @param  string $name
-     * @return ShnfuCarver\Component\Loader\Internal
+     * @return ShnfuCarver\Component\Loader\StandardLoader
      */
     public function remove($name)
     {

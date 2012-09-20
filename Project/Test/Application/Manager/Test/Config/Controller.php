@@ -1,5 +1,9 @@
 <?php
 
-$tempConfig['controller']['map'] = array('Demo' => '\Test\Controller\Demo');
+$tempConfig['controller']['map'] = array
+(
+    'Demo'     => '\Test\Controller\Demo',
+    'Default'  => '\Test\Controller\Default',
+);
 
 ?>

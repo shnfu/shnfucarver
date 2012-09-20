@@ -4,15 +4,11 @@ namespace Test;
 
 class TestManager extends \ShnfuCarver\Manager\Manager
 {
-    public function run()
+    public function init()
     {
-        //require_once APPLICATION_PATH . '/Application/Controller/DefaultController.php';
-        //require_once APPLICATION_PATH . '/Application/Controller/DemoController.php';
-        require_once __DIR__ . '/Controller/DemoController.php';
-
         //$this->_test();
 
-        parent::run();
+        parent::init();
     }
 
     /**
