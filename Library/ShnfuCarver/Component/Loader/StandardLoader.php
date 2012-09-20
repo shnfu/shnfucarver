@@ -72,37 +72,24 @@ class StandardLoader implements LoaderInterface
      * Do not append the '.php' extension to the path,
      * because this may also be used for a directory.
      *
-     * @param  string $name
-     * @param  string|array $path
+     * @param  array $loadMap
      * @return ShnfuCarver\Component\Loader\StandardLoader
      */
-    public function add($name, $path)
+    public function add(array $loadMap)
     {
-        if (!is_string($path) && !is_array($path))
+        foreach ($loadMap as $name => $path)
         {
-            throw new \InvalidArgumentException('The path must be a string or array!');
+            $name = self::_formatClassName($name);
+            $path = (array)$path;
+            $tempPath = array();
+            foreach ($path as $onePath)
+            {
+                $tempPath[] = self::_formatPathName($onePath);
+            }
+            $this->_loadMap = array_merge_recursive($this->_loadMap, array($name => $tempPath));
         }
-
-        $name = self::_formatClassName($name);
-
-        $paths = (array)$path;
-        foreach ($paths as &$value)
-        {
-            $value = self::_formatPathName($value);
-        }
-
-        if (isset($this->_loadMap[$name]))
-        {
-            // append to the existing one
-            $tempPath = array_merge($this->_loadMap[$name], $paths);
-
-            $this->_loadMap[$name] = $tempPath;
-        }
-        else
-        {
-            // create a new one
-            $this->_loadMap[$name] = $paths;
-        }
+echo 'loadMap: ' . PHP_EOL;
+print_r($this->_loadMap);
 
         return $this;
     }
@@ -189,7 +176,13 @@ class StandardLoader implements LoaderInterface
         $name = str_replace('\\', DIRECTORY_SEPARATOR, $name);
         $name = str_replace('/', DIRECTORY_SEPARATOR, $name);
         $name = rtrim($name, DIRECTORY_SEPARATOR);
-        $name = rtrim($name, self::LOAD_EXTENSION);
+
+        // Strip the extension
+        if (substr($name, -strlen(self::LOAD_EXTENSION)) == self::LOAD_EXTENSION)
+        {
+            $name = substr($name, 0, -strlen(self::LOAD_EXTENSION));
+        }
+
         return $name;
     }
 

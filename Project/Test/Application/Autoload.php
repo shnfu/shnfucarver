@@ -32,10 +32,7 @@ class Autoload
         require_once SHNFUCARVER_PATH . '/ShnfuCarver/Component/Loader/StandardLoader.php';
         $loader = new \ShnfuCarver\Component\Loader\StandardLoader;
 
-        foreach (self::$_loadPath as $name => $path)
-        {
-            $loader->add($name, $path);
-        }
+        $loader->add(self::$_loadPath);
 
         $autoloader->setLoader($loader);
         $autoloader->register();
