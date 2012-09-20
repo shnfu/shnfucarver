@@ -14,6 +14,7 @@ namespace ShnfuCarver\Component\Dispatcher\Router\Rule;
 
 /**
  * Class for rule
+ * TODO: think about the description of generator
  *
  * @package    ShnfuCarver
  * @subpackage Component\Dispatcher\Router\Rule
@@ -38,11 +39,18 @@ class Rule
     private $_replace = array();
 
     /**
-     * The generator
+     * The generator pattern
      *
-     * @var string
+     * @var array
      */
-    private $_generator = '';
+    private $_generatorPattern = array();
+
+    /**
+     * The generator replace
+     *
+     * @var array
+     */
+    private $_generatorReplace = array();
 
     /**
      * The parameter separator
@@ -52,33 +60,50 @@ class Rule
     private $_parameterSeparator = '-';
 
     /**
-     * Get the controller name
+     * construct
+     *
+     * @param  \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface $rewriter
+     * @param  \ShnfuCarver\Component\Dispatcher\Router\Parser\ParserInterface    $parser
+     * @return void
+     */
+    public function __construct(array $pattern = array(), $replace = array(), $generator = '', $separator = '-')
+    {
+        if (empty($generator))
+        {
+            $this->_generator = '/{:controller}.{:action}-{:parameters}';
+        }
+        $this->_rewriter = $rewriter;
+        $this->_parser   = $parser;
+    }
+
+    /**
+     * Get the path info
      *
      * @return string
      */
-    public function getControllerName()
+    public function generatePathInfo()
     {
         return $this->_controllerName;
     }
 
     /**
-     * Get the action name
-     *
-     * @return string
-     */
-    public function getActionName()
-    {
-        return $this->_actionName;
-    }
-
-    /**
-     * Get the parameters
+     * Get the patterns
      *
      * @return array
      */
-    public function getParameter()
+    public function getPattern()
     {
-        return $this->_parameter;
+        return $this->_pattern;
+    }
+
+    /**
+     * Get the replaces
+     *
+     * @return array
+     */
+    public function getReplace()
+    {
+        return $this->_replace;
     }
 }
 

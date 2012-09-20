@@ -27,10 +27,9 @@ interface GeneratorInterface
      * Generate the URI
      *
      * @param  \ShnfuCarver\Component\Dispatcher\Router\Command $command
-     * @param  bool   $absolute
      * @return string
      */
-    public function generate($command, $absolute);
+    public function generate($command);
 }
 
 ?>

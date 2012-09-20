@@ -45,11 +45,31 @@ class StandardGenerator extends Generator
      * Generate the URI
      *
      * @param  \ShnfuCarver\Component\Dispatcher\Router\Command $command
-     * @param  bool   $absolute
      * @return string
      */
-    public function generate($command, $absolute = true)
+    public function generate($command)
     {
+        $controller = $command->getController();
+        $action = $command->getAction();
+        $parameterString = implode('-', $command->getAllParameter());
+
+        if ($action)
+        {
+            $pathInfo = '/' . $controller . '.' . $action;
+        }
+        else
+        {
+            $pathInfo = '/' . $controllern;
+        }
+
+        if ($parameterString)
+        {
+            $pathInfo .= $parameterString;
+        }
+
+        $uri = $this->_request->getBaseUrl() . $pathInfo;
+
+        $uri = $this->_request->getScheme() . '://' . $uri;
 
         return $uri;
     }

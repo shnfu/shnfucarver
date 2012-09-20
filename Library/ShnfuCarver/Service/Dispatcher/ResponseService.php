@@ -28,7 +28,7 @@ class ResponseService extends \ShnfuCarver\Kernel\Service\Service
      *
      * @var Response
      */
-    protected $_response;
+    private $_response;
 
     /**
      * construct

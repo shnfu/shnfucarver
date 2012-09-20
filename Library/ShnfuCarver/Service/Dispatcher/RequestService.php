@@ -28,7 +28,7 @@ class RequestService extends \ShnfuCarver\Kernel\Service\Service
      *
      * @var Request
      */
-    protected $_request;
+    private $_request;
 
     /**
      * construct

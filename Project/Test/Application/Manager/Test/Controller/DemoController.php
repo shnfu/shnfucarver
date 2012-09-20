@@ -32,7 +32,8 @@ class DemoController extends \ShnfuCarver\Kernel\Controller\Controller
 
     public function redirectAction()
     {
-        return new \ShnfuCarver\Component\Dispatcher\Response\RedirectResponse('http://www.baidu.com');
+        //return new \ShnfuCarver\Component\Dispatcher\Response\RedirectResponse('http://www.baidu.com');
+        return new \ShnfuCarver\Component\Dispatcher\Response\RedirectResponse('demo.view');
     }
 }
 

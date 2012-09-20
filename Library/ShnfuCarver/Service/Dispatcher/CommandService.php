@@ -28,7 +28,7 @@ class CommandService extends \ShnfuCarver\Kernel\Service\Service
      *
      * @var Command
      */
-    protected $_command;
+    private $_command;
 
     /**
      * construct
