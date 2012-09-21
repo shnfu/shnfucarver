@@ -64,25 +64,7 @@ abstract class Manager implements ManagerInterface
             return $this->_name;
         }
 
-        $name = get_class($this);
-        // Get rid of the namespace
-        $pos = strrpos($name, '\\');
-        if (false !== $pos)
-        {
-            $name = substr($name, $pos + 1);
-        }
-        // Strip the Manager suffix
-        $pos = strrpos($name, 'Manager');
-        if (false !== $pos)
-        {
-            $name = substr($name, 0, $pos);
-        }
-        // Split the name according to the uppercase letter
-        $nameFragment = preg_split('/(?=[A-Z])/', $name);
-        $name = strtolower(implode('_', $nameFragment));
-        $name = ltrim($name, '_');
-
-        $this->_name = $name;
+        $this->_name = \ShnfuCarver\Kernel\Misc\Name::extractName(get_class($this), 'Manager');
 
         return $this->_name;
     }
