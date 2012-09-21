@@ -15,19 +15,6 @@ $tempConfig['router']['rule'] = array
         'generator' => '/{controller}.{action}-{parameters}',
         'param_separator' => '-',
     ),
-    array
-    (
-        'rewriter' => array
-        (
-            array
-            (
-                'pattern' => '/d/d',
-                'replace' => '',
-            ),
-        ),
-        'generator' => '/{controller}.{action}-{parameters}',
-        'param_separator' => '-',
-    ),
 );
 
 ?>

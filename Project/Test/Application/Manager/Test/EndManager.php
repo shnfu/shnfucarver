@@ -10,6 +10,8 @@ class EndManager extends \ShnfuCarver\Manager\Manager
 
 //        $this->_test();
 
+        echo 'Name:  ' . \ShnfuCarver\Kernel\Misc\Name::extractName('FineGoodDataHahaXixiSFDSData', 'Data');
+
         parent::run();
     }
 
