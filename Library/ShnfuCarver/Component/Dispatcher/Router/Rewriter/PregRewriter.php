@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class file for standard rewriter
+ * Class file for preg rewriter
  *
  * @package    ShnfuCarver
  * @subpackage Component\Dispatcher\Router\Rewriter
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Component\Dispatcher\Router\Rewriter;
 
 /**
- * Class for standard rewriter
+ * Class for preg rewriter
  *
  * @package    ShnfuCarver
  * @subpackage Component\Dispatcher\Router\Rewriter
@@ -21,7 +21,7 @@ namespace ShnfuCarver\Component\Dispatcher\Router\Rewriter;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class StandardRewriter extends Rewriter
+class PregRewriter implements RewriterInterface
 {
     /**
      * The pattern

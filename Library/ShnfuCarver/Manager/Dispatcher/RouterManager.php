@@ -44,7 +44,7 @@ class RouterManager extends \ShnfuCarver\Manager\Manager
     {
         $rewriter = new \ShnfuCarver\Component\Dispatcher\Router\Rewriter\StandardRewriter;
         $parser = new \ShnfuCarver\Component\Dispatcher\Router\Parser\StandardParser;
-        $route = new \ShnfuCarver\Component\Dispatcher\Router\Router($rewriter, $parser);
+        $route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($rewriter, $parser);
         $command = $route->route($this->_getService('request')->getPathInfo());
 
         $this->_getService('command')->setCommand($command);
