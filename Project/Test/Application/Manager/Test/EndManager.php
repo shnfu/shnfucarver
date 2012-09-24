@@ -9,10 +9,18 @@ class EndManager extends \ShnfuCarver\Manager\Manager
         echo PHP_EOL . 'PathInfo: ' . $this->_getService('request')->getPathInfo() . PHP_EOL;
 
 //        $this->_test();
+        $this->_testGenerator();
 
-        echo 'Name:  ' . \ShnfuCarver\Kernel\Misc\Name::extractName('FineGoodDataHahaXixiSFDSData', 'Data');
+//        echo 'Name:  ' . \ShnfuCarver\Kernel\Misc\Name::extractName('FineGoodDataHahaXixiSFDSData', 'Data');
 
         parent::run();
+    }
+
+    private function _testGenerator()
+    {
+        $deparser = new \ShnfuCarver\Component\Dispatcher\Router\Deparser\StandardDeparser;
+        $generator = new \ShnfuCarver\Component\Dispatcher\Router\Generator\Generator($deparser);
+        echo 'Generate: ' . $generator->generate(new \ShnfuCarver\Component\Dispatcher\Router\Command\Command('', 'index', array('f123', 'hello')));
     }
 
     private function _test()

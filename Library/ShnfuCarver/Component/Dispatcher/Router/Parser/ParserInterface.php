@@ -27,30 +27,9 @@ interface ParserInterface
      * Parse the path info
      *
      * @param  string $pathInfo
-     * @return void
+     * @return \ShnfuCarver\Component\Dispatcher\Router\Command\Command
      */
     public function parse($pathInfo);
-
-    /**
-     * Get the controller name
-     *
-     * @return string
-     */
-    public function getControllerName();
-
-    /**
-     * Get the action name
-     *
-     * @return string
-     */
-    public function getActionName();
-
-    /**
-     * Get the parameters
-     *
-     * @return array
-     */
-    public function getParameter();
 }
 
 ?>

@@ -46,8 +46,8 @@ class Name
         }
 
         // Split the name according to the uppercase letter
-        $name = preg_replace('/([A-Z])/', '_$1', $name);
-        $name = strtolower(ltrim($name, '_'));
+        $name = preg_replace('/([A-Z])/', '_$1', lcfirst($name));
+        $name = strtolower($name);
 
         return $name;
     }

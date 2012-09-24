@@ -24,13 +24,6 @@ namespace ShnfuCarver\Component\Dispatcher\Router\Router;
 class Router
 {
     /**
-     * The path info rewriter
-     *
-     * @var \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface
-     */
-    private $_rewriter;
-
-    /**
      * The path info parser
      *
      * @var \ShnfuCarver\Component\Dispatcher\Router\Parser\ParserInterface
@@ -38,16 +31,23 @@ class Router
     private $_parser;
 
     /**
+     * The path info rewriter
+     *
+     * @var \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface
+     */
+    private $_rewriter;
+
+    /**
      * construct
      *
-     * @param  \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface $rewriter
      * @param  \ShnfuCarver\Component\Dispatcher\Router\Parser\ParserInterface    $parser
+     * @param  \ShnfuCarver\Component\Dispatcher\Router\Rewrite\RewriterInterface $rewriter
      * @return void
      */
-    public function __construct($rewriter, $parser)
+    public function __construct($parser, $rewriter = null)
     {
-        $this->_rewriter = $rewriter;
         $this->_parser   = $parser;
+        $this->_rewriter = $rewriter;
     }
 
     /**
@@ -58,12 +58,14 @@ class Router
      */
     public function route($pathInfo)
     {
-        $pathInfo = $this->_rewriter->rewrite($pathInfo);
+        if (!empty($this->_rewriter))
+        {
+            $pathInfo = $this->_rewriter->rewrite($pathInfo);
+        }
 
-        $this->_parser->parse($pathInfo);
+        $command = $this->_parser->parse($pathInfo);
 
-        return new Command\Command($this->_parser->getControllerName(),
-                $this->_parser->getActionName(), $this->_parser->getParameter());
+        return $command;
     }
 }
 

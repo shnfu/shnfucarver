@@ -42,9 +42,10 @@ class RouterManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $rewriter = new \ShnfuCarver\Component\Dispatcher\Router\Rewriter\StandardRewriter;
         $parser = new \ShnfuCarver\Component\Dispatcher\Router\Parser\StandardParser;
-        $route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($rewriter, $parser);
+        //$rewriter = new \ShnfuCarver\Component\Dispatcher\Router\Rewriter\PregRewriter;
+        //$route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($parser, $rewriter);
+        $route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($parser);
         $command = $route->route($this->_getService('request')->getPathInfo());
 
         $this->_getService('command')->setCommand($command);

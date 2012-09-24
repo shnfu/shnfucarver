@@ -21,7 +21,7 @@ namespace ShnfuCarver\Component\Dispatcher\Router\Parser;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class StandardParser extends Parser
+class StandardParser implements ParserInterface
 {
     /**
      * Parse a standard path info
@@ -31,16 +31,18 @@ class StandardParser extends Parser
      * /good_forum.display_all_post-param1-param2-last_param
      *
      * @param  string $pathInfo
-     * @return void
+     * @return \ShnfuCarver\Component\Dispatcher\Router\Command\Command
      */
     public function parse($pathInfo)
     {
         list($controllerActionString, $paramString) = $this->_seperateParameter(ltrim($pathInfo, '/'));
         list($controllerString, $actionString) = $this->_seperateControllerAction($controllerActionString);
 
-        $this->_controllerName = $this->_formatControllerName($controllerString);
-        $this->_actionName     = $this->_formatActionName($actionString);
-        $this->_parameter      = $this->_buildParameter($paramString);
+        $controllerName = $this->_formatControllerName($controllerString);
+        $actionName     = $this->_formatActionName($actionString);
+        $parameter      = $this->_buildParameter($paramString);
+
+        return new \ShnfuCarver\Component\Dispatcher\Router\Command\Command($controllerName, $actionName, $parameter);
     }
 
     /**
