@@ -52,12 +52,12 @@ interface ManagerInterface
     public function clean();
 
     /**
-     * Set service registry
+     * Set service repository
      *
-     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry|null $serviceRegistry
+     * @param  \ShnfuCarver\Kernel\Service\ServiceRepository|null $serviceRepository
      * @return void
      */
-    public function setServiceRegistry($serviceRegistry);
+    public function setServiceRepository($serviceRepository);
 
     /**
      * Load config

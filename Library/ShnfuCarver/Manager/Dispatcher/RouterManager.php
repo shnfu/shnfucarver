@@ -24,18 +24,6 @@ namespace ShnfuCarver\Manager\Dispatcher;
 class RouterManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * Init
-     *
-     * @return void
-     */
-    public function init()
-    {
-        $this->_registerService(new \ShnfuCarver\Service\Dispatcher\CommandService);
-
-        parent::init();
-    }
-
-    /**
      * Run
      *
      * @return void
@@ -46,9 +34,9 @@ class RouterManager extends \ShnfuCarver\Manager\Manager
         //$rewriter = new \ShnfuCarver\Component\Dispatcher\Router\Rewriter\PregRewriter;
         //$route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($parser, $rewriter);
         $route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($parser);
-        $command = $route->route($this->_getService('request')->getPathInfo());
+        $command = $route->route($this->_get('request')->getPathInfo());
 
-        $this->_getService('command')->setCommand($command);
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($command));
 
         parent::run();
     }

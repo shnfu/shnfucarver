@@ -18,7 +18,7 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
         (
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
-            new \ShnfuCarver\Manager\Exception\ExceptionManager,
+            //new \ShnfuCarver\Manager\Exception\ExceptionManager,
             new \Test\TestManager,
             new \ShnfuCarver\Manager\View\ViewManager,
             new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
@@ -29,7 +29,7 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
 
     public function loadConfig()
     {
-        $this->_getService('config')->load(CONFIGURATION_PATH . '/Config.php');
+        $this->_get('config')->load(CONFIGURATION_PATH . '/Config.php');
 
         parent::loadConfig();
     }

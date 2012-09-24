@@ -24,25 +24,15 @@ namespace ShnfuCarver\Manager\Dispatcher;
 class RequestManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * Init
-     *
-     * @return void
-     */
-    public function init()
-    {
-        $this->_registerService(new \ShnfuCarver\Service\Dispatcher\RequestService);
-
-        parent::init();
-    }
-
-    /**
      * Run
      *
      * @return void
      */
     public function run()
     {
-        $this->_getService('request')->create($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+        $request = new \ShnfuCarver\Component\Dispatcher\Request\Request;
+        $request->create($_GET, $_POST, $_COOKIE, $_FILES, $_SERVER);
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($request));
 
         parent::run();
     }

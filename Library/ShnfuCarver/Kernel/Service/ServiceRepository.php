@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Service registry class file
+ * Service repository class file
  *
  * @package    ShnfuCarver
  * @subpackage Kernel\Service
@@ -13,7 +13,7 @@
 namespace ShnfuCarver\Kernel\Service;
 
 /**
- * Service registry class
+ * Service repository class
  *
  * @package    ShnfuCarver
  * @subpackage Kernel\Service
@@ -21,23 +21,14 @@ namespace ShnfuCarver\Kernel\Service;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ServiceRegistry
+class ServiceRepository
 {
     /**
-     * Service registry
+     * Service repository
      *
      * @var array
      */
-    protected $_service = array();
-
-    /**
-     * construct
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-    }
+    protected $_repository = array();
 
     /**
      * Register a service
@@ -49,14 +40,14 @@ class ServiceRegistry
     {
         if (!$service instanceof ServiceInterface)
         {
-            throw new \InvalidArgumentException("Not an instance of ServiceInterface!");
+            throw new \InvalidArgumentException('Not an instance of ServiceInterface!');
         }
 
         $name = $service->getName();
 
         if (!$this->exist($name))
         {
-            $this->_service[$name] = $service;
+            $this->_repository[$name] = $service;
         }
 
         return $this->get($name);
@@ -70,7 +61,7 @@ class ServiceRegistry
      */
     public function exist($name)
     {
-        return isset($this->_service[$name]);
+        return isset($this->_repository[$name]);
     }
 
     /**
@@ -81,12 +72,12 @@ class ServiceRegistry
      */
     public function get($name)
     {
-        if (!isset($this->_service[$name]))
+        if (!isset($this->_repository[$name]))
         {
             throw new \InvalidArgumentException("The service $name does not exist!");
         }
 
-        return $this->_service[$name];
+        return $this->_repository[$name]->get();
     }
 }
 

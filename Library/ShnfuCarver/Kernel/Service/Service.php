@@ -21,7 +21,7 @@ namespace ShnfuCarver\Kernel\Service;
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-abstract class Service implements ServiceInterface
+class Service implements ServiceInterface
 {
     /**
      * Name
@@ -31,20 +31,52 @@ abstract class Service implements ServiceInterface
     protected $_name;
 
     /**
+     * Object
+     *
+     * @var mixed
+     */
+    protected $_object;
+
+    /**
+     * construct
+     *
+     * @return void
+     */
+    public function __construct($object, $name = '')
+    {
+        $this->_object = $object;
+
+        if (!empty($name))
+        {
+            $this->_name = $name;
+        }
+    }
+
+    /**
      * Get name from the class name
      *
      * @return string
      */
     public function getName()
     {
-        if (isset($this->_name))
+        if (!empty($this->_name))
         {
             return $this->_name;
         }
 
-        $this->_name = \ShnfuCarver\Kernel\Misc\Name::extractName(get_class($this), 'Service');
+        $this->_name = \ShnfuCarver\Kernel\Misc\Name::extractName(get_class($this->_object));
 
         return $this->_name;
+    }
+
+    /**
+     * Get the real object
+     *
+     * @return mixed
+     */
+    public function get()
+    {
+        return $this->_object;
     }
 }
 

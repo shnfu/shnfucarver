@@ -30,7 +30,7 @@ class Name
      * @param  string $suffix
      * @return string
      */
-    public static function extractName($name, $suffix)
+    public static function extractName($name, $suffix = '')
     {
         // Get rid of the namespace
         $pos = strrpos($name, '\\');
@@ -38,11 +38,15 @@ class Name
         {
             $name = substr($name, $pos + 1);
         }
-        // Strip the suffix
-        $length = strlen($suffix);
-        if (substr($name, -$length) == $suffix)
+
+        if (!empty($suffix))
         {
-            $name = substr($name, 0, -$length);
+            // Strip the suffix
+            $length = strlen($suffix);
+            if (substr($name, -$length) == $suffix)
+            {
+                $name = substr($name, 0, -$length);
+            }
         }
 
         // Split the name according to the uppercase letter

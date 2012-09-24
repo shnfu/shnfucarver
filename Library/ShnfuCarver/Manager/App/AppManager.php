@@ -32,9 +32,10 @@ class AppManager extends \ShnfuCarver\Manager\Manager
      */
     public function __construct()
     {
-        $this->setServiceRegistry(new \ShnfuCarver\Kernel\Service\ServiceRegistry);
+        $this->setServiceRepository(new \ShnfuCarver\Kernel\Service\ServiceRepository);
 
-        $this->_registerService(new \ShnfuCarver\Service\Config\ConfigService);
+        $config = new \ShnfuCarver\Component\Config\Handler;
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($config, 'config'));
     }
 
     /**

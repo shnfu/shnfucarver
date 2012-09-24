@@ -30,9 +30,9 @@ class ResponseManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
-        $responseService = $this->_getService('response');
+        $response = $this->_get('response');
 
-        $responseService->send();
+        $response->send();
 
         parent::run();
     }

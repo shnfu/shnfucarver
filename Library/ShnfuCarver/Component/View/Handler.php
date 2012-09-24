@@ -1,27 +1,27 @@
 <?php
 
 /**
- * Class file for view service
+ * View handler class file
  *
  * @package    ShnfuCarver
- * @subpackage Service\View
+ * @subpackage Component\View
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Service\View;
+namespace ShnfuCarver\Component\View;
 
 /**
- * View service class
+ * View handler class
  *
  * @package    ShnfuCarver
- * @subpackage Service\View
+ * @subpackage Component\View
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ViewService extends \ShnfuCarver\Kernel\Service\Service
+class Handler
 {
     /**
      * The view loader

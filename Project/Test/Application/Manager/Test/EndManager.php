@@ -6,7 +6,7 @@ class EndManager extends \ShnfuCarver\Manager\Manager
 {
     public function run()
     {
-        echo PHP_EOL . 'PathInfo: ' . $this->_getService('request')->getPathInfo() . PHP_EOL;
+        echo PHP_EOL . 'PathInfo: ' . $this->_get('request')->getPathInfo() . PHP_EOL;
 
 //        $this->_test();
         $this->_testGenerator();
@@ -36,7 +36,7 @@ class EndManager extends \ShnfuCarver\Manager\Manager
         echo $aaa['fjls'];
         echo $this->_config['test'] . PHP_EOL;
         echo $this->_config[''] . PHP_EOL;
-        echo $this->_getService('config')->get('autoloader')['loader'][1] . PHP_EOL;
+        echo $this->_get('config')->get('autoloader')['loader'][1] . PHP_EOL;
         //print_r($this->_serviceRegistry->get('config')->get('autoloader'));
         throw new \InvalidArgumentException('Test an exception');
     }

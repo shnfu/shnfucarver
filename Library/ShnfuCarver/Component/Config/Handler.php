@@ -1,27 +1,27 @@
 <?php
 
 /**
- * Class file for config service
+ * Handler class file for config
  *
  * @package    ShnfuCarver
- * @subpackage Service\Config
+ * @subpackage Component\Config
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
 
-namespace ShnfuCarver\Service\Config;
+namespace ShnfuCarver\Component\Config;
 
 /**
- * Config service class
+ * Handler class for config
  *
  * @package    ShnfuCarver
- * @subpackage Service\Config
+ * @subpackage Component\Config
  * @copyright  2012 Shnfu
  * @author     Zhao Xianghu <xianghuzhao@gmail.com>
  * @license    http://carver.shnfu.com/license.txt    New BSD License
  */
-class ConfigService extends \ShnfuCarver\Kernel\Service\Service
+class Handler
 {
     /**
      * The config loader

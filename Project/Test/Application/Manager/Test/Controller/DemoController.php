@@ -17,7 +17,7 @@ class DemoController extends \ShnfuCarver\Kernel\Controller\Controller
 
     public function viewAction()
     {
-        return $this->_getService('view')->load('jq.view.html');
+        return $this->_get('view')->load('jq.view.html');
     }
 
     public function helloAction()
@@ -27,7 +27,7 @@ class DemoController extends \ShnfuCarver\Kernel\Controller\Controller
             'h' => 'Hello',
             'w' => 'World',
         );
-        return $this->_getService('view')->load('hello.view.php', $param);
+        return $this->_get('view')->load('hello.view.php', $param);
     }
 
     public function redirectAction()

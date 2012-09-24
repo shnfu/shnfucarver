@@ -18,7 +18,7 @@ class TestManager extends \ShnfuCarver\Manager\Manager
      */
     public function loadConfig()
     {
-        $this->_getService('config')->loadAppend(__DIR__ . '/Config/Config.php');
+        $this->_get('config')->loadAppend(__DIR__ . '/Config/Config.php');
 
         parent::loadConfig();
     }

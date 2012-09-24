@@ -31,12 +31,12 @@ interface ControllerInterface
     public function getName();
 
     /**
-     * Set service registry
+     * Set service repository
      *
-     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry|null $serviceRegistry
+     * @param  \ShnfuCarver\Kernel\Service\ServiceRepository|null $serviceRepository
      * @return void
      */
-    public function setServiceRegistry($serviceRegistry);
+    public function setServiceRepository($serviceRepository);
 }
 
 ?>

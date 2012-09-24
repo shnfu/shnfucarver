@@ -30,12 +30,14 @@ class ViewManager extends \ShnfuCarver\Manager\Manager
      */
     public function init()
     {
-        $viewService = $this->_registerService(new \ShnfuCarver\Service\View\ViewService);
+        $view = new \ShnfuCarver\Component\View\Handler;
 
         if (isset($this->_config['path']))
         {
-            $viewService->addViewDirectory($this->_config['path']);
+            $view->addViewDirectory($this->_config['path']);
         }
+
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($view, 'view'));
 
         parent::init();
     }

@@ -29,6 +29,13 @@ interface ServiceInterface
      * @return string
      */
     public function getName();
+
+    /**
+     * Get the real object
+     *
+     * @return mixed
+     */
+    public function get();
 }
 
 ?>

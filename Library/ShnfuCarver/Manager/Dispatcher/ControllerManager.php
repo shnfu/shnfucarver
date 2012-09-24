@@ -24,31 +24,19 @@ namespace ShnfuCarver\Manager\Dispatcher;
 class ControllerManager extends \ShnfuCarver\Manager\Manager
 {
     /**
-     * Init
-     *
-     * @return void
-     */
-    public function init()
-    {
-        $this->_registerService(new \ShnfuCarver\Service\Dispatcher\ResponseService);
- 
-        parent::init();
-    }
-
-    /**
      * Run
      *
      * @return void
      */
     public function run()
     {
-        $commandService = $this->_getService('command');
-
-        $command = $commandService->getCommand();
+        $command = $this->_get('command');
 
         $response = $this->_resolve($command);
 
-        $this->_getService('response')->setResponse($response);
+        $response = $this->_doResponse($response);
+
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($response));
 
         parent::run();
     }
@@ -103,9 +91,31 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
             $actionName       = 'indexAction';
         }
 
-        $controllerClass->setServiceRegistry($this->_serviceRegistry);
+        $controllerClass->setServiceRepository($this->_serviceRepository);
 
         return call_user_func_array(array($controllerClass, $actionName), $parameter);
+    }
+
+    /**
+     * Get the response
+     *
+     * @param  mixed  $response
+     * @return \ShnfuCarver\Component\Dispatcher\Response\Response
+     */
+    private function _doResponse($response)
+    {
+        if ($response instanceof \ShnfuCarver\Component\Dispatcher\Response\Response)
+        {
+            $this->_response = $response;
+        }
+        else if (is_string($response))
+        {
+            $this->_response = new \ShnfuCarver\Component\Dispatcher\Response\Response($response);
+        }
+        else
+        {
+            throw new \InvalidArgumentException('The response must be a string or an instance of \ShnfuCarver\Component\Dispatcher\Response\Response');
+        }
     }
 }
 

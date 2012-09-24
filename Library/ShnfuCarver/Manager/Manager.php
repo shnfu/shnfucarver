@@ -30,7 +30,7 @@ abstract class Manager extends \ShnfuCarver\Kernel\Manager\Manager
      */
     public function loadConfig()
     {
-        $this->_config = $this->_getService('config')->get($this->getName());
+        $this->_config = $this->_get('config')->get($this->getName());
 
         parent::loadConfig();
     }

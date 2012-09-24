@@ -46,11 +46,11 @@ abstract class Manager implements ManagerInterface
     protected $_config = array();
 
     /**
-     * Service registry
+     * Service repository
      *
-     * @var \ShnfuCarver\Kernel\Service\ServiceRegistry
+     * @var \ShnfuCarver\Kernel\Service\ServiceRepository
      */
-    protected $_serviceRegistry;
+    protected $_serviceRepository;
 
     /**
      * Get name from the class name
@@ -59,7 +59,7 @@ abstract class Manager implements ManagerInterface
      */
     public function getName()
     {
-        if (isset($this->_name))
+        if (!empty($this->_name))
         {
             return $this->_name;
         }
@@ -79,14 +79,14 @@ abstract class Manager implements ManagerInterface
     {
         if ($subManager instanceof \ShnfuCarver\Kernel\Manager\Manager)
         {
-            $subManager->setServiceRegistry($this->_serviceRegistry);
+            $subManager->setServiceRepository($this->_serviceRepository);
             $this->_subManager[] = $subManager;
         }
         else if (is_array($subManager))
         {
             foreach ($subManager as $oneSubManager)
             {
-                $oneSubManager->setServiceRegistry($this->_serviceRegistry);
+                $oneSubManager->setServiceRepository($this->_serviceRepository);
                 $this->_subManager[] = $oneSubManager;
             }
         }
@@ -136,22 +136,22 @@ abstract class Manager implements ManagerInterface
     }
 
     /**
-     * Set service registry
+     * Set service repository
      *
-     * @param  \ShnfuCarver\Kernel\Service\ServiceRegistry|null $serviceRegistry
+     * @param  \ShnfuCarver\Kernel\Service\ServiceRepository|null $serviceRepository
      * @return void
      */
-    public function setServiceRegistry($serviceRegistry)
+    public function setServiceRepository($serviceRepository)
     {
-        if (!$serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        if (!$serviceRepository instanceof \ShnfuCarver\Kernel\Service\ServiceRepository)
         {
-            $serviceRegistry = null;
+            $serviceRepository = null;
         }
 
-        $this->_serviceRegistry = $serviceRegistry;
+        $this->_serviceRepository = $serviceRepository;
         foreach ($this->_subManager as $subManager)
         {
-            $subManager->setServiceRegistry($serviceRegistry);
+            $subManager->setServiceRepository($serviceRepository);
         }
     }
 
@@ -184,14 +184,14 @@ abstract class Manager implements ManagerInterface
      * @param  string $name
      * @return \ShnfuCarver\Kernel\Service\ServiceInterface $service
      */
-    protected function _getService($name)
+    protected function _get($name)
     {
-        if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        if (!$this->_serviceRepository instanceof \ShnfuCarver\Kernel\Service\ServiceRepository)
         {
-            throw new \RuntimeException('The service registry is not set properly!');
+            throw new \RuntimeException('The service repository is not set properly!');
         }
 
-        return $this->_serviceRegistry->get($name);
+        return $this->_serviceRepository->get($name);
     }
 
     /**
@@ -202,12 +202,12 @@ abstract class Manager implements ManagerInterface
      */
     protected function _existService($name)
     {
-        if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        if (!$this->_serviceRepository instanceof \ShnfuCarver\Kernel\Service\ServiceRepository)
         {
-            throw new \RuntimeException('The service registry is not set properly!');
+            throw new \RuntimeException('The service repository is not set properly!');
         }
 
-        return $this->_serviceRegistry->exist($name);
+        return $this->_serviceRepository->exist($name);
     }
 
     /**
@@ -218,12 +218,12 @@ abstract class Manager implements ManagerInterface
      */
     protected function _registerService($service)
     {
-        if (!$this->_serviceRegistry instanceof \ShnfuCarver\Kernel\Service\ServiceRegistry)
+        if (!$this->_serviceRepository instanceof \ShnfuCarver\Kernel\Service\ServiceRepository)
         {
-            throw new \RuntimeException('The service registry is not set properly!');
+            throw new \RuntimeException('The service repository is not set properly!');
         }
 
-        return $this->_serviceRegistry->register($service);
+        return $this->_serviceRepository->register($service);
     }
 }
 
