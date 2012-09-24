@@ -36,7 +36,7 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
 
         $response = $this->_doResponse($response);
 
-        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($response));
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($response, 'response'));
 
         parent::run();
     }
@@ -104,18 +104,16 @@ class ControllerManager extends \ShnfuCarver\Manager\Manager
      */
     private function _doResponse($response)
     {
-        if ($response instanceof \ShnfuCarver\Component\Dispatcher\Response\Response)
+        if (is_string($response))
         {
-            $this->_response = $response;
+            $response = new \ShnfuCarver\Component\Dispatcher\Response\Response($response);
         }
-        else if (is_string($response))
-        {
-            $this->_response = new \ShnfuCarver\Component\Dispatcher\Response\Response($response);
-        }
-        else
+        else if (!$response instanceof \ShnfuCarver\Component\Dispatcher\Response\Response)
         {
             throw new \InvalidArgumentException('The response must be a string or an instance of \ShnfuCarver\Component\Dispatcher\Response\Response');
         }
+
+        return $response;
     }
 }
 
