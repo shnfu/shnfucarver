@@ -6,7 +6,11 @@ class EndManager extends \ShnfuCarver\Manager\Manager
 {
     public function run()
     {
-        echo PHP_EOL . 'PathInfo: ' . $this->_get('request')->getPathInfo() . PHP_EOL;
+        echo PHP_EOL . 'RequestUri: ' . $this->_get('request')->getRequestUri() . PHP_EOL;
+        echo PHP_EOL . 'BaseUrl: '    . $this->_get('request')->getBaseUrl() . PHP_EOL;
+        echo PHP_EOL . 'BasePath: '   . $this->_get('request')->getBasePath() . PHP_EOL;
+        echo PHP_EOL . 'PathInfo: '   . $this->_get('request')->getPathInfo() . PHP_EOL;
+        echo PHP_EOL . 'HttpHost: '   . $this->_get('request')->getHttpHost() . PHP_EOL;
 
 //        $this->_test();
         $this->_testGenerator();
@@ -18,9 +22,7 @@ class EndManager extends \ShnfuCarver\Manager\Manager
 
     private function _testGenerator()
     {
-        $deparser = new \ShnfuCarver\Component\Dispatcher\Router\Deparser\StandardDeparser;
-        $generator = new \ShnfuCarver\Component\Dispatcher\Router\Generator\Generator($deparser);
-        echo 'Generate: ' . $generator->generate(new \ShnfuCarver\Component\Dispatcher\Router\Command\Command('', 'index', array('f123', 'hello')));
+        echo 'Generate: ' . $this->_get('generator')->generateUri('', '', array('f123', 'hello'));
     }
 
     private function _test()

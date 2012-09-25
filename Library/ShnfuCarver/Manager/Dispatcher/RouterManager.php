@@ -30,6 +30,10 @@ class RouterManager extends \ShnfuCarver\Manager\Manager
      */
     public function run()
     {
+        $deparser = new \ShnfuCarver\Component\Dispatcher\Router\Deparser\StandardDeparser;
+        $generator = new \ShnfuCarver\Component\Dispatcher\Router\Generator\UriGenerator($this->_get('request'), $deparser);
+        $this->_registerService(new \ShnfuCarver\Kernel\Service\Service($generator, 'generator'));
+
         $parser = new \ShnfuCarver\Component\Dispatcher\Router\Parser\StandardParser;
         //$rewriter = new \ShnfuCarver\Component\Dispatcher\Router\Rewriter\PregRewriter;
         //$route = new \ShnfuCarver\Component\Dispatcher\Router\Router\Router($parser, $rewriter);
