@@ -42,14 +42,14 @@ class Request
      *
      * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
      */
-    private $_cookies;
+    private $_cookie;
 
     /**
      * The FILES parameter
      *
      * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\File
      */
-    private $_files;
+    private $_file;
 
     /**
      * The SERVER parameter
@@ -73,13 +73,13 @@ class Request
      * @return void
      */
     public function create(array $get = array(), array $post = array(),
-            array $cookies = array(), array $files = array(), array $server = array())
+            array $cookie = array(), array $file = array(), array $server = array())
     {
-        $this->_get     = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($get    );
-        $this->_post    = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($post   );
-        $this->_cookies = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($cookies);
-        $this->_files   = new \ShnfuCarver\Component\Dispatcher\Request\Unit\File     ($files  );
-        $this->_server  = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Server   ($server );
+        $this->_get    = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($get   );
+        $this->_post   = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($post  );
+        $this->_cookie = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($cookie);
+        $this->_file   = new \ShnfuCarver\Component\Dispatcher\Request\Unit\File     ($file  );
+        $this->_server = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Server   ($server);
     }
 
     /**

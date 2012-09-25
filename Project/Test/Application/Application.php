@@ -19,10 +19,10 @@ class AppManager extends \ShnfuCarver\Manager\App\AppManager
             new \ShnfuCarver\Manager\Autoloader\AutoloaderManager,
             new \ShnfuCarver\Manager\Error\ErrorManager,
             //new \ShnfuCarver\Manager\Exception\ExceptionManager,
-            new \Test\TestManager,
+            new \Shnfu\ShnfuManager,
             new \ShnfuCarver\Manager\View\ViewManager,
             new \ShnfuCarver\Manager\Dispatcher\DispatcherManager,
-            new \Test\EndManager,
+            //new \Test\EndManager,
         );
         $this->addSubManager($subManager);
     }
