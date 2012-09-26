@@ -54,7 +54,7 @@ class Request
     /**
      * The SERVER parameter
      *
-     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     * @var \ShnfuCarver\Component\Dispatcher\Request\Unit\Server
      */
     private $_server;
 
@@ -80,6 +80,56 @@ class Request
         $this->_cookie = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter($cookie);
         $this->_file   = new \ShnfuCarver\Component\Dispatcher\Request\Unit\File     ($file  );
         $this->_server = new \ShnfuCarver\Component\Dispatcher\Request\Unit\Server   ($server);
+    }
+
+    /**
+     * Get the GET parameter
+     *
+     * @return \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     */
+    public function getGet()
+    {
+        return $this->_get;
+    }
+
+    /**
+     * Get the POST parameter
+     *
+     * @return \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     */
+    public function getPost()
+    {
+        return $this->_post;
+    }
+
+    /**
+     * Get the COOKIE parameter
+     *
+     * @return \ShnfuCarver\Component\Dispatcher\Request\Unit\Parameter
+     */
+    public function getCookie()
+    {
+        return $this->_cookie;
+    }
+
+    /**
+     * Get the FILES parameter
+     *
+     * @return \ShnfuCarver\Component\Dispatcher\Request\Unit\File
+     */
+    public function getFile()
+    {
+        return $this->_file;
+    }
+
+    /**
+     * Get the SERVER parameter
+     *
+     * @return \ShnfuCarver\Component\Dispatcher\Request\Unit\Server
+     */
+    public function getServer()
+    {
+        return $this->_server;
     }
 
     /**
