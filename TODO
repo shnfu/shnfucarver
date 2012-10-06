@@ -1,3 +1,5 @@
+Make the Header and Cookie collection implements Iterator, ArrayAccess, Countable
+
 Generate URI
 
 Add cookies

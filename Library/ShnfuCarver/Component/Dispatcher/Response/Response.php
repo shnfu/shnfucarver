@@ -40,9 +40,9 @@ class Response
     /**
      * The cookies
      *
-     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\Cookie
+     * @var \ShnfuCarver\Component\Dispatcher\Response\Unit\CookieCollection
      */
-    private $_cookie;
+    private $_cookieCollection;
 
     /**
      * The body
@@ -63,6 +63,7 @@ class Response
         $this->_status = new Unit\Header\Status($statusCode);
         $this->_body = new Unit\Body($bodyContent);
         $this->_headerCollection = new Unit\HeaderCollection;
+        $this->_cookieCollection = new Unit\CookieCollection;
     }
 
     /**
@@ -90,7 +91,12 @@ class Response
         }
 
         // set the cookies
-        //$this->_cookie->getAll()
+        foreach ($this->_cookieCollection->getAll() as $cookie)
+        {
+            setcookie($cookie->getName(), $cookie->getValue(),
+                $cookie->getExpire(), $cookie->getPath(), $cookie->getDomain(),
+                $cookie->isSecure(), $cookie->isHttpOnly());
+        }
     }
 
     /**
@@ -123,6 +129,17 @@ class Response
     public function addHeader(Unit\Header\HeaderInterface $header)
     {
         $this->_headerCollection->add($header);
+    }
+
+    /**
+     * Add cookie
+     *
+     * @param  \ShnfuCarver\Component\Dispatcher\Response\Unit\Cookie $cookie
+     * @return void
+     */
+    public function addCookie(Unit\Cookie $cookie)
+    {
+        $this->_cookieCollection->add($cookie);
     }
 }
 

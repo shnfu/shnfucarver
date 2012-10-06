@@ -55,14 +55,14 @@ class Cookie
      *
      * @var string
      */
-    private $_path = '';
+    private $_path = '/';
 
     /**
      * The domain
      *
      * @var string
      */
-    private $_domain = null;
+    private $_domain = '';
 
     /**
      * The secure
@@ -90,22 +90,22 @@ class Cookie
      * @param  bool   $httpOnly
      * @return void
      */
-    public function __construct($name, $value = '', $expire = 0, $path = '', $domain = null, $secure = false, $httpOnly = true )
+    public function __construct($name, $value = '', $expire = 0, $path = '/', $domain = '', $secure = false, $httpOnly = true )
     {
         // from PHP source code
         if (preg_match("/[=,; \t\r\n\013\014]/", $name)) {
-            throw new \InvalidArgumentException("The cookie name \"$name\" contains invalid characters."));
+            throw new \InvalidArgumentException('The cookie name "' . $name . '" contains invalid characters.');
         }
 
         if (empty($name)) {
             throw new \InvalidArgumentException('The cookie name cannot be empty.');
         }
 
-        $this->_name     = $name;
-        $this->_value    = $value;
-        $this->_expire   = $expire;
-        $this->_path     = $path;
-        $this->_domain   = $domain;
+        $this->_name     = (string)$name;
+        $this->_value    = (string)$value;
+        $this->_expire   = (int)$expire;
+        $this->_path     = empty($path) ? '/' : (string)$path;
+        $this->_domain   = (string)$domain;
         $this->_secure   = (bool)$secure;
         $this->_httpOnly = (bool)$httpOnly;
     }
@@ -127,7 +127,7 @@ class Cookie
      */
     public function getValue()
     {
-        return $this->_name;
+        return $this->_value;
     }
 
     /**
