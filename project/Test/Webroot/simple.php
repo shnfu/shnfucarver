@@ -2,7 +2,7 @@
 
 define('APPLICATION_PATH', realpath(__DIR__ . '/..'));
 
-define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../Library'));
+define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../library'));
 define('CONFIGURATION_PATH', realpath(APPLICATION_PATH . '/Application/Config'));
 
 // autoloader

@@ -4,7 +4,7 @@ defined('APPLICATION_PATH')
     || define('APPLICATION_PATH', realpath(__DIR__ . '/..'));
 
 defined('SHNFUCARVER_PATH')
-    || define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../Library'));
+    || define('SHNFUCARVER_PATH', realpath(APPLICATION_PATH . '/../../library'));
 
 class Autoload
 {
